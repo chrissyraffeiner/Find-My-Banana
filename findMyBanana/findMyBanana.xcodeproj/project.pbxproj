@@ -15,6 +15,8 @@
 		C39AC6A7241B9BF4006EFAD5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C39AC6A5241B9BF4006EFAD5 /* LaunchScreen.storyboard */; };
 		C39AC6B2241B9BF4006EFAD5 /* findMyBananaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39AC6B1241B9BF4006EFAD5 /* findMyBananaTests.swift */; };
 		C39AC6BD241B9BF4006EFAD5 /* findMyBananaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39AC6BC241B9BF4006EFAD5 /* findMyBananaUITests.swift */; };
+		C39AC6CB241BABB4006EFAD5 /* CreateGameTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39AC6CA241BABB4006EFAD5 /* CreateGameTimeView.swift */; };
+		C39AC6CD241BABDB006EFAD5 /* CreateGameEmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39AC6CC241BABDB006EFAD5 /* CreateGameEmojiView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		C39AC6B8241B9BF4006EFAD5 /* findMyBananaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = findMyBananaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C39AC6BC241B9BF4006EFAD5 /* findMyBananaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = findMyBananaUITests.swift; sourceTree = "<group>"; };
 		C39AC6BE241B9BF4006EFAD5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C39AC6CA241BABB4006EFAD5 /* CreateGameTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGameTimeView.swift; sourceTree = "<group>"; };
+		C39AC6CC241BABDB006EFAD5 /* CreateGameEmojiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGameEmojiView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,8 @@
 				C39AC69C241B9BF3006EFAD5 /* SceneDelegate.swift */,
 				C39AC69E241B9BF3006EFAD5 /* ViewController.swift */,
 				C39AC6A0241B9BF3006EFAD5 /* Main.storyboard */,
+				C39AC6CA241BABB4006EFAD5 /* CreateGameTimeView.swift */,
+				C39AC6CC241BABDB006EFAD5 /* CreateGameEmojiView.swift */,
 				C39AC6A3241B9BF4006EFAD5 /* Assets.xcassets */,
 				C39AC6A5241B9BF4006EFAD5 /* LaunchScreen.storyboard */,
 				C39AC6A8241B9BF4006EFAD5 /* Info.plist */,
@@ -260,8 +266,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C39AC69F241B9BF3006EFAD5 /* ViewController.swift in Sources */,
+				C39AC6CD241BABDB006EFAD5 /* CreateGameEmojiView.swift in Sources */,
 				C39AC69B241B9BF3006EFAD5 /* AppDelegate.swift in Sources */,
 				C39AC69D241B9BF3006EFAD5 /* SceneDelegate.swift in Sources */,
+				C39AC6CB241BABB4006EFAD5 /* CreateGameTimeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

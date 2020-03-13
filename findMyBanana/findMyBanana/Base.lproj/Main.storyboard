@@ -185,7 +185,7 @@
         <!--Create Game-->
         <scene sceneID="YoO-ls-6Sw">
             <objects>
-                <viewController id="Edq-5c-NmF" sceneMemberID="viewController">
+                <viewController id="Edq-5c-NmF" customClass="CreateGameTimeView" customModule="findMyBanana" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eJp-uN-dTO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -219,6 +219,9 @@
                         <viewLayoutGuide key="safeArea" id="sew-jv-FLD"/>
                     </view>
                     <navigationItem key="navigationItem" title="Create Game" id="m7R-jE-aU1"/>
+                    <connections>
+                        <outlet property="timePicker" destination="QN8-47-65E" id="x9K-Rr-doA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vsY-Xd-5De" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -227,7 +230,7 @@
         <!--Create Game-->
         <scene sceneID="ZVN-Ve-TPF">
             <objects>
-                <viewController id="jhs-Md-7tS" sceneMemberID="viewController">
+                <viewController id="jhs-Md-7tS" customClass="CreateGameEmojiView" customModule="findMyBanana" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Zod-rV-Afx">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -261,6 +264,9 @@
                         <viewLayoutGuide key="safeArea" id="MT3-yW-qBh"/>
                     </view>
                     <navigationItem key="navigationItem" title="Create Game" id="MCM-Y9-LDn"/>
+                    <connections>
+                        <outlet property="emojiPicker" destination="C2G-2i-CIr" id="xIN-ex-Gmj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vN8-8D-NM4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
