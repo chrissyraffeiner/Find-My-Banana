@@ -8,6 +8,12 @@ app.get("/", function(req, res){
     res.send('<h1>Hello world</h1>');
 })
 
+app.get("/message", function(req,res){
+    res.send("server works")
+})
+
+
+
 /**
  * Erstellt einen Gamecode, und weißt angegebene Zeit und anzahl der Emojis zu.
  * 
@@ -16,6 +22,9 @@ app.get("/", function(req, res){
 
 app.use(express.json())
 app.post("/createGame", function(req, res){
+    console.log("here")
+    let anzahl = req.body.anz
+    let timeInSec = req.body.timeInSec
     let token;
         token = cryp.randomBytes(3).toString('hex');
 
