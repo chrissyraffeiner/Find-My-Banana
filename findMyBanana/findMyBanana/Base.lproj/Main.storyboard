@@ -194,7 +194,8 @@
                                 <rect key="frame" x="354" y="586" width="30" height="30"/>
                                 <state key="normal" title="next"/>
                                 <connections>
-                                    <segue destination="jhs-Md-7tS" kind="show" id="l1i-jX-R69"/>
+                                    <action selector="nextBtn:" destination="Edq-5c-NmF" eventType="touchUpInside" id="Q23-p6-jUn"/>
+                                    <segue destination="jhs-Md-7tS" kind="show" id="n46-w5-Zsp"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="time to play" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wrl-m5-wrq">

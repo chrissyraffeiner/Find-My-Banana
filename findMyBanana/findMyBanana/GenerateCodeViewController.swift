@@ -11,9 +11,11 @@ import UIKit
 class GenerateCodeViewController: UIViewController {
     let createGameUrl = "http://127.0.0.1:3000/createGame"
     var token = ""
+    
+    var model = Model()
 
     @IBAction func startBtn(_ sender: UIButton) {
-        let queue = DispatchQueue(label: "getToken")
+        //let queue = DispatchQueue(label: "getToken")
         self.setupPost()
             print("token: \(String(describing: self.token))")
                 self.tokenLabel.text = self.token
@@ -27,18 +29,16 @@ class GenerateCodeViewController: UIViewController {
     }
     
     func setupPost(){
-        let anz = 4
-        let timeInSec = 10
-        var model = gameModel(anz: anz, timeInSec: timeInSec)
+        var jsonModel = gameModel(anz: self.model.anz, timeInSec: self.model.timeInSec)
         
         if let url = URL(string: self.createGameUrl) {
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             
-            var model = gameModel(anz: 4, timeInSec: 10)
+            //var model = gameModel(anz: 4, timeInSec: 10)
             
             //var jsondata = try? JSONSerialization.data(withJSONObject: model, options: [])
-            var jsondata = try? JSONEncoder().encode(model)
+            var jsondata = try? JSONEncoder().encode(jsonModel)
             
             request.httpBody = jsondata
             
@@ -82,9 +82,4 @@ class GenerateCodeViewController: UIViewController {
     }
     */
 
-}
-
-struct gameModel:Codable{
-    var anz: Int
-    var timeInSec: Int
 }
