@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C31101AB24211FC900D48AEB /* Emoji.txt in Resources */ = {isa = PBXBuildFile; fileRef = C31101AA24211FC900D48AEB /* Emoji.txt */; };
+		C31101AD242126F000D48AEB /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31101AC242126F000D48AEB /* GameModel.swift */; };
 		C39AC69B241B9BF3006EFAD5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39AC69A241B9BF3006EFAD5 /* AppDelegate.swift */; };
 		C39AC69D241B9BF3006EFAD5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39AC69C241B9BF3006EFAD5 /* SceneDelegate.swift */; };
 		C39AC69F241B9BF3006EFAD5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39AC69E241B9BF3006EFAD5 /* ViewController.swift */; };
@@ -40,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		C31101AA24211FC900D48AEB /* Emoji.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Emoji.txt; sourceTree = "<group>"; };
+		C31101AC242126F000D48AEB /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
 		C39AC697241B9BF3006EFAD5 /* findMyBanana.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = findMyBanana.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C39AC69A241B9BF3006EFAD5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C39AC69C241B9BF3006EFAD5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				C31101AA24211FC900D48AEB /* Emoji.txt */,
 				C39AC6CA241BABB4006EFAD5 /* CreateGameTimeView.swift */,
 				C39AC6CC241BABDB006EFAD5 /* CreateGameEmojiView.swift */,
+				C31101AC242126F000D48AEB /* GameModel.swift */,
 				C39AC6A3241B9BF4006EFAD5 /* Assets.xcassets */,
 				C39AC6A5241B9BF4006EFAD5 /* LaunchScreen.storyboard */,
 				C39AC6A8241B9BF4006EFAD5 /* Info.plist */,
@@ -277,6 +280,7 @@
 				C39AC69B241B9BF3006EFAD5 /* AppDelegate.swift in Sources */,
 				C39AC69D241B9BF3006EFAD5 /* SceneDelegate.swift in Sources */,
 				FD8466532421103E00E95E22 /* GenerateCodeViewController.swift in Sources */,
+				C31101AD242126F000D48AEB /* GameModel.swift in Sources */,
 				C39AC6CB241BABB4006EFAD5 /* CreateGameTimeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -33,55 +33,27 @@ class GenerateCodeViewController: UIViewController {
     func setupPost(){
         let anz = 4
         let timeInSec = 10
-        var model = gameModel(anz: anz, timeInSec: timeInSec)
+        let model = GameModel(anz: anz, timeInSec: timeInSec)
         
         if let url = URL(string: self.createGameUrl) {
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             
-            var model = gameModel(anz: 4, timeInSec: 10)
-            
-            //var jsondata = try? JSONSerialization.data(withJSONObject: model, options: [])
-            var jsondata = try? JSONEncoder().encode(model)
-            
+            let jsondata = try? JSONEncoder().encode(model)
             request.httpBody = jsondata
-            
             
             URLSession.shared.dataTask(with: request) { (data, response, err) in
                 if let data = data, let dataString = String(data: data, encoding: .utf8) {
                     self.token = dataString
-                    print("token unten: \(self.token)")
-                    //print("tokenstring: \(tokenString)")
+                    print("token: \(self.token)")
                 }
-                
-                if let response = response as? HTTPURLResponse {
-                    print(response.statusCode)
-                    
-                }else{
-                    print("na response")
+                if let error = err {
+                    print("Error took place \(error)")
                     return
                 }
-                
             }.resume()
         }else{
-            print("url ned")
+            print("URL ist flasch")
         }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
-}
-
-struct gameModel:Codable{
-    var anz: Int
-    var timeInSec: Int
 }
