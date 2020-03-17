@@ -14,13 +14,9 @@ class GenerateCodeViewController: UIViewController {
 
     @IBAction func startBtn(_ sender: UIButton) {
         let queue = DispatchQueue(label: "getToken")
-        queue.async {
-            self.setupPost()
-            DispatchQueue.main.async {
-                print("token: \(String(describing: self.token))")
+        self.setupPost()
+            print("token: \(String(describing: self.token))")
                 self.tokenLabel.text = self.token
-            }
-        }
     }
     @IBOutlet weak var tokenLabel: UILabel!
     
@@ -45,15 +41,23 @@ class GenerateCodeViewController: UIViewController {
             URLSession.shared.dataTask(with: request) { (data, response, err) in
                 if let data = data, let dataString = String(data: data, encoding: .utf8) {
                     self.token = dataString
+                    self.saveToken(token:dataString)
                     print("token: \(self.token)")
                 }
                 if let error = err {
                     print("Error took place \(error)")
-                    return
                 }
             }.resume()
         }else{
             print("URL ist flasch")
         }
     }
+    
+    func saveToken(token:String){
+        print("savetoken: \(token)")
+        DispatchQueue.main.async {
+            self.tokenLabel.text=token
+        }
+    }
+    
 }
