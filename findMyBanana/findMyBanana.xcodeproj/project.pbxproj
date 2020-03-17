@@ -20,6 +20,7 @@
 		C39AC6CB241BABB4006EFAD5 /* CreateGameTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39AC6CA241BABB4006EFAD5 /* CreateGameTimeView.swift */; };
 		C39AC6CD241BABDB006EFAD5 /* CreateGameEmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39AC6CC241BABDB006EFAD5 /* CreateGameEmojiView.swift */; };
 		FD8466532421103E00E95E22 /* GenerateCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8466522421103E00E95E22 /* GenerateCodeViewController.swift */; };
+		FD846655242133FF00E95E22 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD846654242133FF00E95E22 /* Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		C39AC6CA241BABB4006EFAD5 /* CreateGameTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGameTimeView.swift; sourceTree = "<group>"; };
 		C39AC6CC241BABDB006EFAD5 /* CreateGameEmojiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGameEmojiView.swift; sourceTree = "<group>"; };
 		FD8466522421103E00E95E22 /* GenerateCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateCodeViewController.swift; sourceTree = "<group>"; };
+		FD846654242133FF00E95E22 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 				C39AC6A0241B9BF3006EFAD5 /* Main.storyboard */,
 				FD8466522421103E00E95E22 /* GenerateCodeViewController.swift */,
 				C31101AA24211FC900D48AEB /* Emoji.txt */,
+				FD846654242133FF00E95E22 /* Model.swift */,
 				C39AC6CA241BABB4006EFAD5 /* CreateGameTimeView.swift */,
 				C39AC6CC241BABDB006EFAD5 /* CreateGameEmojiView.swift */,
 				C31101AC242126F000D48AEB /* GameModel.swift */,
@@ -275,6 +278,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD846655242133FF00E95E22 /* Model.swift in Sources */,
 				C39AC69F241B9BF3006EFAD5 /* ViewController.swift in Sources */,
 				C39AC6CD241BABDB006EFAD5 /* CreateGameEmojiView.swift in Sources */,
 				C39AC69B241B9BF3006EFAD5 /* AppDelegate.swift in Sources */,
