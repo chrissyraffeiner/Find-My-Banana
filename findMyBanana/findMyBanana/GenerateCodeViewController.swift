@@ -14,13 +14,9 @@ class GenerateCodeViewController: UIViewController {
 
     @IBAction func startBtn(_ sender: UIButton) {
         let queue = DispatchQueue(label: "getToken")
-        queue.async {
-            self.setupPost()
-            DispatchQueue.main.async {
-                print("token: \(String(describing: self.token))")
+        self.setupPost()
+            print("token: \(String(describing: self.token))")
                 self.tokenLabel.text = self.token
-            }
-        }
     }
     @IBOutlet weak var tokenLabel: UILabel!
     
@@ -51,12 +47,12 @@ class GenerateCodeViewController: UIViewController {
                 if let data = data, let dataString = String(data: data, encoding: .utf8) {
                     self.token = dataString
                     print("token unten: \(self.token)")
+                    self.saveToken(token:dataString)
                     //print("tokenstring: \(tokenString)")
                 }
                 
                 if let response = response as? HTTPURLResponse {
                     print(response.statusCode)
-                    
                 }else{
                     print("na response")
                     return
@@ -65,6 +61,13 @@ class GenerateCodeViewController: UIViewController {
             }.resume()
         }else{
             print("url ned")
+        }
+    }
+    
+    func saveToken(token:String){
+        print("savetoken: \(token)")
+        DispatchQueue.main.async {
+            self.tokenLabel.text=token
         }
     }
     
