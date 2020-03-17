@@ -17,6 +17,7 @@
 		C39AC6BD241B9BF4006EFAD5 /* findMyBananaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39AC6BC241B9BF4006EFAD5 /* findMyBananaUITests.swift */; };
 		C39AC6CB241BABB4006EFAD5 /* CreateGameTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39AC6CA241BABB4006EFAD5 /* CreateGameTimeView.swift */; };
 		C39AC6CD241BABDB006EFAD5 /* CreateGameEmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39AC6CC241BABDB006EFAD5 /* CreateGameEmojiView.swift */; };
+		FD8466532421103E00E95E22 /* GenerateCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8466522421103E00E95E22 /* GenerateCodeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		C39AC6BE241B9BF4006EFAD5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C39AC6CA241BABB4006EFAD5 /* CreateGameTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGameTimeView.swift; sourceTree = "<group>"; };
 		C39AC6CC241BABDB006EFAD5 /* CreateGameEmojiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGameEmojiView.swift; sourceTree = "<group>"; };
+		FD8466522421103E00E95E22 /* GenerateCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateCodeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 				C39AC69C241B9BF3006EFAD5 /* SceneDelegate.swift */,
 				C39AC69E241B9BF3006EFAD5 /* ViewController.swift */,
 				C39AC6A0241B9BF3006EFAD5 /* Main.storyboard */,
+				FD8466522421103E00E95E22 /* GenerateCodeViewController.swift */,
 				C39AC6CA241BABB4006EFAD5 /* CreateGameTimeView.swift */,
 				C39AC6CC241BABDB006EFAD5 /* CreateGameEmojiView.swift */,
 				C39AC6A3241B9BF4006EFAD5 /* Assets.xcassets */,
@@ -269,6 +272,7 @@
 				C39AC6CD241BABDB006EFAD5 /* CreateGameEmojiView.swift in Sources */,
 				C39AC69B241B9BF3006EFAD5 /* AppDelegate.swift in Sources */,
 				C39AC69D241B9BF3006EFAD5 /* SceneDelegate.swift in Sources */,
+				FD8466532421103E00E95E22 /* GenerateCodeViewController.swift in Sources */,
 				C39AC6CB241BABB4006EFAD5 /* CreateGameTimeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
