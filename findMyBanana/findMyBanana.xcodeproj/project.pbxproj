@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C31101AB24211FC900D48AEB /* Emoji.txt in Resources */ = {isa = PBXBuildFile; fileRef = C31101AA24211FC900D48AEB /* Emoji.txt */; };
 		C39AC69B241B9BF3006EFAD5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39AC69A241B9BF3006EFAD5 /* AppDelegate.swift */; };
 		C39AC69D241B9BF3006EFAD5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39AC69C241B9BF3006EFAD5 /* SceneDelegate.swift */; };
 		C39AC69F241B9BF3006EFAD5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39AC69E241B9BF3006EFAD5 /* ViewController.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C31101AA24211FC900D48AEB /* Emoji.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Emoji.txt; sourceTree = "<group>"; };
 		C39AC697241B9BF3006EFAD5 /* findMyBanana.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = findMyBanana.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C39AC69A241B9BF3006EFAD5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C39AC69C241B9BF3006EFAD5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 				C39AC69E241B9BF3006EFAD5 /* ViewController.swift */,
 				C39AC6A0241B9BF3006EFAD5 /* Main.storyboard */,
 				FD8466522421103E00E95E22 /* GenerateCodeViewController.swift */,
+				C31101AA24211FC900D48AEB /* Emoji.txt */,
 				C39AC6CA241BABB4006EFAD5 /* CreateGameTimeView.swift */,
 				C39AC6CC241BABDB006EFAD5 /* CreateGameEmojiView.swift */,
 				C39AC6A3241B9BF4006EFAD5 /* Assets.xcassets */,
@@ -244,6 +247,7 @@
 				C39AC6A7241B9BF4006EFAD5 /* LaunchScreen.storyboard in Resources */,
 				C39AC6A4241B9BF4006EFAD5 /* Assets.xcassets in Resources */,
 				C39AC6A2241B9BF3006EFAD5 /* Main.storyboard in Resources */,
+				C31101AB24211FC900D48AEB /* Emoji.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
