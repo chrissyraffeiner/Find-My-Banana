@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C31101AB24211FC900D48AEB /* Emoji.txt in Resources */ = {isa = PBXBuildFile; fileRef = C31101AA24211FC900D48AEB /* Emoji.txt */; };
+		C31101AD242126F000D48AEB /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C31101AC242126F000D48AEB /* GameModel.swift */; };
 		C39AC69B241B9BF3006EFAD5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39AC69A241B9BF3006EFAD5 /* AppDelegate.swift */; };
 		C39AC69D241B9BF3006EFAD5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39AC69C241B9BF3006EFAD5 /* SceneDelegate.swift */; };
 		C39AC69F241B9BF3006EFAD5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39AC69E241B9BF3006EFAD5 /* ViewController.swift */; };
@@ -18,6 +20,7 @@
 		C39AC6CB241BABB4006EFAD5 /* CreateGameTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39AC6CA241BABB4006EFAD5 /* CreateGameTimeView.swift */; };
 		C39AC6CD241BABDB006EFAD5 /* CreateGameEmojiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39AC6CC241BABDB006EFAD5 /* CreateGameEmojiView.swift */; };
 		FD8466532421103E00E95E22 /* GenerateCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8466522421103E00E95E22 /* GenerateCodeViewController.swift */; };
+		FD846655242133FF00E95E22 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD846654242133FF00E95E22 /* Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C31101AA24211FC900D48AEB /* Emoji.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Emoji.txt; sourceTree = "<group>"; };
+		C31101AC242126F000D48AEB /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
 		C39AC697241B9BF3006EFAD5 /* findMyBanana.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = findMyBanana.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C39AC69A241B9BF3006EFAD5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C39AC69C241B9BF3006EFAD5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -55,6 +60,7 @@
 		C39AC6CA241BABB4006EFAD5 /* CreateGameTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGameTimeView.swift; sourceTree = "<group>"; };
 		C39AC6CC241BABDB006EFAD5 /* CreateGameEmojiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGameEmojiView.swift; sourceTree = "<group>"; };
 		FD8466522421103E00E95E22 /* GenerateCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenerateCodeViewController.swift; sourceTree = "<group>"; };
+		FD846654242133FF00E95E22 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,8 +116,11 @@
 				C39AC69E241B9BF3006EFAD5 /* ViewController.swift */,
 				C39AC6A0241B9BF3006EFAD5 /* Main.storyboard */,
 				FD8466522421103E00E95E22 /* GenerateCodeViewController.swift */,
+				C31101AA24211FC900D48AEB /* Emoji.txt */,
+				FD846654242133FF00E95E22 /* Model.swift */,
 				C39AC6CA241BABB4006EFAD5 /* CreateGameTimeView.swift */,
 				C39AC6CC241BABDB006EFAD5 /* CreateGameEmojiView.swift */,
+				C31101AC242126F000D48AEB /* GameModel.swift */,
 				C39AC6A3241B9BF4006EFAD5 /* Assets.xcassets */,
 				C39AC6A5241B9BF4006EFAD5 /* LaunchScreen.storyboard */,
 				C39AC6A8241B9BF4006EFAD5 /* Info.plist */,
@@ -244,6 +253,7 @@
 				C39AC6A7241B9BF4006EFAD5 /* LaunchScreen.storyboard in Resources */,
 				C39AC6A4241B9BF4006EFAD5 /* Assets.xcassets in Resources */,
 				C39AC6A2241B9BF3006EFAD5 /* Main.storyboard in Resources */,
+				C31101AB24211FC900D48AEB /* Emoji.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,11 +278,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD846655242133FF00E95E22 /* Model.swift in Sources */,
 				C39AC69F241B9BF3006EFAD5 /* ViewController.swift in Sources */,
 				C39AC6CD241BABDB006EFAD5 /* CreateGameEmojiView.swift in Sources */,
 				C39AC69B241B9BF3006EFAD5 /* AppDelegate.swift in Sources */,
 				C39AC69D241B9BF3006EFAD5 /* SceneDelegate.swift in Sources */,
 				FD8466532421103E00E95E22 /* GenerateCodeViewController.swift in Sources */,
+				C31101AD242126F000D48AEB /* GameModel.swift in Sources */,
 				C39AC6CB241BABB4006EFAD5 /* CreateGameTimeView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
