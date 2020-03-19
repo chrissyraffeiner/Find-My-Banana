@@ -8,10 +8,7 @@
 
 import Foundation
 
-struct gameModel:Codable{
-    var anz: Int
-    var timeInSec: Int
-}
+
 
 class Model{
     var anz = 0

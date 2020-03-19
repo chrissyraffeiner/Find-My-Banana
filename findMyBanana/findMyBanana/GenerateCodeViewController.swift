@@ -9,6 +9,7 @@
 import UIKit
 
 class GenerateCodeViewController: UIViewController {
+    //let createGameUrl = "http:/192.168.177.129:3000/createGame"
     let createGameUrl = "http://127.0.0.1:3000/createGame"
     var token = ""
     
@@ -29,7 +30,7 @@ class GenerateCodeViewController: UIViewController {
     }
     
     func setupPost(){
-        var jsonModel = gameModel(anz: self.model.anz, timeInSec: self.model.timeInSec)
+        var jsonModel = GameModel(anz: self.model.anz, timeInSec: self.model.timeInSec)
         
         if let url = URL(string: self.createGameUrl) {
             var request = URLRequest(url: url)
@@ -39,11 +40,12 @@ class GenerateCodeViewController: UIViewController {
             
             //var jsondata = try? JSONSerialization.data(withJSONObject: model, options: [])
             var jsondata = try? JSONEncoder().encode(jsonModel)
-            
+
             request.httpBody = jsondata
             
             URLSession.shared.dataTask(with: request) { (data, response, err) in
                 if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                    print("dataString: \(dataString)")
                     self.token = dataString
                     self.saveToken(token:dataString)
                     print("token: \(self.token)")

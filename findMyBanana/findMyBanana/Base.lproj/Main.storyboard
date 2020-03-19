@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qII-P2-htN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qII-P2-htN">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -69,13 +69,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hbh-LC-a7a">
-                                <rect key="frame" x="354" y="585" width="30" height="30"/>
-                                <state key="normal" title="next"/>
-                                <connections>
-                                    <segue destination="7Bt-p1-ZtI" kind="show" id="hsT-hs-qrR"/>
-                                </connections>
-                            </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Gemepin" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dWV-In-4ie">
                                 <rect key="frame" x="164" y="431" width="86" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -91,15 +84,16 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="dWV-In-4ie" firstAttribute="top" secondItem="tcz-ln-3a7" secondAttribute="bottom" constant="120" id="Lit-lo-xq8"/>
-                            <constraint firstItem="9Os-ba-tiy" firstAttribute="trailing" secondItem="Hbh-LC-a7a" secondAttribute="trailing" constant="30" id="MoY-Vv-hJk"/>
                             <constraint firstItem="tcz-ln-3a7" firstAttribute="centerX" secondItem="zEf-r2-Oph" secondAttribute="centerX" id="PFL-JS-HRP"/>
                             <constraint firstItem="dWV-In-4ie" firstAttribute="centerX" secondItem="zEf-r2-Oph" secondAttribute="centerX" id="cuf-NN-twv"/>
-                            <constraint firstItem="Hbh-LC-a7a" firstAttribute="top" secondItem="dWV-In-4ie" secondAttribute="bottom" constant="120" id="nv1-oI-sbp"/>
                             <constraint firstItem="dWV-In-4ie" firstAttribute="centerY" secondItem="zEf-r2-Oph" secondAttribute="centerY" id="shB-m8-nAz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9Os-ba-tiy"/>
                     </view>
                     <navigationItem key="navigationItem" title="Join Game" id="gpe-Mz-AEK"/>
+                    <connections>
+                        <segue destination="7Bt-p1-ZtI" kind="show" id="elk-4m-EP4"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Jr-bZ-bRT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -113,13 +107,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YB1-TF-Lc9">
-                                <rect key="frame" x="354" y="585" width="30" height="30"/>
-                                <state key="normal" title="next"/>
-                                <connections>
-                                    <segue destination="6NE-Vd-gLK" kind="show" id="F7a-dU-gAE"/>
-                                </connections>
-                            </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Nickname" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rxK-Te-1cn">
                                 <rect key="frame" x="161" y="431" width="92.5" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -134,16 +121,20 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="YB1-TF-Lc9" firstAttribute="top" secondItem="rxK-Te-1cn" secondAttribute="bottom" constant="120" id="1bQ-3Z-v2n"/>
                             <constraint firstItem="rxK-Te-1cn" firstAttribute="top" secondItem="Q4v-7d-QQx" secondAttribute="bottom" constant="120" id="Nr7-yh-SuI"/>
-                            <constraint firstItem="DXa-Zs-o1D" firstAttribute="trailing" secondItem="YB1-TF-Lc9" secondAttribute="trailing" constant="30" id="QOd-El-139"/>
                             <constraint firstItem="Q4v-7d-QQx" firstAttribute="centerX" secondItem="IYu-l1-uyC" secondAttribute="centerX" id="aHm-OL-CIl"/>
                             <constraint firstItem="rxK-Te-1cn" firstAttribute="centerY" secondItem="IYu-l1-uyC" secondAttribute="centerY" id="d6l-Nc-rcq"/>
                             <constraint firstItem="rxK-Te-1cn" firstAttribute="centerX" secondItem="IYu-l1-uyC" secondAttribute="centerX" id="rcC-yc-bkV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="DXa-Zs-o1D"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Join Game" id="wQj-qv-mOW"/>
+                    <navigationItem key="navigationItem" title="Join Game" id="wQj-qv-mOW">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="save" id="HFQ-iC-vdl">
+                            <connections>
+                                <segue destination="6NE-Vd-gLK" kind="show" id="tgH-yC-bsw"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="52F-ak-Bd9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -190,14 +181,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oaf-3A-GpE">
-                                <rect key="frame" x="354" y="586" width="30" height="30"/>
-                                <state key="normal" title="next"/>
-                                <connections>
-                                    <action selector="nextBtn:" destination="Edq-5c-NmF" eventType="touchUpInside" id="Q23-p6-jUn"/>
-                                    <segue destination="jhs-Md-7tS" kind="show" id="n46-w5-Zsp"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="time to play" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wrl-m5-wrq">
                                 <rect key="frame" x="162.5" y="289" width="89" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -212,14 +195,18 @@
                         <constraints>
                             <constraint firstItem="QN8-47-65E" firstAttribute="centerX" secondItem="eJp-uN-dTO" secondAttribute="centerX" id="9Th-Y3-bID"/>
                             <constraint firstItem="QN8-47-65E" firstAttribute="top" secondItem="Wrl-m5-wrq" secondAttribute="bottom" constant="30" id="AGV-nz-V5B"/>
-                            <constraint firstItem="sew-jv-FLD" firstAttribute="trailing" secondItem="Oaf-3A-GpE" secondAttribute="trailing" constant="30" id="T2g-Ol-Yh0"/>
-                            <constraint firstItem="Oaf-3A-GpE" firstAttribute="top" secondItem="QN8-47-65E" secondAttribute="bottom" constant="30" id="g9e-S9-sd6"/>
                             <constraint firstItem="QN8-47-65E" firstAttribute="centerY" secondItem="eJp-uN-dTO" secondAttribute="centerY" id="kPG-YD-VTk"/>
                             <constraint firstItem="Wrl-m5-wrq" firstAttribute="centerX" secondItem="eJp-uN-dTO" secondAttribute="centerX" id="mfh-Qy-oOu"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="sew-jv-FLD"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Create Game" id="m7R-jE-aU1"/>
+                    <navigationItem key="navigationItem" title="Create Game" id="m7R-jE-aU1">
+                        <barButtonItem key="rightBarButtonItem" title="Next" style="done" id="h4k-SU-D8c">
+                            <connections>
+                                <segue destination="jhs-Md-7tS" kind="show" id="LSR-SQ-azd"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="timePicker" destination="QN8-47-65E" id="x9K-Rr-doA"/>
                     </connections>
@@ -236,13 +223,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SGl-uI-O7R">
-                                <rect key="frame" x="354" y="586" width="30" height="30"/>
-                                <state key="normal" title="next"/>
-                                <connections>
-                                    <segue destination="8S3-Lc-CnX" kind="show" id="6ZU-w0-vWs"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="number of emojis" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X4o-lo-1Q7">
                                 <rect key="frame" x="140.5" y="289" width="133" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -255,16 +235,20 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="MT3-yW-qBh" firstAttribute="trailing" secondItem="SGl-uI-O7R" secondAttribute="trailing" constant="30" id="1J7-7N-yh9"/>
                             <constraint firstItem="C2G-2i-CIr" firstAttribute="top" secondItem="X4o-lo-1Q7" secondAttribute="bottom" constant="30" id="C5M-ef-r0E"/>
                             <constraint firstItem="X4o-lo-1Q7" firstAttribute="centerX" secondItem="Zod-rV-Afx" secondAttribute="centerX" id="Pne-Pa-sEk"/>
                             <constraint firstItem="C2G-2i-CIr" firstAttribute="centerX" secondItem="Zod-rV-Afx" secondAttribute="centerX" id="jld-Pw-tLE"/>
-                            <constraint firstItem="SGl-uI-O7R" firstAttribute="top" secondItem="C2G-2i-CIr" secondAttribute="bottom" constant="30" id="lQa-FO-bZn"/>
                             <constraint firstItem="C2G-2i-CIr" firstAttribute="centerY" secondItem="Zod-rV-Afx" secondAttribute="centerY" id="wqV-a3-Ldf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="MT3-yW-qBh"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Create Game" id="MCM-Y9-LDn"/>
+                    <navigationItem key="navigationItem" title="Create Game" id="MCM-Y9-LDn">
+                        <barButtonItem key="rightBarButtonItem" title="Next" style="done" id="nnC-Ys-Ekq">
+                            <connections>
+                                <segue destination="8S3-Lc-CnX" kind="show" id="1GZ-E1-Msh"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="emojiPicker" destination="C2G-2i-CIr" id="xIN-ex-Gmj"/>
                     </connections>
@@ -281,13 +265,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PzH-Rh-8Jh">
-                                <rect key="frame" x="352" y="578.5" width="32" height="30"/>
-                                <state key="normal" title="start"/>
-                                <connections>
-                                    <action selector="startBtn:" destination="8S3-Lc-CnX" eventType="touchUpInside" id="Y1p-Td-TQp"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connected User:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EcM-hn-FFK">
                                 <rect key="frame" x="30" y="296.5" width="130" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -300,8 +277,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="token" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w6G-zt-qAe">
-                                <rect key="frame" x="341" y="437.5" width="43" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w6G-zt-qAe">
+                                <rect key="frame" x="384" y="448" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -316,19 +293,19 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="JZU-3N-wYw" firstAttribute="top" secondItem="EcM-hn-FFK" secondAttribute="bottom" constant="120" id="6fU-Jf-DMC"/>
-                            <constraint firstItem="yTQ-Fk-uqX" firstAttribute="trailing" secondItem="PzH-Rh-8Jh" secondAttribute="trailing" constant="30" id="O5I-9r-aCu"/>
                             <constraint firstItem="JZU-3N-wYw" firstAttribute="leading" secondItem="yTQ-Fk-uqX" secondAttribute="leading" constant="30" id="Rjt-gT-S8K"/>
                             <constraint firstItem="EcM-hn-FFK" firstAttribute="centerY" secondItem="YVx-Ye-hFP" secondAttribute="centerY" id="UAe-Ek-P3z"/>
                             <constraint firstItem="w6G-zt-qAe" firstAttribute="centerY" secondItem="JZU-3N-wYw" secondAttribute="centerY" id="eZB-RN-ETe"/>
                             <constraint firstItem="yTQ-Fk-uqX" firstAttribute="trailing" secondItem="w6G-zt-qAe" secondAttribute="trailing" constant="30" id="gaQ-Dd-3uD"/>
                             <constraint firstItem="yTQ-Fk-uqX" firstAttribute="trailing" secondItem="YVx-Ye-hFP" secondAttribute="trailing" constant="30" id="ubO-Af-84n"/>
                             <constraint firstItem="EcM-hn-FFK" firstAttribute="leading" secondItem="yTQ-Fk-uqX" secondAttribute="leading" constant="30" id="vj9-ua-mQs"/>
-                            <constraint firstItem="PzH-Rh-8Jh" firstAttribute="top" secondItem="w6G-zt-qAe" secondAttribute="bottom" constant="120" id="yVK-tc-dgc"/>
                             <constraint firstItem="JZU-3N-wYw" firstAttribute="centerY" secondItem="Kpz-qU-I7p" secondAttribute="centerY" id="yeP-0Z-CXW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="yTQ-Fk-uqX"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Create Game" id="1Ky-Kk-8Ge"/>
+                    <navigationItem key="navigationItem" title="Create Game" id="1Ky-Kk-8Ge">
+                        <barButtonItem key="rightBarButtonItem" title="Start" style="done" id="VHc-AF-a6O"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="tokenLabel" destination="w6G-zt-qAe" id="mLk-05-xaF"/>
                     </connections>
