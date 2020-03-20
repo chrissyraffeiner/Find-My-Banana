@@ -314,7 +314,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="timePicker" destination="QN8-47-65E" id="x9K-Rr-doA"/>
-                        <segue destination="jhs-Md-7tS" kind="show" id="e9X-Jj-Sz8"/>
+                        <segue destination="jhs-Md-7tS" kind="show" identifier="CreateGameEmoji" id="e9X-Jj-Sz8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vsY-Xd-5De" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
