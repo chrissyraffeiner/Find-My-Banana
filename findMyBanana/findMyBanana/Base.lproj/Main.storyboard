@@ -120,6 +120,7 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="rxK-Te-1cn" firstAttribute="top" secondItem="Q4v-7d-QQx" secondAttribute="bottom" constant="120" id="Nr7-yh-SuI"/>
                             <constraint firstItem="Q4v-7d-QQx" firstAttribute="centerX" secondItem="IYu-l1-uyC" secondAttribute="centerX" id="aHm-OL-CIl"/>
@@ -127,6 +128,9 @@
                             <constraint firstItem="rxK-Te-1cn" firstAttribute="centerX" secondItem="IYu-l1-uyC" secondAttribute="centerX" id="rcC-yc-bkV"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="DXa-Zs-o1D"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="oSY-m0-xL2" appends="YES" id="3CB-8p-C2f"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Join Game" id="wQj-qv-mOW">
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="save" id="HFQ-iC-vdl">
@@ -137,6 +141,9 @@
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="52F-ak-Bd9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" id="oSY-m0-xL2">
+                    <rectEdge key="edges" right="YES"/>
+                </screenEdgePanGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2099" y="589"/>
         </scene>
@@ -245,6 +252,7 @@
                             </pickerView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="C2G-2i-CIr" firstAttribute="top" secondItem="X4o-lo-1Q7" secondAttribute="bottom" constant="30" id="C5M-ef-r0E"/>
                             <constraint firstItem="X4o-lo-1Q7" firstAttribute="centerX" secondItem="Zod-rV-Afx" secondAttribute="centerX" id="Pne-Pa-sEk"/>
@@ -252,20 +260,28 @@
                             <constraint firstItem="C2G-2i-CIr" firstAttribute="centerY" secondItem="Zod-rV-Afx" secondAttribute="centerY" id="wqV-a3-Ldf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="MT3-yW-qBh"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="LDN-F0-58R" appends="YES" id="4dU-RI-cOy"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Create Game" id="MCM-Y9-LDn">
                         <barButtonItem key="rightBarButtonItem" title="Next" style="done" id="nnC-Ys-Ekq">
                             <connections>
                                 <action selector="next:" destination="jhs-Md-7tS" id="yv7-TA-weS"/>
-                                <segue destination="8S3-Lc-CnX" kind="show" identifier="GenerateCode" id="1GZ-E1-Msh"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="emojiPicker" destination="C2G-2i-CIr" id="xIN-ex-Gmj"/>
+                        <segue destination="8S3-Lc-CnX" kind="show" identifier="GenerateCode" id="4Oi-q0-MoW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vN8-8D-NM4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" id="LDN-F0-58R">
+                    <connections>
+                        <action selector="nextGesture:" destination="jhs-Md-7tS" id="bHh-QD-bld"/>
+                    </connections>
+                </screenEdgePanGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2099" y="-226"/>
         </scene>

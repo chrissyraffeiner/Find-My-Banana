@@ -15,8 +15,12 @@ class CreateGameEmojiView:  UIViewController, UIPickerViewDelegate, UIPickerView
     
     var model = Model()
     
-    @IBOutlet weak var testLabel: UILabel!
     
+    @IBAction func nextGesture(_ sender: UIScreenEdgePanGestureRecognizer) {
+        if(sender.state == .began){
+            next()
+        }
+    }
     
     @IBAction func next(_ sender: UIBarButtonItem) {
         next()
