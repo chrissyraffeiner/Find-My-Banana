@@ -26,7 +26,7 @@ app.post("/createGame", function(req, res){
     let anzahl = req.body.anz
     let timeInSec = req.body.timeInSec
     let token;
-        token = cryp.randomBytes(3).toString('hex');
+        token = Math.round(Math.random()*1000000);
 
 
     res.send("" + token);
