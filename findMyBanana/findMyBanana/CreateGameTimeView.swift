@@ -28,12 +28,12 @@ class CreateGameTimeView: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     }
     
     fileprivate func nextView() {
-    //    performSegue(withIdentifier: "CreateGameEmoji", sender: self)
+        performSegue(withIdentifier: "CreateGameEmoji", sender: self)
     }
     
-    @IBAction func gestureNext(_ sender: UIScreenEdgePanGestureRecognizer) {
+  /*  @IBAction func gestureNext(_ sender: UIScreenEdgePanGestureRecognizer) {
         nextView()
-    }
+    }*/
     override func viewDidLoad() {
         super.viewDidLoad()
 
