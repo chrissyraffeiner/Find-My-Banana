@@ -13,7 +13,7 @@ class CreateGameTimeView: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     var model = Model()
     
     @IBOutlet weak var timePicker: UIPickerView!
-    var selected : Int = -1
+    var selected : Int = 5
     
     @IBOutlet weak var testLabel: UILabel!
     
@@ -22,6 +22,18 @@ class CreateGameTimeView: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         //self.performSegue(withIdentifier: "time", sender: self)
     }
     
+    
+    @IBAction func next(_ sender: UIBarButtonItem) {
+        nextView()
+    }
+    
+    fileprivate func nextView() {
+    //    performSegue(withIdentifier: "CreateGameEmoji", sender: self)
+    }
+    
+    @IBAction func gestureNext(_ sender: UIScreenEdgePanGestureRecognizer) {
+        nextView()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -54,15 +66,12 @@ class CreateGameTimeView: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         print("\(selected)")
     }
     
-    
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-        var vc = segue.destination as! CreateGameEmojiView
-        vc.model.timeInSec = self.selected
+
+        if(segue.identifier == "CreateGameEmoji") {
+            let vc = segue.destination as! CreateGameEmojiView
+            vc.model.timeInSec = self.selected
+        }
     }
     
 

@@ -11,11 +11,16 @@ import UIKit
 class CreateGameEmojiView:  UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
     @IBOutlet weak var emojiPicker: UIPickerView!
-    var selected : Int = -1
+    var selected : Int = 3
     
     var model = Model()
     
     @IBOutlet weak var testLabel: UILabel!
+    
+    
+    @IBAction func next(_ sender: UIBarButtonItem) {
+        next()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,17 +55,19 @@ class CreateGameEmojiView:  UIViewController, UIPickerViewDelegate, UIPickerView
         
     }
     
-    
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-        var vc = segue.destination as! GenerateCodeViewController
-        vc.model.timeInSec = self.model.timeInSec
-        vc.model.anz = self.selected
+    fileprivate func next(){
+        performSegue(withIdentifier: "GenerateCode", sender: self)
     }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if(segue.identifier == "GenerateCode") {
+            let vc = segue.destination as! GenerateCodeViewController
+            vc.model.timeInSec = model.timeInSec
+            vc.model.anz = selected
+        }
+    }
+    
     
 
 }

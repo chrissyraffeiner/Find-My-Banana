@@ -192,6 +192,7 @@
                             </pickerView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="QN8-47-65E" firstAttribute="centerX" secondItem="eJp-uN-dTO" secondAttribute="centerX" id="9Th-Y3-bID"/>
                             <constraint firstItem="QN8-47-65E" firstAttribute="top" secondItem="Wrl-m5-wrq" secondAttribute="bottom" constant="30" id="AGV-nz-V5B"/>
@@ -199,19 +200,29 @@
                             <constraint firstItem="Wrl-m5-wrq" firstAttribute="centerX" secondItem="eJp-uN-dTO" secondAttribute="centerX" id="mfh-Qy-oOu"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="sew-jv-FLD"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="CWA-08-yRd" appends="YES" id="YQ8-B3-bNr"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Create Game" id="m7R-jE-aU1">
                         <barButtonItem key="rightBarButtonItem" title="Next" style="done" id="h4k-SU-D8c">
                             <connections>
-                                <segue destination="jhs-Md-7tS" kind="show" id="LSR-SQ-azd"/>
+                                <action selector="next:" destination="Edq-5c-NmF" id="tRM-ah-9dH"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="timePicker" destination="QN8-47-65E" id="x9K-Rr-doA"/>
+                        <segue destination="jhs-Md-7tS" kind="show" id="e9X-Jj-Sz8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vsY-Xd-5De" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" id="CWA-08-yRd">
+                    <rectEdge key="edges" right="YES"/>
+                    <connections>
+                        <action selector="gestureNext:" destination="Edq-5c-NmF" id="WpM-bi-aW6"/>
+                    </connections>
+                </screenEdgePanGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1098.5507246376812" y="-226.33928571428569"/>
         </scene>
@@ -245,7 +256,8 @@
                     <navigationItem key="navigationItem" title="Create Game" id="MCM-Y9-LDn">
                         <barButtonItem key="rightBarButtonItem" title="Next" style="done" id="nnC-Ys-Ekq">
                             <connections>
-                                <segue destination="8S3-Lc-CnX" kind="show" id="1GZ-E1-Msh"/>
+                                <action selector="next:" destination="jhs-Md-7tS" id="yv7-TA-weS"/>
+                                <segue destination="8S3-Lc-CnX" kind="show" identifier="GenerateCode" id="1GZ-E1-Msh"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
