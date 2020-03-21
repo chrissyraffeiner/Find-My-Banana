@@ -29,9 +29,7 @@ class CreateGameTimeView: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     
     fileprivate func nextView() {
         performSegue(withIdentifier: "CreateGameEmoji", sender: self)
-    }
-    
-    
+    } 
     
     @IBAction func gestureNext(_ sender: UIScreenEdgePanGestureRecognizer) {
         if(sender.state == .began){
@@ -39,7 +37,7 @@ class CreateGameTimeView: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         }
         
     }
-    override func viewDidLoad() {
+   override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
