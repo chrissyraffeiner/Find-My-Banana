@@ -321,9 +321,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="timePicker" destination="QN8-47-65E" id="x9K-Rr-doA"/>
-
                         <segue destination="jhs-Md-7tS" kind="show" identifier="CreateGameEmoji" id="9Lk-TL-x1d"/>
-
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vsY-Xd-5De" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -381,6 +379,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vN8-8D-NM4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" id="LDN-F0-58R">
+                    <rectEdge key="edges" right="YES"/>
                     <connections>
                         <action selector="nextGesture:" destination="jhs-Md-7tS" id="bHh-QD-bld"/>
                     </connections>
@@ -391,7 +390,7 @@
         <!--Create Game-->
         <scene sceneID="tVr-zO-cku">
             <objects>
-                <viewController id="8S3-Lc-CnX" customClass="GenerateCodeViewController" customModule="findMyBanana" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="8S3-Lc-CnX" customClass="CreateGameGamecodeView" customModule="findMyBanana" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Kpz-qU-I7p">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

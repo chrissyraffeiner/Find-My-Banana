@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GenerateCodeViewController: UIViewController {
+class CreateGameGamecodeView: UIViewController {
     let createGameUrl = "http://192.168.1.104:3000/createGame"
     //let createGameUrl = "http://127.0.0.1:3000/createGame"
     var token = ""

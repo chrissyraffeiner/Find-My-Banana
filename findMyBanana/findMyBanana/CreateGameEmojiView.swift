@@ -65,7 +65,7 @@ class CreateGameEmojiView:  UIViewController, UIPickerViewDelegate, UIPickerView
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if(segue.identifier == "GenerateCode") {
-            let vc = segue.destination as! GenerateCodeViewController
+            let vc = segue.destination as! CreateGameGamecodeView
             vc.jsonModel.timeInSec = timeInSec
             vc.jsonModel.anz = anz
         }
