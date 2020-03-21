@@ -9,19 +9,11 @@
 import UIKit
 
 class CreateGameTimeView: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
-    
-    var model = Model()
-    
+        
     @IBOutlet weak var timePicker: UIPickerView!
-    var selected : Int = 5
+    var timeInSec : Int = 5
     
     @IBOutlet weak var testLabel: UILabel!
-    
-    @IBAction func nextBtn(_ sender: UIButton) {
-        model.timeInSec = selected
-        //self.performSegue(withIdentifier: "time", sender: self)
-    }
-    
     
     @IBAction func next(_ sender: UIBarButtonItem) {
         nextView()
@@ -65,15 +57,15 @@ class CreateGameTimeView: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         print(row)
-        selected = row + 5
-        print("\(selected)")
+        timeInSec = row + 5
+        print("\(timeInSec)")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
         if(segue.identifier == "CreateGameEmoji") {
             let vc = segue.destination as! CreateGameEmojiView
-            vc.model.timeInSec = self.selected
+            vc.timeInSec = self.timeInSec
         }
     }
     

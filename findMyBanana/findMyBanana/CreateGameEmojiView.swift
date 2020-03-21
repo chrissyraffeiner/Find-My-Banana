@@ -11,9 +11,8 @@ import UIKit
 class CreateGameEmojiView:  UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
     @IBOutlet weak var emojiPicker: UIPickerView!
-    var selected : Int = 3
-    
-    var model = Model()
+    var anz : Int = 3
+    var timeInSec : Int = -1
     
     
     @IBAction func nextGesture(_ sender: UIScreenEdgePanGestureRecognizer) {
@@ -30,7 +29,7 @@ class CreateGameEmojiView:  UIViewController, UIPickerViewDelegate, UIPickerView
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        print("segue: \(model.timeInSec)")
+        print("Zeit: \(timeInSec)")
         self.emojiPicker.delegate = self
         self.emojiPicker.dataSource = self
         
@@ -54,8 +53,8 @@ class CreateGameEmojiView:  UIViewController, UIPickerViewDelegate, UIPickerView
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         print(row)
-        selected = row + 3
-        print("\(selected)")
+        anz = row + 3
+        print("\(anz)")
         
     }
     
@@ -67,8 +66,8 @@ class CreateGameEmojiView:  UIViewController, UIPickerViewDelegate, UIPickerView
         
         if(segue.identifier == "GenerateCode") {
             let vc = segue.destination as! GenerateCodeViewController
-            vc.model.timeInSec = model.timeInSec
-            vc.model.anz = selected
+            vc.jsonModel.timeInSec = timeInSec
+            vc.jsonModel.anz = anz
         }
     }
     
