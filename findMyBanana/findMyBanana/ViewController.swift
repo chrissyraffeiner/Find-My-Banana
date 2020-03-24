@@ -3,10 +3,22 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet var findmxBananaView: UIView!
+    @IBOutlet weak var createBtnView: UIView!
+    @IBOutlet weak var connectBtnView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        addShadow(view: self.createBtnView)
+        addShadow(view: self.connectBtnView)
+    }
+    
+    func addShadow(view: UIView){
+        view.layer.shadowColor = UIColor.lightGray.cgColor
+        view.layer.shadowOpacity = 1
+        view.layer.shadowOffset = .zero
+        view.layer.shadowRadius = 4
+        view.layer.cornerRadius = 10
     }
 
     @IBAction func ConnectGame(_ sender: Any) {
