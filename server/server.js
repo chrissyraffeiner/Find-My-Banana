@@ -12,6 +12,11 @@ app.get("/message", function(req,res){
     res.send("server works")
 })
 
+app.get("/joinGame", function(req, res){
+    console.log("sth")
+    res.send("joined")
+})
+
 
 
 /**
