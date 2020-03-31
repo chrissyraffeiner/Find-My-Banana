@@ -22,6 +22,7 @@
 		C3B1C6382424CBBD005C5F86 /* Plus.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B1C6352424CBBA005C5F86 /* Plus.png */; };
 		C3B1C6392424CBBD005C5F86 /* Background_Banana.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = C3B1C6362424CBBC005C5F86 /* Background_Banana.jpeg */; };
 		C3B1C63A2424CBBD005C5F86 /* Phone.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B1C6372424CBBC005C5F86 /* Phone.png */; };
+		FD388576242CD2D60098BFC9 /* Icon metro-hour-glass.png in Resources */ = {isa = PBXBuildFile; fileRef = FD388573242CD2D60098BFC9 /* Icon metro-hour-glass.png */; };
 		FD8466532421103E00E95E22 /* CreateGameGamecodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8466522421103E00E95E22 /* CreateGameGamecodeView.swift */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +65,7 @@
 		C3B1C6352424CBBA005C5F86 /* Plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Plus.png; sourceTree = "<group>"; };
 		C3B1C6362424CBBC005C5F86 /* Background_Banana.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Background_Banana.jpeg; sourceTree = "<group>"; };
 		C3B1C6372424CBBC005C5F86 /* Phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Phone.png; sourceTree = "<group>"; };
+		FD388573242CD2D60098BFC9 /* Icon metro-hour-glass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon metro-hour-glass.png"; path = "../../../../../Desktop/Icon metro-hour-glass.png"; sourceTree = "<group>"; };
 		FD8466522421103E00E95E22 /* CreateGameGamecodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGameGamecodeView.swift; sourceTree = "<group>"; };
 		FDEFE081242BEF6500239C91 /* findMyBanana.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = findMyBanana.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -126,6 +128,7 @@
 				C39AC6CA241BABB4006EFAD5 /* CreateGameTimeView.swift */,
 				C39AC6CC241BABDB006EFAD5 /* CreateGameEmojiView.swift */,
 				C31101AC242126F000D48AEB /* GameModel.swift */,
+				FD388573242CD2D60098BFC9 /* Icon metro-hour-glass.png */,
 				C3B1C6362424CBBC005C5F86 /* Background_Banana.jpeg */,
 				C3B1C6372424CBBC005C5F86 /* Phone.png */,
 				C3B1C6352424CBBA005C5F86 /* Plus.png */,
@@ -259,6 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C39AC6A7241B9BF4006EFAD5 /* LaunchScreen.storyboard in Resources */,
+				FD388576242CD2D60098BFC9 /* Icon metro-hour-glass.png in Resources */,
 				C39AC6A4241B9BF4006EFAD5 /* Assets.xcassets in Resources */,
 				C3B1C6382424CBBD005C5F86 /* Plus.png in Resources */,
 				C3B1C6392424CBBD005C5F86 /* Background_Banana.jpeg in Resources */,

@@ -398,50 +398,49 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Connected User:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EcM-hn-FFK">
-                                <rect key="frame" x="30" y="296.5" width="130" height="21"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Icon metro-hour-glass.png" translatesAutoresizingMaskIntoConstraints="NO" id="Bpw-sT-3hU">
+                                <rect key="frame" x="0.0" y="384" width="414" height="478"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Party Room" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uQH-as-evb">
+                                <rect key="frame" x="162.5" y="210" width="89" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YVx-Ye-hFP">
-                                <rect key="frame" x="373" y="296.5" width="11" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w6G-zt-qAe">
-                                <rect key="frame" x="384" y="448" width="0.0" height="0.0"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gamecode:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JZU-3N-wYw">
-                                <rect key="frame" x="30" y="437.5" width="88" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ejT-nF-HNb">
+                                <rect key="frame" x="117" y="706" width="181" height="49"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KN9-cK-ars">
+                                        <rect key="frame" x="54.5" y="9" width="72" height="30"/>
+                                        <state key="normal" title="Share Link"/>
+                                        <connections>
+                                            <action selector="shareLinkBtn:" destination="8S3-Lc-CnX" eventType="touchUpInside" id="W5v-bm-vJH"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="KN9-cK-ars" firstAttribute="top" secondItem="ejT-nF-HNb" secondAttribute="top" constant="9" id="I7y-94-tyr"/>
+                                    <constraint firstItem="KN9-cK-ars" firstAttribute="centerX" secondItem="ejT-nF-HNb" secondAttribute="centerX" id="jXb-NT-3Mg"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="JZU-3N-wYw" firstAttribute="top" secondItem="EcM-hn-FFK" secondAttribute="bottom" constant="120" id="6fU-Jf-DMC"/>
-                            <constraint firstItem="JZU-3N-wYw" firstAttribute="leading" secondItem="yTQ-Fk-uqX" secondAttribute="leading" constant="30" id="Rjt-gT-S8K"/>
-                            <constraint firstItem="EcM-hn-FFK" firstAttribute="centerY" secondItem="YVx-Ye-hFP" secondAttribute="centerY" id="UAe-Ek-P3z"/>
-                            <constraint firstItem="w6G-zt-qAe" firstAttribute="centerY" secondItem="JZU-3N-wYw" secondAttribute="centerY" id="eZB-RN-ETe"/>
-                            <constraint firstItem="yTQ-Fk-uqX" firstAttribute="trailing" secondItem="w6G-zt-qAe" secondAttribute="trailing" constant="30" id="gaQ-Dd-3uD"/>
-                            <constraint firstItem="yTQ-Fk-uqX" firstAttribute="trailing" secondItem="YVx-Ye-hFP" secondAttribute="trailing" constant="30" id="ubO-Af-84n"/>
-                            <constraint firstItem="EcM-hn-FFK" firstAttribute="leading" secondItem="yTQ-Fk-uqX" secondAttribute="leading" constant="30" id="vj9-ua-mQs"/>
-                            <constraint firstItem="JZU-3N-wYw" firstAttribute="centerY" secondItem="Kpz-qU-I7p" secondAttribute="centerY" id="yeP-0Z-CXW"/>
+                            <constraint firstItem="yTQ-Fk-uqX" firstAttribute="trailing" secondItem="ejT-nF-HNb" secondAttribute="trailing" constant="116" id="4J1-lf-lxf"/>
+                            <constraint firstItem="uQH-as-evb" firstAttribute="top" secondItem="yTQ-Fk-uqX" secondAttribute="top" constant="122" id="ZSU-5e-7rh"/>
+                            <constraint firstItem="yTQ-Fk-uqX" firstAttribute="trailing" secondItem="uQH-as-evb" secondAttribute="trailing" constant="162.5" id="l3P-gR-Ulx"/>
+                            <constraint firstItem="ejT-nF-HNb" firstAttribute="top" secondItem="uQH-as-evb" secondAttribute="bottom" constant="475" id="rHM-gg-d3B"/>
+                            <constraint firstItem="uQH-as-evb" firstAttribute="leading" secondItem="yTQ-Fk-uqX" secondAttribute="leading" constant="162.5" id="tgK-e4-VYe"/>
+                            <constraint firstItem="yTQ-Fk-uqX" firstAttribute="bottom" secondItem="ejT-nF-HNb" secondAttribute="bottom" constant="107" id="vRa-Yb-rPP"/>
+                            <constraint firstItem="ejT-nF-HNb" firstAttribute="leading" secondItem="yTQ-Fk-uqX" secondAttribute="leading" constant="117" id="x57-av-ZYc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="yTQ-Fk-uqX"/>
                     </view>
                     <navigationItem key="navigationItem" title="Create Game" id="1Ky-Kk-8Ge">
                         <barButtonItem key="rightBarButtonItem" title="Start" style="done" id="VHc-AF-a6O"/>
                     </navigationItem>
-                    <connections>
-                        <outlet property="tokenLabel" destination="w6G-zt-qAe" id="mLk-05-xaF"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Sg-nk-Gsm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -450,6 +449,7 @@
     </scenes>
     <resources>
         <image name="Background_Banana.jpeg" width="1075" height="1600"/>
+        <image name="Icon metro-hour-glass.png" width="375" height="429"/>
         <image name="Phone.png" width="116" height="116"/>
         <image name="Plus.png" width="165" height="165"/>
     </resources>
