@@ -24,6 +24,7 @@ class CreateGameTimeView: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     } 
     
     @IBAction func gestureNext(_ sender: UIScreenEdgePanGestureRecognizer) {
+        print("sth‚")
         if(sender.state == .began){
             nextView()
         }
@@ -63,7 +64,7 @@ class CreateGameTimeView: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
-        if(segue.identifier == "CreateGameEmoji") {
+        if(segue.identifier == "JoinGameUsername") {
             let vc = segue.destination as! CreateGameEmojiView
             vc.timeInSec = self.timeInSec
         }

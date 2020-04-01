@@ -15,6 +15,7 @@ class CreateGameGamecodeView: UIViewController {
     var jsonModel = GameModel(anz: -1, timeInSec: -1)
     var shareUrl = ""
 
+    @IBOutlet weak var shareBtnView: UIView!
     
     @IBOutlet weak var tokenLabel: UILabel!
     
@@ -30,6 +31,15 @@ class CreateGameGamecodeView: UIViewController {
         // Do any additional setup after loading the view.
         self.setupPost()
         //self.tokenLabel.text = self.token
+        addShadow(view: shareBtnView)
+    }
+    
+    func addShadow(view: UIView){
+        view.layer.shadowColor = UIColor.lightGray.cgColor
+        view.layer.shadowOpacity = 1
+        view.layer.shadowOffset = .zero
+        view.layer.shadowRadius = 4
+        view.layer.cornerRadius = 20
     }
     
     func setupPost(){

@@ -10,14 +10,21 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    var window: UIWindow?
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
          print(url)
+        let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)
+        let host = urlComponents?.host ?? ""
+        print(host)
         return true
     }
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        //if let url = launchOptions?[.url] as? URL {
+        //}
         return true
     }
 

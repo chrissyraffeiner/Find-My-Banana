@@ -23,6 +23,9 @@
 		C3B1C6392424CBBD005C5F86 /* Background_Banana.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = C3B1C6362424CBBC005C5F86 /* Background_Banana.jpeg */; };
 		C3B1C63A2424CBBD005C5F86 /* Phone.png in Resources */ = {isa = PBXBuildFile; fileRef = C3B1C6372424CBBC005C5F86 /* Phone.png */; };
 		FD388576242CD2D60098BFC9 /* Icon metro-hour-glass.png in Resources */ = {isa = PBXBuildFile; fileRef = FD388573242CD2D60098BFC9 /* Icon metro-hour-glass.png */; };
+		FD56FE2124351A9700659A93 /* ConnectWithPinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD56FE2024351A9700659A93 /* ConnectWithPinView.swift */; };
+		FD56FE23243528AF00659A93 /* ConnectWithUsernameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD56FE22243528AF00659A93 /* ConnectWithUsernameView.swift */; };
+		FD56FE252435422500659A93 /* PartyRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD56FE242435422500659A93 /* PartyRoomView.swift */; };
 		FD8466532421103E00E95E22 /* CreateGameGamecodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8466522421103E00E95E22 /* CreateGameGamecodeView.swift */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +69,9 @@
 		C3B1C6362424CBBC005C5F86 /* Background_Banana.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Background_Banana.jpeg; sourceTree = "<group>"; };
 		C3B1C6372424CBBC005C5F86 /* Phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Phone.png; sourceTree = "<group>"; };
 		FD388573242CD2D60098BFC9 /* Icon metro-hour-glass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon metro-hour-glass.png"; path = "../../../../../Desktop/Icon metro-hour-glass.png"; sourceTree = "<group>"; };
+		FD56FE2024351A9700659A93 /* ConnectWithPinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectWithPinView.swift; sourceTree = "<group>"; };
+		FD56FE22243528AF00659A93 /* ConnectWithUsernameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectWithUsernameView.swift; sourceTree = "<group>"; };
+		FD56FE242435422500659A93 /* PartyRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyRoomView.swift; sourceTree = "<group>"; };
 		FD8466522421103E00E95E22 /* CreateGameGamecodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGameGamecodeView.swift; sourceTree = "<group>"; };
 		FDEFE081242BEF6500239C91 /* findMyBanana.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = findMyBanana.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -123,6 +129,9 @@
 				C39AC69C241B9BF3006EFAD5 /* SceneDelegate.swift */,
 				C39AC69E241B9BF3006EFAD5 /* ViewController.swift */,
 				C39AC6A0241B9BF3006EFAD5 /* Main.storyboard */,
+				FD56FE242435422500659A93 /* PartyRoomView.swift */,
+				FD56FE22243528AF00659A93 /* ConnectWithUsernameView.swift */,
+				FD56FE2024351A9700659A93 /* ConnectWithPinView.swift */,
 				FD8466522421103E00E95E22 /* CreateGameGamecodeView.swift */,
 				C31101AA24211FC900D48AEB /* Emoji.txt */,
 				C39AC6CA241BABB4006EFAD5 /* CreateGameTimeView.swift */,
@@ -293,10 +302,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD56FE252435422500659A93 /* PartyRoomView.swift in Sources */,
 				C39AC69F241B9BF3006EFAD5 /* ViewController.swift in Sources */,
 				C39AC6CD241BABDB006EFAD5 /* CreateGameEmojiView.swift in Sources */,
 				C39AC69B241B9BF3006EFAD5 /* AppDelegate.swift in Sources */,
+				FD56FE2124351A9700659A93 /* ConnectWithPinView.swift in Sources */,
 				C39AC69D241B9BF3006EFAD5 /* SceneDelegate.swift in Sources */,
+				FD56FE23243528AF00659A93 /* ConnectWithUsernameView.swift in Sources */,
 				FD8466532421103E00E95E22 /* CreateGameGamecodeView.swift in Sources */,
 				C31101AD242126F000D48AEB /* GameModel.swift in Sources */,
 				C39AC6CB241BABB4006EFAD5 /* CreateGameTimeView.swift in Sources */,
