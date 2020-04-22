@@ -48,7 +48,7 @@ class CreateGameGamecodeView: UIViewController {
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
                         
-            var jsondata = try? JSONEncoder().encode(jsonModel)
+            let jsondata = try? JSONEncoder().encode(jsonModel)
 
             request.httpBody = jsondata
             
@@ -58,7 +58,7 @@ class CreateGameGamecodeView: UIViewController {
                     self.token = dataString
                     //self.saveToken(token:dataString)
                     //print("token: \(self.token)")
-                    self.shareUrl = "findMyBanana://\(self.token)"
+                    self.shareUrl = self.token//"findMyBanana://\(self.token)"
                     print("url: \(self.shareUrl)")
                 }
                 if let error = err {

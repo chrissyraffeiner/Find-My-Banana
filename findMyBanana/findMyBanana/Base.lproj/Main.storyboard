@@ -403,9 +403,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon metro-hour-glass.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="XTe-UY-8ex">
-                                <rect key="frame" x="19.5" y="408" width="375" height="429"/>
-                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SL4-qk-KEC">
                                 <rect key="frame" x="87" y="191" width="240" height="128"/>
                                 <subviews>
@@ -432,10 +429,13 @@
                                     <constraint firstItem="ad0-1M-Y28" firstAttribute="top" secondItem="SL4-qk-KEC" secondAttribute="top" constant="41" id="tCe-Rz-ZfC"/>
                                 </constraints>
                             </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon metro-hour-glass.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="XTe-UY-8ex">
+                                <rect key="frame" x="19.5" y="423" width="375" height="429"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="XTe-UY-8ex" firstAttribute="top" secondItem="ko0-Lh-VuP" secondAttribute="top" constant="320" id="PLR-PB-iOR"/>
+                            <constraint firstItem="ko0-Lh-VuP" firstAttribute="bottom" secondItem="XTe-UY-8ex" secondAttribute="bottom" constant="10" id="SrT-uu-JfS"/>
                             <constraint firstItem="XTe-UY-8ex" firstAttribute="centerX" secondItem="fs5-hl-mhA" secondAttribute="centerX" id="ZV8-Lg-TUf"/>
                             <constraint firstItem="SL4-qk-KEC" firstAttribute="centerX" secondItem="fs5-hl-mhA" secondAttribute="centerX" id="glr-24-suh"/>
                             <constraint firstItem="SL4-qk-KEC" firstAttribute="top" secondItem="ko0-Lh-VuP" secondAttribute="top" constant="103" id="rpe-uX-I4Z"/>
