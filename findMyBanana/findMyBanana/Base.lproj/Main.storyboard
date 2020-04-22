@@ -186,74 +186,74 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EKD-mU-O81">
                                         <rect key="frame" x="98" y="0.0" width="66" height="66"/>
                                         <subviews>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ZOu-NK-HOl" userLabel="TextView Two">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nRy-qP-g6G" userLabel="Text Two">
                                                 <rect key="frame" x="0.0" y="0.0" width="66" height="66"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="66" id="Ao8-1p-XWZ"/>
-                                                    <constraint firstAttribute="height" constant="66" id="XLK-1a-LOV"/>
+                                                    <constraint firstAttribute="height" constant="66" id="61Y-DU-6Lt"/>
+                                                    <constraint firstAttribute="width" constant="66" id="EQ9-Zq-bcI"/>
                                                 </constraints>
-                                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="next" smartDashesType="no" smartInsertDeleteType="yes" smartQuotesType="no" textContentType="one-time-code"/>
-                                            </textView>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="next" smartDashesType="no" smartInsertDeleteType="yes" smartQuotesType="no"/>
+                                                <connections>
+                                                    <action selector="TextFieldTwoEC:" destination="tA7-D1-oMG" eventType="editingChanged" id="dVH-L0-DHR"/>
+                                                </connections>
+                                            </textField>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
-                                            <constraint firstItem="ZOu-NK-HOl" firstAttribute="leading" secondItem="EKD-mU-O81" secondAttribute="leading" id="5ww-ac-PYh"/>
                                             <constraint firstAttribute="height" constant="66" id="HfU-k9-iBQ"/>
-                                            <constraint firstItem="ZOu-NK-HOl" firstAttribute="centerY" secondItem="EKD-mU-O81" secondAttribute="centerY" id="VWM-iD-ol1"/>
+                                            <constraint firstItem="nRy-qP-g6G" firstAttribute="centerX" secondItem="EKD-mU-O81" secondAttribute="centerX" id="J0q-rZ-AnV"/>
+                                            <constraint firstItem="nRy-qP-g6G" firstAttribute="centerY" secondItem="EKD-mU-O81" secondAttribute="centerY" id="aQ6-Wh-LMs"/>
                                             <constraint firstAttribute="width" constant="66" id="bJ8-6K-WOE"/>
-                                            <constraint firstItem="ZOu-NK-HOl" firstAttribute="centerX" secondItem="EKD-mU-O81" secondAttribute="centerX" id="d3N-WS-p8A"/>
-                                            <constraint firstItem="ZOu-NK-HOl" firstAttribute="top" secondItem="EKD-mU-O81" secondAttribute="top" id="mPI-on-fhD"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QiX-YN-OEk">
                                         <rect key="frame" x="174" y="0.0" width="66" height="66"/>
                                         <subviews>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ObJ-1h-Mvy" userLabel="TextView Three">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WQ8-VY-SIA" userLabel="Text Three">
                                                 <rect key="frame" x="0.0" y="0.0" width="66" height="66"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="66" id="Kx2-TN-fNg"/>
-                                                    <constraint firstAttribute="width" constant="66" id="Ym3-Df-ebK"/>
+                                                    <constraint firstAttribute="width" constant="66" id="2JP-q0-uxM"/>
+                                                    <constraint firstAttribute="height" constant="66" id="jIU-Zf-Hpn"/>
                                                 </constraints>
-                                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="next" smartDashesType="no" smartInsertDeleteType="yes" smartQuotesType="no" textContentType="one-time-code"/>
-                                            </textView>
+                                                <connections>
+                                                    <action selector="TextFieldThreeEC:" destination="tA7-D1-oMG" eventType="editingChanged" id="Kj7-AG-UNh"/>
+                                                </connections>
+                                            </textField>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="66" id="6Dt-TN-Gul"/>
+                                            <constraint firstItem="WQ8-VY-SIA" firstAttribute="centerY" secondItem="QiX-YN-OEk" secondAttribute="centerY" id="7mu-vD-GCp"/>
                                             <constraint firstAttribute="height" constant="66" id="FBj-e3-xjs"/>
-                                            <constraint firstItem="ObJ-1h-Mvy" firstAttribute="centerY" secondItem="QiX-YN-OEk" secondAttribute="centerY" id="hag-0Y-Tr0"/>
-                                            <constraint firstItem="ObJ-1h-Mvy" firstAttribute="centerX" secondItem="QiX-YN-OEk" secondAttribute="centerX" id="nKr-BA-xpl"/>
-                                            <constraint firstItem="ObJ-1h-Mvy" firstAttribute="leading" secondItem="QiX-YN-OEk" secondAttribute="leading" id="ohA-8x-9iB"/>
-                                            <constraint firstItem="ObJ-1h-Mvy" firstAttribute="top" secondItem="QiX-YN-OEk" secondAttribute="top" id="yiq-hI-hqK"/>
+                                            <constraint firstItem="WQ8-VY-SIA" firstAttribute="centerX" secondItem="QiX-YN-OEk" secondAttribute="centerX" id="SVi-4u-E9f"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xdo-ra-K38">
                                         <rect key="frame" x="250" y="0.0" width="66" height="66"/>
                                         <subviews>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Fln-aO-c42">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3xe-US-KS6" userLabel="Text Four">
                                                 <rect key="frame" x="0.0" y="0.0" width="66" height="66"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="66" id="kxI-XB-Hgw"/>
-                                                    <constraint firstAttribute="height" constant="66" id="qVn-P5-1sl"/>
+                                                    <constraint firstAttribute="height" constant="66" id="cYx-5M-6ge"/>
+                                                    <constraint firstAttribute="width" constant="66" id="sty-BG-YQl"/>
                                                 </constraints>
-                                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="next" smartDashesType="no" smartInsertDeleteType="yes" smartQuotesType="no" textContentType="one-time-code"/>
-                                            </textView>
+                                                <connections>
+                                                    <action selector="TextFieldFourEC:" destination="tA7-D1-oMG" eventType="editingChanged" id="l4U-ru-2Zl"/>
+                                                </connections>
+                                            </textField>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
-                                            <constraint firstItem="Fln-aO-c42" firstAttribute="top" secondItem="Xdo-ra-K38" secondAttribute="top" id="9Fr-NR-GBq"/>
-                                            <constraint firstItem="Fln-aO-c42" firstAttribute="centerX" secondItem="Xdo-ra-K38" secondAttribute="centerX" id="JHv-XZ-qKe"/>
-                                            <constraint firstItem="Fln-aO-c42" firstAttribute="centerY" secondItem="Xdo-ra-K38" secondAttribute="centerY" id="SXH-WI-obv"/>
-                                            <constraint firstItem="Fln-aO-c42" firstAttribute="leading" secondItem="Xdo-ra-K38" secondAttribute="leading" id="XMw-oM-qpy"/>
+                                            <constraint firstItem="3xe-US-KS6" firstAttribute="centerX" secondItem="Xdo-ra-K38" secondAttribute="centerX" id="6DP-YT-qEU"/>
+                                            <constraint firstItem="3xe-US-KS6" firstAttribute="centerY" secondItem="Xdo-ra-K38" secondAttribute="centerY" id="if9-p7-19M"/>
                                             <constraint firstAttribute="height" constant="66" id="q98-1W-LHH"/>
                                             <constraint firstAttribute="width" constant="66" id="qnq-Qs-WDT"/>
                                         </constraints>
@@ -261,51 +261,53 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qYe-3c-hJ6">
                                         <rect key="frame" x="326" y="0.0" width="66" height="66"/>
                                         <subviews>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="wpJ-XJ-wCS">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Daj-Dz-BTa" userLabel="Text Five">
                                                 <rect key="frame" x="0.0" y="0.0" width="66" height="66"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="66" id="U6r-52-pAD"/>
-                                                    <constraint firstAttribute="height" constant="66" id="wcR-bR-tj2"/>
+                                                    <constraint firstAttribute="height" constant="66" id="4et-ma-FR5"/>
+                                                    <constraint firstAttribute="width" constant="66" id="zLx-bt-FzH"/>
                                                 </constraints>
-                                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="next" smartDashesType="no" smartInsertDeleteType="yes" smartQuotesType="no" textContentType="one-time-code"/>
-                                            </textView>
+                                                <connections>
+                                                    <action selector="TextFieldFiveEC:" destination="tA7-D1-oMG" eventType="editingChanged" id="sU3-Iy-P0E"/>
+                                                </connections>
+                                            </textField>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="66" id="4Ih-dh-rKI"/>
-                                            <constraint firstItem="wpJ-XJ-wCS" firstAttribute="centerY" secondItem="qYe-3c-hJ6" secondAttribute="centerY" id="U0j-nK-cAI"/>
-                                            <constraint firstItem="wpJ-XJ-wCS" firstAttribute="leading" secondItem="qYe-3c-hJ6" secondAttribute="leading" id="qOr-m0-yJA"/>
+                                            <constraint firstItem="Daj-Dz-BTa" firstAttribute="centerY" secondItem="qYe-3c-hJ6" secondAttribute="centerY" id="LJ3-jQ-7Qh"/>
+                                            <constraint firstItem="Daj-Dz-BTa" firstAttribute="centerX" secondItem="qYe-3c-hJ6" secondAttribute="centerX" id="Qh7-J2-cqQ"/>
                                             <constraint firstAttribute="width" constant="66" id="qhb-cr-aZe"/>
-                                            <constraint firstItem="wpJ-XJ-wCS" firstAttribute="centerX" secondItem="qYe-3c-hJ6" secondAttribute="centerX" id="sM1-h2-lPM"/>
-                                            <constraint firstItem="wpJ-XJ-wCS" firstAttribute="top" secondItem="qYe-3c-hJ6" secondAttribute="top" id="xFb-2U-Iai"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Es-yJ-U6M">
                                         <rect key="frame" x="22" y="0.0" width="66" height="66"/>
                                         <subviews>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="6ud-cZ-HUg">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4aI-ct-gd1" userLabel="Text One">
                                                 <rect key="frame" x="0.0" y="0.0" width="66" height="66"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="66" id="Mst-6f-XBV"/>
-                                                    <constraint firstAttribute="height" constant="66" id="Z7F-so-ZhU"/>
+                                                    <constraint firstAttribute="height" constant="66" id="U74-vH-cqF"/>
+                                                    <constraint firstAttribute="width" constant="66" id="bhH-hg-apY"/>
                                                 </constraints>
-                                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="next" smartDashesType="no" smartInsertDeleteType="yes" smartQuotesType="no" textContentType="one-time-code"/>
-                                            </textView>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="done" enablesReturnKeyAutomatically="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="one-time-code"/>
+                                                <connections>
+                                                    <action selector="TextFieldOneEC:" destination="tA7-D1-oMG" eventType="editingChanged" id="cA6-hl-8Jq"/>
+                                                </connections>
+                                            </textField>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
+                                            <constraint firstItem="4aI-ct-gd1" firstAttribute="centerX" secondItem="1Es-yJ-U6M" secondAttribute="centerX" id="3eN-JP-Udn"/>
+                                            <constraint firstItem="4aI-ct-gd1" firstAttribute="centerY" secondItem="1Es-yJ-U6M" secondAttribute="centerY" id="ATn-Ch-JCX"/>
                                             <constraint firstAttribute="height" constant="66" id="NhA-Cg-URy"/>
                                             <constraint firstAttribute="width" constant="66" id="RBK-si-Wwb"/>
-                                            <constraint firstItem="6ud-cZ-HUg" firstAttribute="centerX" secondItem="1Es-yJ-U6M" secondAttribute="centerX" id="S1r-9J-SPQ"/>
-                                            <constraint firstItem="6ud-cZ-HUg" firstAttribute="top" secondItem="1Es-yJ-U6M" secondAttribute="top" id="TcF-jj-mOe"/>
-                                            <constraint firstItem="6ud-cZ-HUg" firstAttribute="centerY" secondItem="1Es-yJ-U6M" secondAttribute="centerY" id="WGk-VP-4sl"/>
-                                            <constraint firstItem="6ud-cZ-HUg" firstAttribute="leading" secondItem="1Es-yJ-U6M" secondAttribute="leading" id="xXX-fA-7FZ"/>
+                                            <constraint firstItem="4aI-ct-gd1" firstAttribute="leading" secondItem="1Es-yJ-U6M" secondAttribute="leading" id="ivW-9s-eez"/>
+                                            <constraint firstItem="4aI-ct-gd1" firstAttribute="top" secondItem="1Es-yJ-U6M" secondAttribute="top" id="qEp-6I-sge"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -327,7 +329,7 @@
                                     <constraint firstItem="Xdo-ra-K38" firstAttribute="leading" secondItem="QiX-YN-OEk" secondAttribute="trailing" constant="10" id="ynX-fX-DS2"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hh7-BA-Seq">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hh7-BA-Seq">
                                 <rect key="frame" x="98.5" y="700" width="217" height="60"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="FIND MY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b6t-AR-cVh">
@@ -359,6 +361,7 @@
                             <constraint firstItem="Bsn-C7-NAZ" firstAttribute="centerX" secondItem="zEf-r2-Oph" secondAttribute="centerX" id="IOK-Zo-6OO"/>
                             <constraint firstItem="HJr-Ja-nHm" firstAttribute="centerX" secondItem="zEf-r2-Oph" secondAttribute="centerX" id="LZe-Ev-mq0"/>
                             <constraint firstItem="HJr-Ja-nHm" firstAttribute="leading" secondItem="9Os-ba-tiy" secondAttribute="leading" id="P4h-wE-zcx"/>
+                            <constraint firstItem="9Os-ba-tiy" firstAttribute="bottom" secondItem="Hh7-BA-Seq" secondAttribute="bottom" constant="102" id="RIc-JL-2Uh"/>
                             <constraint firstItem="HJr-Ja-nHm" firstAttribute="trailing" secondItem="9Os-ba-tiy" secondAttribute="trailing" id="duh-yc-yQ7"/>
                             <constraint firstItem="Hh7-BA-Seq" firstAttribute="centerX" secondItem="zEf-r2-Oph" secondAttribute="centerX" id="kMQ-ba-f2V"/>
                             <constraint firstItem="HJr-Ja-nHm" firstAttribute="top" secondItem="9Os-ba-tiy" secondAttribute="top" constant="443" id="z48-xQ-Flh"/>
@@ -376,12 +379,16 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="TextFieldFive" destination="Daj-Dz-BTa" id="MHe-1B-IAj"/>
+                        <outlet property="TextFieldFour" destination="3xe-US-KS6" id="sTZ-yK-z9z"/>
+                        <outlet property="TextFieldOne" destination="4aI-ct-gd1" id="Aae-kl-LRJ"/>
+                        <outlet property="TextFieldThree" destination="WQ8-VY-SIA" id="mdU-dl-cfI"/>
+                        <outlet property="TextFieldTwo" destination="nRy-qP-g6G" id="lcZ-wA-JdV"/>
                         <outlet property="numberFive" destination="qYe-3c-hJ6" id="9K3-js-L8z"/>
                         <outlet property="numberFour" destination="Xdo-ra-K38" id="lWd-Ff-xSW"/>
                         <outlet property="numberOne" destination="1Es-yJ-U6M" id="Cs2-LA-98s"/>
                         <outlet property="numberThree" destination="QiX-YN-OEk" id="0vh-HP-F5u"/>
                         <outlet property="numberTwo" destination="EKD-mU-O81" id="WMb-3p-c8m"/>
-                        <outlet property="textOne" destination="6ud-cZ-HUg" id="eeN-Ma-jVs"/>
                         <segue destination="7Bt-p1-ZtI" kind="show" identifier="JoinGameUsername" id="v39-9m-1CG"/>
                     </connections>
                 </viewController>
@@ -737,7 +744,6 @@
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8-7-6-5-2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kvo-YG-rza">
                                 <rect key="frame" x="113" y="381" width="188" height="50"/>
-                                <color key="backgroundColor" systemColor="quaternarySystemFillColor" red="0.4549019608" green="0.4549019608" blue="0.50196078430000002" alpha="0.080000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="N1B-45-tWX"/>
                                 </constraints>
