@@ -4,6 +4,8 @@ const socket = require("socket.io")
 const http = require("http").createServer(express)
 const cryp = require('crypto')
 
+let tempToken = "";
+
 app.get("/", function (req, res) {
     res.send('<h1>Hello world</h1>');
 })
@@ -39,7 +41,8 @@ app.post("/createGame", function (req, res) {
     ]
     let token = tokenZahl[0] + "-" + tokenZahl[1] + "-" + tokenZahl[2] + "-" + tokenZahl[3] + "-" + tokenZahl[4]
     console.log(token)
-    res.send("" + token);
+        tempToken = token
+    res.send("" + token)
 })
 
 
