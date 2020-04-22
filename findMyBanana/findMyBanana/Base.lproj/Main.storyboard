@@ -678,6 +678,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="shareBtnView" destination="ejT-nF-HNb" id="ZKr-gZ-Gic"/>
+                        <outlet property="tokenLabel" destination="kvo-YG-rza" id="hy5-bz-c9T"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Sg-nk-Gsm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -9,22 +9,23 @@
 import UIKit
 
 class CreateGameGamecodeView: UIViewController {
-    //let createGameUrl = "http://192.168.1.104:3000/createGame"
-    let createGameUrl = "http://127.0.0.1:3000/createGame"
+    let createGameUrl = "http://192.168.1.104:3000/createGame"
+    //let createGameUrl = "http://127.0.0.1:3000/createGame"
     var token = ""
     var jsonModel = GameModel(anz: -1, timeInSec: -1)
     var shareUrl = ""
 
     @IBOutlet weak var shareBtnView: UIView!
-    
-    @IBOutlet weak var tokenLabel: UILabel!
-    
+        
     @IBAction func shareLinkBtn(_ sender: UIButton) {
         let activityVC = UIActivityViewController(activityItems: [self.shareUrl], applicationActivities: nil)
         activityVC.popoverPresentationController?.sourceView = self.view
         
         self.present(activityVC, animated: true, completion: nil)
     }
+    
+    @IBOutlet weak var tokenLabel: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +59,7 @@ class CreateGameGamecodeView: UIViewController {
                     self.token = dataString
                     //self.saveToken(token:dataString)
                     //print("token: \(self.token)")
+                    self.tokenLabel.text = self.token
                     self.shareUrl = self.token//"findMyBanana://\(self.token)"
                     print("url: \(self.shareUrl)")
                 }
