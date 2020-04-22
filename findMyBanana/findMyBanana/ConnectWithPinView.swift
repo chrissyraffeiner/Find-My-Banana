@@ -17,6 +17,9 @@ class ConnectWithPinView: UIViewController {
     @IBOutlet weak var numberFive: UIView!
     
     
+    @IBOutlet weak var textOne: UITextView!
+    
+    
     @IBAction func nextBtn(_ sender: UIBarButtonItem) {
         nextView()
     }

@@ -29,10 +29,19 @@ class CreateGameGamecodeView: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let queue = DispatchQueue(label: "myQueue")
         // Do any additional setup after loading the view.
-        self.setupPost()
-        //self.tokenLabel.text = self.token
         addShadow(view: shareBtnView)
+        queue.async{
+             self.setupPost()
+            print(self.token)
+            
+            
+        }//async
+        DispatchQueue.main.async {
+            self.tokenLabel.text = self.token
+            print("token: \(self.token)")
+        }//DispatchQueue
     }
     
     func addShadow(view: UIView){
@@ -43,7 +52,7 @@ class CreateGameGamecodeView: UIViewController {
         view.layer.cornerRadius = 20
     }
     
-    func setupPost(){
+    func setupPost() {
         
         if let url = URL(string: self.createGameUrl) {
             var request = URLRequest(url: url)
@@ -59,7 +68,7 @@ class CreateGameGamecodeView: UIViewController {
                     self.token = dataString
                     //self.saveToken(token:dataString)
                     //print("token: \(self.token)")
-                    self.tokenLabel.text = self.token
+                    
                     self.shareUrl = self.token//"findMyBanana://\(self.token)"
                     print("url: \(self.shareUrl)")
                 }
@@ -70,13 +79,9 @@ class CreateGameGamecodeView: UIViewController {
         }else{
             print("URL ist flasch")
         }
+        
     }
     
-    func saveToken(token:String){
-        print("savetoken: \(token)")
-        DispatchQueue.main.async {
-            self.tokenLabel.text=token
-        }
-    }
+  
     
 }
