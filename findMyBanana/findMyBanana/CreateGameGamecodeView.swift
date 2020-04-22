@@ -29,7 +29,7 @@ class CreateGameGamecodeView: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let queue = DispatchQueue(label: "myQueue")
+        let queue = DispatchQueue(label: "myQueue", attributes: .concurrent)
         // Do any additional setup after loading the view.
         addShadow(view: shareBtnView)
         queue.async{
@@ -38,10 +38,7 @@ class CreateGameGamecodeView: UIViewController {
             
             
         }//async
-        DispatchQueue.main.async {
-            self.tokenLabel.text = self.token
-            print("token: \(self.token)")
-        }//DispatchQueue
+        
     }
     
     func addShadow(view: UIView){
@@ -71,6 +68,10 @@ class CreateGameGamecodeView: UIViewController {
                     
                     self.shareUrl = self.token//"findMyBanana://\(self.token)"
                     print("url: \(self.shareUrl)")
+                    DispatchQueue.main.async {
+                        self.tokenLabel.text = self.token
+                        print("token: \(self.token)")
+                    }//DispatchQueue
                 }
                 if let error = err {
                     print("Error took place \(error)")
