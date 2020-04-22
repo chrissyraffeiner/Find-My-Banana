@@ -588,7 +588,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon metro-hour-glass.png" translatesAutoresizingMaskIntoConstraints="NO" id="Bpw-sT-3hU">
-                                <rect key="frame" x="19.5" y="408" width="375" height="429"/>
+                                <rect key="frame" x="-168" y="408" width="750" height="858"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ejT-nF-HNb">
                                 <rect key="frame" x="116.5" y="706" width="181" height="49"/>
@@ -647,7 +647,11 @@
                         <viewLayoutGuide key="safeArea" id="yTQ-Fk-uqX"/>
                     </view>
                     <navigationItem key="navigationItem" title="Create Game" id="1Ky-Kk-8Ge">
-                        <barButtonItem key="rightBarButtonItem" title="Start" style="done" id="VHc-AF-a6O"/>
+                        <barButtonItem key="rightBarButtonItem" title="Start" style="done" id="VHc-AF-a6O">
+                            <connections>
+                                <segue destination="icc-1o-e1e" kind="show" id="eIb-IC-dCW"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="shareBtnView" destination="ejT-nF-HNb" id="ZKr-gZ-Gic"/>
@@ -666,7 +670,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="34a-2J-uln">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="665"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="621"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y9t-tW-gWj">
@@ -675,28 +679,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B1y-xu-MqT">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ai6-P0-j49">
-                                        <rect key="frame" x="201.5" y="437.5" width="11" height="21"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="11" id="eUv-sR-UOg"/>
-                                            <constraint firstAttribute="height" constant="21" id="wcK-dv-umw"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="140"/>
-                                        <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <constraints>
-                                    <constraint firstItem="Ai6-P0-j49" firstAttribute="centerY" secondItem="B1y-xu-MqT" secondAttribute="centerY" id="gcR-Pb-dWf"/>
-                                    <constraint firstItem="Ai6-P0-j49" firstAttribute="centerX" secondItem="B1y-xu-MqT" secondAttribute="centerX" id="xY0-hs-R1X"/>
-                                </constraints>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O6g-Jv-d91">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="808"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="FIND" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PFX-bp-4ea">
                                         <rect key="frame" x="73" y="361" width="143" height="73"/>
@@ -722,6 +706,22 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B1y-xu-MqT">
+                                <rect key="frame" x="0.0" y="44" width="414" height="808"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ai6-P0-j49">
+                                        <rect key="frame" x="168" y="326" width="78" height="156.5"/>
+                                        <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="140"/>
+                                        <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="Ai6-P0-j49" firstAttribute="centerY" secondItem="B1y-xu-MqT" secondAttribute="centerY" id="Chw-Ks-7cG"/>
+                                    <constraint firstItem="Ai6-P0-j49" firstAttribute="centerX" secondItem="B1y-xu-MqT" secondAttribute="centerX" id="vsH-WO-H8L"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -744,6 +744,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="RDk-Q6-1Ka"/>
                     </view>
+                    <navigationItem key="navigationItem" id="dpe-jM-tN3"/>
                     <connections>
                         <outlet property="animatedView" destination="B1y-xu-MqT" id="ODS-mW-UYT"/>
                         <outlet property="answerLabel" destination="Y9t-tW-gWj" id="b7k-KY-hfK"/>

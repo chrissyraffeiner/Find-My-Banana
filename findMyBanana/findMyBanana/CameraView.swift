@@ -28,6 +28,8 @@ class CameraView: UIViewController {
     @IBOutlet weak var findView: UIView!
     @IBOutlet weak var countdownLabel: UILabel!
     
+    var isEmojiShown = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.bringSubviewToFront(animatedView)
@@ -68,8 +70,16 @@ class CameraView: UIViewController {
             }
             countdownLabel.text = "\(counter)"
             if counter <= 0{
-                isCountdownFinished = true
-                schowEmoji()
+                if(!isEmojiShown){
+                    isEmojiShown = true
+                    schowEmoji()
+                }
+                if counter <= -4{
+                    isCountdownFinished = true
+                    animatedView.removeFromSuperview()
+                    findView.removeFromSuperview()
+                    view.bringSubviewToFront(preview)
+                }
             }
         }
     }
