@@ -4,15 +4,17 @@ const socket = require("socket.io")
 const http = require("http").createServer(express)
 const cryp = require('crypto')
 
-app.get("/", function(req, res){
+let tempToken = "";
+
+app.get("/", function (req, res) {
     res.send('<h1>Hello world</h1>');
 })
 
-app.get("/message", function(req,res){
+app.get("/message", function (req, res) {
     res.send("server works")
 })
 
-app.get("/joinGame", function(req, res){
+app.get("/joinGame", function (req, res) {
     console.log("sth")
     res.send("joined")
 })
@@ -26,18 +28,24 @@ app.get("/joinGame", function(req, res){
  */
 
 app.use(express.json())
-app.post("/createGame", function(req, res){
+app.post("/createGame", function (req, res) {
     console.log("here")
     let anzahl = req.body.anz
     let timeInSec = req.body.timeInSec
-    let token;
-        token = Math.round(Math.random()*1000000);
-
-
-    res.send("" + token);
+    let tokenZahl = [
+        Math.floor(Math.random() * 10), 
+        Math.floor(Math.random() * 10), 
+        Math.floor(Math.random() * 10), 
+        Math.floor(Math.random() * 10), 
+        Math.floor(Math.random() * 10)
+    ]
+    let token = tokenZahl[0] + "-" + tokenZahl[1] + "-" + tokenZahl[2] + "-" + tokenZahl[3] + "-" + tokenZahl[4]
+    console.log(token)
+        tempToken = token
+    res.send("" + token)
 })
 
 
-app.listen(3000, function(){
+app.listen(3000, function () {
     console.log("server listens on port 3000")
 })
