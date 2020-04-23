@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-         print("url: \(url)")
+         print(url)
         let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)
         let host = urlComponents?.host ?? ""
         print(host)
