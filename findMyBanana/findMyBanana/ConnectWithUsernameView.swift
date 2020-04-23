@@ -11,6 +11,7 @@ import UIKit
 class ConnectWithUsernameView: UIViewController {
 
     @IBOutlet weak var usernameTF: UITextField!
+    
     @IBAction func gestureNext(_ sender: UIScreenEdgePanGestureRecognizer) {
         if(sender.state == .began){
             nextView()
@@ -46,9 +47,10 @@ class ConnectWithUsernameView: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        print("username: \(usernameTF.text!)")
         if(segue.identifier == "PartyRoom") {
             let vc = segue.destination as! PartyRoomView
-            //vc.timeInSec = self.timeInSec
+            vc.username = usernameTF.text!
         }
     }
 

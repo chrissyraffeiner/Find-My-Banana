@@ -10,9 +10,11 @@ import UIKit
 
 class PartyRoomView: UIViewController {
 
+    var username = "player"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("hello")
+        print("hello, \(username)")
         // Do any additional setup after loading the view.
     }
     
