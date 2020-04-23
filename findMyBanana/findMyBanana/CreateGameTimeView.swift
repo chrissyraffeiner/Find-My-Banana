@@ -64,7 +64,7 @@ class CreateGameTimeView: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
-        if(segue.identifier == "JoinGameUsername") {
+        if(segue.identifier == "CreateGameEmoji") {
             let vc = segue.destination as! CreateGameEmojiView
             vc.timeInSec = self.timeInSec
         }

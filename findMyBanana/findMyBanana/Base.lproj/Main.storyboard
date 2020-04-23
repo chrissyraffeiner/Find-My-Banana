@@ -294,7 +294,7 @@
                                                     <constraint firstAttribute="width" constant="66" id="bhH-hg-apY"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="done" enablesReturnKeyAutomatically="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="one-time-code"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                                 <connections>
                                                     <action selector="TextFieldOneEC:" destination="tA7-D1-oMG" eventType="editingChanged" id="cA6-hl-8Jq"/>
                                                 </connections>
@@ -522,20 +522,53 @@
                                     <constraint firstItem="ad0-1M-Y28" firstAttribute="top" secondItem="SL4-qk-KEC" secondAttribute="top" constant="41" id="tCe-Rz-ZfC"/>
                                 </constraints>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon metro-hour-glass.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="XTe-UY-8ex">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ww-A7-iKe">
                                 <rect key="frame" x="19.5" y="423" width="375" height="429"/>
-                            </imageView>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon metro-hour-glass.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="XTe-UY-8ex">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="429"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="375" id="dAw-D1-yq8"/>
+                                            <constraint firstAttribute="height" constant="429" id="zp3-uf-ohx"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E0h-Ug-9MZ" userLabel="usernames">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="429"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="E0h-Ug-9MZ" firstAttribute="centerX" secondItem="8ww-A7-iKe" secondAttribute="centerX" id="6Oc-5G-1mL"/>
+                                    <constraint firstItem="E0h-Ug-9MZ" firstAttribute="centerY" secondItem="8ww-A7-iKe" secondAttribute="centerY" id="9Ai-yU-lMl"/>
+                                    <constraint firstAttribute="bottom" secondItem="E0h-Ug-9MZ" secondAttribute="bottom" id="GUS-ha-ruW"/>
+                                    <constraint firstItem="XTe-UY-8ex" firstAttribute="leading" secondItem="8ww-A7-iKe" secondAttribute="leading" id="Srs-71-ioe"/>
+                                    <constraint firstItem="XTe-UY-8ex" firstAttribute="top" secondItem="8ww-A7-iKe" secondAttribute="top" id="Tdc-wb-fh6"/>
+                                    <constraint firstItem="XTe-UY-8ex" firstAttribute="centerY" secondItem="8ww-A7-iKe" secondAttribute="centerY" id="b87-sO-hfy"/>
+                                    <constraint firstAttribute="trailing" secondItem="E0h-Ug-9MZ" secondAttribute="trailing" id="bRx-xh-sAA"/>
+                                    <constraint firstAttribute="width" constant="375" id="idU-Fw-nqT"/>
+                                    <constraint firstAttribute="height" constant="429" id="qlK-Ko-5CI"/>
+                                    <constraint firstItem="E0h-Ug-9MZ" firstAttribute="leading" secondItem="8ww-A7-iKe" secondAttribute="leading" id="ue9-iD-FHL"/>
+                                    <constraint firstItem="E0h-Ug-9MZ" firstAttribute="top" secondItem="8ww-A7-iKe" secondAttribute="top" id="wKp-2L-2px"/>
+                                    <constraint firstItem="XTe-UY-8ex" firstAttribute="centerX" secondItem="8ww-A7-iKe" secondAttribute="centerX" id="zLf-ke-71g"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="ko0-Lh-VuP" firstAttribute="bottom" secondItem="XTe-UY-8ex" secondAttribute="bottom" constant="10" id="SrT-uu-JfS"/>
-                            <constraint firstItem="XTe-UY-8ex" firstAttribute="centerX" secondItem="fs5-hl-mhA" secondAttribute="centerX" id="ZV8-Lg-TUf"/>
+                            <constraint firstItem="ko0-Lh-VuP" firstAttribute="bottom" secondItem="8ww-A7-iKe" secondAttribute="bottom" constant="10" id="E8x-m6-LwL"/>
                             <constraint firstItem="SL4-qk-KEC" firstAttribute="centerX" secondItem="fs5-hl-mhA" secondAttribute="centerX" id="glr-24-suh"/>
                             <constraint firstItem="SL4-qk-KEC" firstAttribute="top" secondItem="ko0-Lh-VuP" secondAttribute="top" constant="103" id="rpe-uX-I4Z"/>
+                            <constraint firstItem="8ww-A7-iKe" firstAttribute="centerX" secondItem="fs5-hl-mhA" secondAttribute="centerX" id="zjD-eB-Ywl"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ko0-Lh-VuP"/>
                     </view>
                     <navigationItem key="navigationItem" title="Join Game" id="V5V-em-gl2"/>
+                    <connections>
+                        <outlet property="usernameLabel" destination="E0h-Ug-9MZ" id="U0f-At-qHC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TBv-mu-iR0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -768,7 +801,7 @@
                     <navigationItem key="navigationItem" title="Create Game" id="1Ky-Kk-8Ge">
                         <barButtonItem key="rightBarButtonItem" title="Start" style="done" id="VHc-AF-a6O">
                             <connections>
-                                <segue destination="icc-1o-e1e" kind="show" id="eIb-IC-dCW"/>
+                                <segue destination="icc-1o-e1e" kind="show" identifier="gameStart" id="eIb-IC-dCW"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -824,7 +857,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B1y-xu-MqT">
                                 <rect key="frame" x="0.0" y="44" width="414" height="808"/>
@@ -869,6 +902,7 @@
                         <outlet property="animatedView" destination="B1y-xu-MqT" id="ODS-mW-UYT"/>
                         <outlet property="answerLabel" destination="Y9t-tW-gWj" id="b7k-KY-hfK"/>
                         <outlet property="countdownLabel" destination="Ai6-P0-j49" id="DxN-jp-mqL"/>
+                        <outlet property="findTime" destination="h93-ZS-cmj" id="Bjz-td-GyI"/>
                         <outlet property="findView" destination="O6g-Jv-d91" id="BOn-Vv-8dx"/>
                         <outlet property="preview" destination="34a-2J-uln" id="Cgw-dq-Vhw"/>
                     </connections>

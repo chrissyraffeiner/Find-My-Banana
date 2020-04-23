@@ -12,7 +12,7 @@ class CreateGameGamecodeView: UIViewController {
     let createGameUrl = "http://192.168.1.104:3000/createGame"
     //let createGameUrl = "http://127.0.0.1:3000/createGame"
     var token = ""
-    var jsonModel = GameModel(anz: -1, timeInSec: -1)
+    var jsonModel = GameModel(anz: 3, timeInSec: 5)
     var shareUrl = ""
 
     @IBOutlet weak var shareBtnView: UIView!
@@ -83,6 +83,16 @@ class CreateGameGamecodeView: UIViewController {
         
     }
     
-  
+  fileprivate func next(){
+      performSegue(withIdentifier: "gameStart", sender: self)
+  }
+
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+      
+      if(segue.identifier == "gameStart") {
+          let vc = segue.destination as! CameraView
+        vc.einstellungen = jsonModel
+      }
+  }
     
 }
