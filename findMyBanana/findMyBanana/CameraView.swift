@@ -22,15 +22,18 @@ class CameraView: UIViewController {
     var counterTimer = Timer()
     var counterStartValue = 3
     var isCountdownFinished = false
+    var einstellungen = GameModel(anz: 3, timeInSec: 5)
     
     var audioPlayer:AVAudioPlayer?
     
     @IBOutlet weak var findView: UIView!
     @IBOutlet weak var countdownLabel: UILabel!
+    @IBOutlet weak var findTime: UILabel!
     
     var isEmojiShown = false
     
     override func viewDidLoad() {
+        findTime.text = "find in under \(einstellungen.timeInSec) sec"
         super.viewDidLoad()
         view.bringSubviewToFront(animatedView)
         startCountdown()

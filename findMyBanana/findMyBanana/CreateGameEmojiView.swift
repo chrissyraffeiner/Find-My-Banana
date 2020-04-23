@@ -12,7 +12,7 @@ class CreateGameEmojiView:  UIViewController, UIPickerViewDelegate, UIPickerView
 
     @IBOutlet weak var emojiPicker: UIPickerView!
     var anz : Int = 3
-    var timeInSec : Int = -1
+    var timeInSec : Int = 5
     
     
     @IBAction func nextGesture(_ sender: UIScreenEdgePanGestureRecognizer) {
@@ -66,6 +66,7 @@ class CreateGameEmojiView:  UIViewController, UIPickerViewDelegate, UIPickerView
         
         if(segue.identifier == "GenerateCode") {
             let vc = segue.destination as! CreateGameGamecodeView
+            print("emojiview: \(timeInSec)")
             vc.jsonModel.timeInSec = timeInSec
             vc.jsonModel.anz = anz
         }
