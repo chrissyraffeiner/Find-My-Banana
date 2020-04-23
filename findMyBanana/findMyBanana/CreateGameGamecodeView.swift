@@ -9,16 +9,14 @@
 import UIKit
 
 class CreateGameGamecodeView: UIViewController {
-    //let createGameUrl = "http://192.168.1.104:3000/createGame"
-    let createGameUrl = "http://127.0.0.1:3000/createGame"
+    let createGameUrl = "http://192.168.1.104:3000/createGame"
+    //let createGameUrl = "http://127.0.0.1:3000/createGame"
     var token = ""
     var jsonModel = GameModel(anz: -1, timeInSec: -1)
     var shareUrl = ""
 
     @IBOutlet weak var shareBtnView: UIView!
-    
-    @IBOutlet weak var tokenLabel: UILabel!
-    
+        
     @IBAction func shareLinkBtn(_ sender: UIButton) {
         let activityVC = UIActivityViewController(activityItems: [self.shareUrl], applicationActivities: nil)
         activityVC.popoverPresentationController?.sourceView = self.view
@@ -26,12 +24,21 @@ class CreateGameGamecodeView: UIViewController {
         self.present(activityVC, animated: true, completion: nil)
     }
     
+    @IBOutlet weak var tokenLabel: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        let queue = DispatchQueue(label: "myQueue", attributes: .concurrent)
         // Do any additional setup after loading the view.
-        self.setupPost()
-        //self.tokenLabel.text = self.token
         addShadow(view: shareBtnView)
+        queue.async{
+             self.setupPost()
+            print(self.token)
+            
+            
+        }//async
+        
     }
     
     func addShadow(view: UIView){
@@ -42,13 +49,13 @@ class CreateGameGamecodeView: UIViewController {
         view.layer.cornerRadius = 20
     }
     
-    func setupPost(){
+    func setupPost() {
         
         if let url = URL(string: self.createGameUrl) {
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
                         
-            var jsondata = try? JSONEncoder().encode(jsonModel)
+            let jsondata = try? JSONEncoder().encode(jsonModel)
 
             request.httpBody = jsondata
             
@@ -58,8 +65,13 @@ class CreateGameGamecodeView: UIViewController {
                     self.token = dataString
                     //self.saveToken(token:dataString)
                     //print("token: \(self.token)")
-                    self.shareUrl = "findMyBanana://\(self.token)"
+                    
+                    self.shareUrl = self.token//"findMyBanana://\(self.token)"
                     print("url: \(self.shareUrl)")
+                    DispatchQueue.main.async {
+                        self.tokenLabel.text = self.token
+                        print("token: \(self.token)")
+                    }//DispatchQueue
                 }
                 if let error = err {
                     print("Error took place \(error)")
@@ -68,13 +80,9 @@ class CreateGameGamecodeView: UIViewController {
         }else{
             print("URL ist flasch")
         }
+        
     }
     
-    func saveToken(token:String){
-        print("savetoken: \(token)")
-        DispatchQueue.main.async {
-            self.tokenLabel.text=token
-        }
-    }
+  
     
 }
