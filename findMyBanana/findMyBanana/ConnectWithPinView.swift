@@ -9,6 +9,8 @@
 import UIKit
 
 class ConnectWithPinView: UIViewController {
+    
+    var test:Bool = true
 
     @IBOutlet weak var numberOne: UIView!
     @IBOutlet weak var numberTwo: UIView!
@@ -23,7 +25,7 @@ class ConnectWithPinView: UIViewController {
     @IBOutlet weak var TextFieldFour: UITextField!
     @IBOutlet weak var TextFieldFive: UITextField!
     
-    
+    @IBOutlet weak var pinFieldsView: UIView!
     
     @IBAction func TextFieldOneEC(_ sender: UITextField) {
         TextFieldOne.tag = 1
@@ -73,7 +75,22 @@ class ConnectWithPinView: UIViewController {
     }
     
     @IBAction func nextBtn(_ sender: UIBarButtonItem) {
-        nextView()
+        if(test){
+            shakeTest()
+        }else{
+            nextView()
+        }
+    }
+    
+    func shakeTest(){
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration = 0.06
+        animation.repeatCount = 3
+        animation.autoreverses = true
+        animation.fromValue = NSValue(cgPoint: CGPoint(x: pinFieldsView.center.x - 7, y: pinFieldsView.center.y))
+        animation.toValue = NSValue(cgPoint: CGPoint(x: pinFieldsView.center.x + 7, y: pinFieldsView.center.y))
+        
+        pinFieldsView.layer.add(animation, forKey: "position")
     }
     
     @IBAction func gestureNext(_ sender: UIScreenEdgePanGestureRecognizer) {
