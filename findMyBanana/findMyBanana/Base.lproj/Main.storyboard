@@ -186,14 +186,14 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EKD-mU-O81">
                                         <rect key="frame" x="98" y="0.0" width="66" height="66"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nRy-qP-g6G" userLabel="Text Two">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="5" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nRy-qP-g6G" userLabel="Text Two">
                                                 <rect key="frame" x="0.0" y="0.0" width="66" height="66"/>
                                                 <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="66" id="61Y-DU-6Lt"/>
                                                     <constraint firstAttribute="width" constant="66" id="EQ9-Zq-bcI"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="33"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="next" smartDashesType="no" smartInsertDeleteType="yes" smartQuotesType="no"/>
                                                 <connections>
                                                     <action selector="TextFieldTwoEC:" destination="tA7-D1-oMG" eventType="editingChanged" id="dVH-L0-DHR"/>
