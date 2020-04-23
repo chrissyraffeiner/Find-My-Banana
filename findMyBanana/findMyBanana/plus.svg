@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="56" height="57" viewBox="0 0 56 57">
-  <defs>
-    <pattern id="pattern" preserveAspectRatio="none" width="100%" height="100%" viewBox="0 0 64 64">
-      <image width="64" height="64" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAQAAAAAYLlVAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAAmJLR0QAAKqNIzIAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAAHdElNRQfkAwQULR3RwCMpAAAAw0lEQVRo3u3XsQ3CMBCF4d8g0TABEotQU0RZIMomKNCzC6EnbMAiJCyQtIEmckWDL+Kad9e8xqdP9jUGS53o6KhMMwxV8p66SB+yMACymHIfwPpL+itglhJAAAEEEEAAAQQQQAABBAhASZb0t9mxndKTR8L5gTsXOMYvpkdXgY6N4wu8vHdgXLJi7wg4B6Agd1nCnoarRV/HVarTh3jvgAACCCCAAAIIIIAAAggggAkwxNT7AJqYbvPdyG9V0dJysIz4AO/5YE1CXMCwAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTAzLTA0VDIwOjQ1OjI5KzAwOjAwG9iSGQAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wMy0wNFQyMDo0NToyOSswMDowMGqFKqUAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC"/>
-    </pattern>
-  </defs>
-  <rect id="plus" width="56" height="57" fill="url(#pattern)"/>
-</svg>
