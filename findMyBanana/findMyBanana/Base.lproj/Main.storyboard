@@ -193,7 +193,7 @@
                                                     <constraint firstAttribute="height" constant="66" id="61Y-DU-6Lt"/>
                                                     <constraint firstAttribute="width" constant="66" id="EQ9-Zq-bcI"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="next" smartDashesType="no" smartInsertDeleteType="yes" smartQuotesType="no"/>
                                                 <connections>
                                                     <action selector="TextFieldTwoEC:" destination="tA7-D1-oMG" eventType="editingChanged" id="dVH-L0-DHR"/>
@@ -218,7 +218,7 @@
                                                     <constraint firstAttribute="width" constant="66" id="2JP-q0-uxM"/>
                                                     <constraint firstAttribute="height" constant="66" id="jIU-Zf-Hpn"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="next" smartDashesType="no" smartInsertDeleteType="yes" smartQuotesType="no" textContentType="one-time-code"/>
                                                 <connections>
                                                     <action selector="TextFieldThreeEC:" destination="tA7-D1-oMG" eventType="editingChanged" id="Kj7-AG-UNh"/>
@@ -243,7 +243,7 @@
                                                     <constraint firstAttribute="height" constant="66" id="cYx-5M-6ge"/>
                                                     <constraint firstAttribute="width" constant="66" id="sty-BG-YQl"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="next" smartDashesType="no" smartInsertDeleteType="yes" smartQuotesType="no" textContentType="one-time-code"/>
                                                 <connections>
                                                     <action selector="TextFieldFourEC:" destination="tA7-D1-oMG" eventType="editingChanged" id="l4U-ru-2Zl"/>
@@ -268,7 +268,7 @@
                                                     <constraint firstAttribute="height" constant="66" id="4et-ma-FR5"/>
                                                     <constraint firstAttribute="width" constant="66" id="zLx-bt-FzH"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="next" smartDashesType="no" smartInsertDeleteType="yes" smartQuotesType="no" textContentType="one-time-code"/>
                                                 <connections>
                                                     <action selector="TextFieldFiveEC:" destination="tA7-D1-oMG" eventType="editingChanged" id="sU3-Iy-P0E"/>
@@ -293,7 +293,7 @@
                                                     <constraint firstAttribute="height" constant="66" id="U74-vH-cqF"/>
                                                     <constraint firstAttribute="width" constant="66" id="bhH-hg-apY"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="done" enablesReturnKeyAutomatically="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                                 <connections>
                                                     <action selector="TextFieldOneEC:" destination="tA7-D1-oMG" eventType="editingChanged" id="cA6-hl-8Jq"/>
