@@ -79,11 +79,7 @@ class ConnectWithPinView: UIViewController {
     }
     
     @IBAction func nextBtn(_ sender: UIBarButtonItem) {
-        if(checkPin()){
-            shakeTest()
-        }else{
-            nextView()
-        }
+        nextView()
     }
     
     func checkPin()->Bool{
@@ -137,13 +133,10 @@ class ConnectWithPinView: UIViewController {
             print(self.token)
             
             //self.setupPost()
-            self.setupGet()
-            if(self.gameExists == "true"){
-                performSegue(withIdentifier: "JoinGameUsername", sender: self)
-            }else{
-                
+            let queue = DispatchQueue(label: "myQueue")
+            queue.async{
+                self.setupGet()
             }
-            //performSegue(withIdentifier: "JoinGameUsername", sender: self)
 
         } else {
             print("unvollständiger Code")
@@ -170,7 +163,11 @@ class ConnectWithPinView: UIViewController {
                 // Convert HTTP Response Data to a simple String
                 if let data = data, let dataString = String(data: data, encoding: .utf8) {
                     DispatchQueue.main.async {
-                        self.gameExists = dataString
+                        if(dataString == "true"){
+                            self.performSegue(withIdentifier: "JoinGameUsername", sender: self)
+                        }else{
+                            self.shakeTest()
+                        }
                     }
                 }
                 
