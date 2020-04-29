@@ -75,11 +75,16 @@ class ConnectWithPinView: UIViewController {
     }
     
     @IBAction func nextBtn(_ sender: UIBarButtonItem) {
-        if(test){
+        if(checkPin()){
             shakeTest()
         }else{
             nextView()
         }
+    }
+    
+    func checkPin()->Bool{
+        
+        return true
     }
     
     func shakeTest(){
