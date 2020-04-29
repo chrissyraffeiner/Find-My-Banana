@@ -9,6 +9,8 @@
 import UIKit
 
 class ConnectWithUsernameView: UIViewController {
+    let setUsernameUrl = "http://172.0.0.1:3000/joinGame"
+    //let setUsernameUrl "http://192.168.0.100:3000/joinGame"
 
     @IBOutlet weak var usernameTF: UITextField!
     
@@ -39,7 +41,28 @@ class ConnectWithUsernameView: UIViewController {
         view.layer.shadowRadius = 10
     }
     
+    func setupPost() {
+        
+        if let url = URL(string: self.setUsernameUrl) {
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+                        
+            let jsondata = try? JSONEncoder().encode(usernameTF.text)
 
+            request.httpBody = jsondata
+            
+            URLSession.shared.dataTask(with: request) { (data, response, err) in
+                if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                }
+                if let error = err {
+                    print("Error took place \(error)")
+                }
+            }.resume()
+        }else{
+            print("URL ist flasch")
+        }
+        
+    }
     
     // MARK: - Navigation
 
@@ -49,6 +72,7 @@ class ConnectWithUsernameView: UIViewController {
         // Pass the selected object to the new view controller.
         print("username: \(usernameTF.text!)")
         if(segue.identifier == "PartyRoom") {
+            self.setupPost()
             let vc = segue.destination as! PartyRoomView
             vc.username = usernameTF.text!
         }
