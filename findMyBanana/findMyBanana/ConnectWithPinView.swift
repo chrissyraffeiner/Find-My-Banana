@@ -49,6 +49,10 @@ class ConnectWithPinView: UIViewController {
         textChanged(tag:-1, tf: TextFieldFive)
     }
     
+    let checkTokenUrl = "http://192.168.0.100:3000/checktoken"
+    var token = ""
+    var gameExists:String = ""
+    
     /*
      func textFieldShouldReturn(_ textField: UITextField) -> Bool {
      // Try to find next responder
@@ -129,10 +133,48 @@ class ConnectWithPinView: UIViewController {
     fileprivate func nextView() {
         print("sth")
         if(TextFieldOne.text)!.count > 0 && (TextFieldTwo.text)!.count > 0 && (TextFieldThree.text)!.count > 0 && (TextFieldFour.text)!.count > 0 && (TextFieldFive.text)!.count > 0{
-            performSegue(withIdentifier: "JoinGameUsername", sender: self)
+            self.token = "\(TextFieldOne.text!)\(TextFieldTwo.text!)\(TextFieldThree.text!)\(TextFieldFour.text!)\(TextFieldFive.text!)"
+            print(self.token)
+            
+            //self.setupPost()
+            self.setupGet()
+            if(self.gameExists == "true"){
+                performSegue(withIdentifier: "JoinGameUsername", sender: self)
+            }else{
+                
+            }
+            //performSegue(withIdentifier: "JoinGameUsername", sender: self)
 
         } else {
             print("unvollständiger Code")
+        }
+    }
+    
+    func setupGet(){
+        if let url = URL(string: "\(self.checkTokenUrl)/\(self.token)"){
+            var request = URLRequest(url: url)
+            request.httpMethod = "GET"
+            URLSession.shared.dataTask(with: request) { (data, response, error) in
+                
+                // Check if Error took place
+                if let error = error {
+                    print("Error took place \(error)")
+                    return
+                }
+                
+                // Read HTTP Response Status code
+                if let response = response as? HTTPURLResponse {
+                    print("Response HTTP Status code: \(response.statusCode)")
+                }
+                
+                // Convert HTTP Response Data to a simple String
+                if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                    DispatchQueue.main.async {
+                        self.gameExists = dataString
+                    }
+                }
+                
+            }.resume()
         }
     }
     
@@ -149,4 +191,8 @@ class ConnectWithPinView: UIViewController {
     }
     
 
+}
+
+struct TokenModel:Codable{
+    var token: String
 }
