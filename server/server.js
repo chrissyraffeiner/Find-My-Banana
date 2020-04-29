@@ -60,7 +60,7 @@ app.post("/joinGame", function(req, res){
 //Erstellt einen Gamecode, und weißt angegebene Zeit und anzahl der Emojis zu.
 app.use(express.json());
 app.post("/createGame", function(req, res){
-    let token = Math.round(Math.random()*1000000);
+    let token = Math.round(Math.random()*100000);
 
     //Store to DB
     MongoClient.connect(url, function(err, db) {
@@ -95,6 +95,26 @@ app.post("/checktoken", function(req, res){
         });
     });
 });
+
+app.get("/checktoken/:token", (req,res)=>{
+  let token = req.params.token
+  console.log("token: "+token)
+  MongoClient.connect(url, function(err, db) {
+    if (err) throw err;
+    var dbo = db.db(dbName);
+    var query = {gamecode: token};
+    dbo.collection("Game").find(query).toArray(function(err, result) {
+      if (err) throw err;
+      console.log(result);
+      db.close();
+      if(result.length == 0){
+        res.send(false);
+      }else{
+        res.send(true);
+      } 
+    });
+});
+})
 
 app.listen(3000, function(){
     console.log("server listens on port 3000");
