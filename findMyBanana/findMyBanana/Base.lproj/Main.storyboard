@@ -477,6 +477,7 @@
                     <connections>
                         <outlet property="usernameTF" destination="38x-Jv-1x5" id="DA8-H1-UAx"/>
                         <segue destination="6NE-Vd-gLK" kind="show" identifier="PartyRoom" id="COe-Tg-tWg"/>
+                        <segue destination="8S3-Lc-CnX" kind="show" identifier="PartyRoomAdmin" id="4jZ-9A-0s8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="52F-ak-Bd9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -708,7 +709,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="emojiPicker" destination="C2G-2i-CIr" id="xIN-ex-Gmj"/>
-                        <segue destination="8S3-Lc-CnX" kind="show" identifier="GenerateCode" id="4Oi-q0-MoW"/>
+                        <segue destination="7Bt-p1-ZtI" kind="show" identifier="GenerateCode" id="ujF-oU-a8m"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vN8-8D-NM4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -813,7 +814,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Sg-nk-Gsm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3134.7826086956525" y="-226.33928571428569"/>
+            <point key="canvasLocation" x="3135" y="-189"/>
         </scene>
         <!--Camera View-->
         <scene sceneID="ZpI-Mm-gpz">
@@ -910,7 +911,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oeE-hJ-aKi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4286.9565217391309" y="271.875"/>
+            <point key="canvasLocation" x="4751" y="276"/>
         </scene>
     </scenes>
     <resources>
@@ -919,4 +920,7 @@
         <image name="Phone.png" width="116" height="116"/>
         <image name="Plus.png" width="165" height="165"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="v39-9m-1CG"/>
+    </inferredMetricsTieBreakers>
 </document>

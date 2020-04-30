@@ -14,6 +14,7 @@ class CreateGameGamecodeView: UIViewController {
     var token = ""
     var jsonModel = GameModel(anz: 3, timeInSec: 5)
     var shareUrl = ""
+    var username = ""
 
     @IBOutlet weak var shareBtnView: UIView!
         

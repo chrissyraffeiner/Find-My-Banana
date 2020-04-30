@@ -11,6 +11,8 @@ import UIKit
 class ConnectWithUsernameView: UIViewController {
 
     @IBOutlet weak var usernameTF: UITextField!
+    var jsonModel = GameModel(anz: 3, timeInSec: 5)
+    var admin:Bool = false
     
     @IBAction func gestureNext(_ sender: UIScreenEdgePanGestureRecognizer) {
         if(sender.state == .began){
@@ -29,7 +31,11 @@ class ConnectWithUsernameView: UIViewController {
     }
     
     fileprivate func nextView() {
-        performSegue(withIdentifier: "PartyRoom", sender: self)
+        if(self.admin){
+            performSegue(withIdentifier: "PartyRoomAdmin", sender: self)
+        }else{
+            performSegue(withIdentifier: "PartyRoom", sender: self)
+        }
     }
     
     func addShadow(tf: UITextField){
@@ -50,6 +56,11 @@ class ConnectWithUsernameView: UIViewController {
         print("username: \(usernameTF.text!)")
         if(segue.identifier == "PartyRoom") {
             let vc = segue.destination as! PartyRoomView
+            vc.username = usernameTF.text!
+        }
+        
+        if(segue.identifier == "PartyRoomAdmin"){
+            let vc = segue.destination as! CreateGameGamecodeView
             vc.username = usernameTF.text!
         }
     }

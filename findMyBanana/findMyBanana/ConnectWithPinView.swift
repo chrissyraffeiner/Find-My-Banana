@@ -183,6 +183,7 @@ class ConnectWithPinView: UIViewController {
         // Pass the selected object to the new view controller.
         if(segue.identifier == "JoinGameUsername") {
                 let vc = segue.destination as! ConnectWithUsernameView
+            vc.admin = false
             //vc.timeInSec = self.timeInSec
         }
     }
