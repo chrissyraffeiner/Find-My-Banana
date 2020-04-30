@@ -68,6 +68,7 @@ app.use(express.json());
 app.post("/createGame", function(req, res){
     let token = Math.round(Math.random()*100000);
 
+    console.log(req.body.anz)
     //Store to DB
     MongoClient.connect(url, function(err, db) {
         if (err) throw err;
