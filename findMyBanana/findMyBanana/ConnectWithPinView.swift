@@ -184,6 +184,7 @@ class ConnectWithPinView: UIViewController {
         if(segue.identifier == "JoinGameUsername") {
                 let vc = segue.destination as! ConnectWithUsernameView
             vc.admin = false
+            vc.token = self.token
             //vc.timeInSec = self.timeInSec
         }
     }

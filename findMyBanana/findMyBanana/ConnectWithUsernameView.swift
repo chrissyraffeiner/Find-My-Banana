@@ -13,6 +13,7 @@ class ConnectWithUsernameView: UIViewController {
     @IBOutlet weak var usernameTF: UITextField!
     var jsonModel = GameModel(anz: 3, timeInSec: 5)
     var admin:Bool = false
+    var token:String = ""
     
     @IBAction func gestureNext(_ sender: UIScreenEdgePanGestureRecognizer) {
         if(sender.state == .began){
@@ -29,12 +30,47 @@ class ConnectWithUsernameView: UIViewController {
         // Do any additional setup after loading the view.
         
     }
-    
     fileprivate func nextView() {
+        let queue = DispatchQueue(label:"myQueue", attributes: .concurrent)
         if(self.admin){
             performSegue(withIdentifier: "PartyRoomAdmin", sender: self)
         }else{
+            var parameter = ["token": self.token, "username": usernameTF.text!]
+            queue.async {
+                self.joinGame(parameter: parameter)
+            }
             performSegue(withIdentifier: "PartyRoom", sender: self)
+        }
+    }
+    
+    func joinGame(parameter:[String:String]){
+        if let url = URL(string: "http://192.168.0.100:3000/joinGame") {
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            var username = parameter["username"]
+            var token = parameter["token"]
+            //let jsondata = try? JSONEncoder().encode(model)
+            var poststring = "token=\(token!)&username=\(username!)"
+            request.httpBody = poststring.data(using: String.Encoding.utf8)
+            
+            URLSession.shared.dataTask(with: request) { (data, response, err) in
+                if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                    //print("dataString: \(dataString)")
+                    print(dataString)
+                    //self.saveToken(token:dataString)
+                    //print("token: \(self.token)")
+                    
+                    DispatchQueue.main.async {
+                        //self.tokenLabel.text = self.token
+                        print("token: \(self.token)")
+                    }//DispatchQueue
+                }
+                if let error = err {
+                    print("Error took place \(error)")
+                }
+            }.resume()
+        }else{
+            print("URL ist flasch")
         }
     }
     

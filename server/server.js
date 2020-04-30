@@ -6,6 +6,10 @@ const cryp = require('crypto');
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017/";
 var dbName = "FindMyBananaDB";
+const bodyParser = require("body-parser")
+
+app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.json())
 
 //DB erstellen
 MongoClient.connect(url + dbName, function(err, db) {
@@ -37,9 +41,11 @@ app.post("/joinGame", function(req, res){
     if (err) throw err;
     var dbo = db.db(dbName);
     var query = {gamecode: req.body.token};
+    console.log(query)
     dbo.collection("Game").find(query).toArray(function(err, result) {
       if (err) throw err;
       newlist = new Array();
+      console.log(result)
       if(result[0].userlist != null){
         result[0].userlist.forEach(element => {
           newlist.push(element);
