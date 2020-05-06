@@ -8,9 +8,7 @@ let url = "mongodb://localhost:27017/";
 let dbName = "FindMyBananaDB";
 const bodyParser = require("body-parser")
 
-let users = []
-let clients = []
-
+var clientliste = [];
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 
@@ -37,10 +35,8 @@ app.get("/message", function(req,res){
     res.send("server works");
 });
 
-//
 app.use(express.json());
 app.post("/joinGame", function(req, res){
-  let user
   MongoClient.connect(url, function(err, db) {
     if (err) throw err;
     var dbo = db.db(dbName);
@@ -49,14 +45,19 @@ app.post("/joinGame", function(req, res){
     dbo.collection("Game").find(query).toArray(function(err, result) {
       if (err) throw err;
       newlist = new Array();
-      console.log(result)
+      console.log(result);
       if(result[0].userlist != null){
         result[0].userlist.forEach(element => {
           newlist.push(element);
         });
       }
-      user = {username: req.body.username, punkte: 0}
-      users.push(user)
+      user = {username: req.body.username, punkte: 0};
+
+      //Long Polling
+      //clients.push({username: req.body.username, gamecode: req.body.token});
+      clientliste[req.body.token].push(req.body.username);
+      console.log(clientliste[req.body.token]);
+
       newlist.push(user);
       var newvalues = { $set: {userlist: newlist}};
       dbo.collection("Game").updateOne(query, newvalues, function(err, res) {
@@ -66,15 +67,18 @@ app.post("/joinGame", function(req, res){
       db.close();
     });
   });
-    //res.send("User " +  req.body.username + " joined");
-    while(clients.length > 0){
-      var client = clients.pop()
-      client.send({
-          count: users.length,
-          append: user.username
-      })
-  }
-  res.send()
+  res.send("User " +  req.body.username + " joined");
+});
+
+app.get("/poll", function(req,res){
+    let countliste = req.query.page;
+    let token = req.query.token;
+
+    if(countliste != clientliste[token].length){
+      res.send(clientliste[token]);
+    }else{
+      setTimeout(function (){res.send('Try again')}, 1500);//Timeout?
+    }
 });
 
 app.get("/findAll", (req, res)=>{
@@ -99,6 +103,9 @@ app.get("/findAll", (req, res)=>{
 app.use(express.json());
 app.post("/createGame", function(req, res){
     let token = Math.round(Math.random()*100000);
+
+    //Long Polling Liste
+    clientliste[token.toString()] = new Array();
 
     console.log(req.body.anz)
     //Store to DB
@@ -134,39 +141,6 @@ app.post("/checktoken", function(req, res){
         });
     });
 });
-
-app.get("/checktoken/:token", (req,res)=>{
-  let token = req.params.token
-  console.log("token: "+token)
-  MongoClient.connect(url, function(err, db) {
-    if (err) throw err;
-    var dbo = db.db(dbName);
-    var query = {gamecode: token};
-    dbo.collection("Game").find(query).toArray(function(err, result) {
-      if (err) throw err;
-      console.log(result);
-      db.close();
-      if(result.length == 0){
-        res.send(false);
-      }else{
-        res.send(true);
-      } 
-    });
-});
-})
-
-app.get("/poll/:counter", (req, res)=>{
-  if(users.length > counter){
-    //return joined user
-    let jsonObj = {
-      count: users.length,
-      append: users.slice(counter)
-    }
-    res.send(jsonObj)
-  }else{
-    clients.push(res)
-  }
-})
 
 app.listen(3000, function(){
     console.log("server listens on port 3000");
