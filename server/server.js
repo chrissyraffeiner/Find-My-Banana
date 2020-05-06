@@ -4,9 +4,12 @@ const socket = require("socket.io");
 const http = require("http").createServer(express);
 const cryp = require('crypto');
 var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://localhost:27017/";
-var dbName = "FindMyBananaDB";
+let url = "mongodb://localhost:27017/";
+let dbName = "FindMyBananaDB";
 const bodyParser = require("body-parser")
+
+let users = []
+let clients = []
 
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
@@ -37,6 +40,7 @@ app.get("/message", function(req,res){
 //
 app.use(express.json());
 app.post("/joinGame", function(req, res){
+  let user
   MongoClient.connect(url, function(err, db) {
     if (err) throw err;
     var dbo = db.db(dbName);
@@ -51,7 +55,9 @@ app.post("/joinGame", function(req, res){
           newlist.push(element);
         });
       }
-      newlist.push({username: req.body.username, punkte: 0});
+      user = {username: req.body.username, punkte: 0}
+      users.push(user)
+      newlist.push(user);
       var newvalues = { $set: {userlist: newlist}};
       dbo.collection("Game").updateOne(query, newvalues, function(err, res) {
         if (err) throw err;
@@ -60,8 +66,34 @@ app.post("/joinGame", function(req, res){
       db.close();
     });
   });
-    res.send("User " +  req.body.username + " joined");
+    //res.send("User " +  req.body.username + " joined");
+    while(clients.length > 0){
+      var client = clients.pop()
+      client.send({
+          count: users.length,
+          append: user
+      })
+  }
+  res.send()
 });
+
+app.get("/findAll", (req, res)=>{
+  MongoClient.connect(url, function(err, db) {
+    if (err) throw err;
+    var dbo = db.db(dbName);
+    //var query = {gamecode: req.body.token};
+    dbo.collection("Game").find().toArray(function(err, result) {
+      if (err) throw err;
+      console.log(result);
+      db.close();
+      if(result.length == 0){
+        res.send(false);
+      }else{
+        res.send(true);
+      } 
+    });
+});
+})
 
 //Erstellt einen Gamecode, und weißt angegebene Zeit und anzahl der Emojis zu.
 app.use(express.json());
@@ -121,6 +153,19 @@ app.get("/checktoken/:token", (req,res)=>{
       } 
     });
 });
+})
+
+app.get("/poll/:counter", (req, res)=>{
+  if(users.length > counter){
+    //return joined user
+    let jsonObj = {
+      count: users.length,
+      append: users.slice(counter)
+    }
+    res.send(jsonObj)
+  }else{
+    clients.push(res)
+  }
 })
 
 app.listen(3000, function(){
