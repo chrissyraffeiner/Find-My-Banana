@@ -71,7 +71,7 @@ app.post("/joinGame", function(req, res){
       var client = clients.pop()
       client.send({
           count: users.length,
-          append: user
+          append: user.username
       })
   }
   res.send()
