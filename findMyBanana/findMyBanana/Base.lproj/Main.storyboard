@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -777,23 +778,50 @@
                                     <constraint firstItem="A1J-RW-yIJ" firstAttribute="leading" secondItem="L4D-yl-RHd" secondAttribute="trailing" constant="8" id="gjB-5G-sYd"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8-7-6-5-2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kvo-YG-rza">
-                                <rect key="frame" x="113" y="381" width="188" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="N1B-45-tWX"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="nGY-no-rsK">
+                                <rect key="frame" x="20" y="287" width="374" height="323"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="zYb-kF-lhh">
+                                    <size key="itemSize" width="85" height="85"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="HjK-58-aim" customClass="CollectionViewCell" customModule="findMyBanana" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="85" height="85"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="6kv-96-Vd9" customClass="CollectionViewCell" customModule="findMyBanana" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="85" height="85"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uYg-RT-p55">
+                                                    <rect key="frame" x="21" y="32" width="42" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="85" height="85"/>
+                                        <connections>
+                                            <outlet property="text" destination="uYg-RT-p55" id="ZSF-Dh-OAi"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="8S3-Lc-CnX" id="IdF-sq-KEk"/>
+                                    <outlet property="delegate" destination="8S3-Lc-CnX" id="idr-0g-u0f"/>
+                                </connections>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="Bpw-sT-3hU" firstAttribute="top" secondItem="yTQ-Fk-uqX" secondAttribute="top" constant="320" id="0bp-rI-8OI"/>
-                            <constraint firstItem="Bpw-sT-3hU" firstAttribute="top" secondItem="kvo-YG-rza" secondAttribute="bottom" constant="-23" id="44W-kU-pCt"/>
                             <constraint firstItem="ejT-nF-HNb" firstAttribute="centerX" secondItem="Kpz-qU-I7p" secondAttribute="centerX" id="6NP-zO-Y8l"/>
                             <constraint firstItem="TgV-z6-IcJ" firstAttribute="top" secondItem="yTQ-Fk-uqX" secondAttribute="top" constant="102" id="OqN-kR-2V8"/>
-                            <constraint firstItem="Bpw-sT-3hU" firstAttribute="centerX" secondItem="kvo-YG-rza" secondAttribute="centerX" id="Wcx-B5-xKM"/>
                             <constraint firstItem="Bpw-sT-3hU" firstAttribute="centerX" secondItem="Kpz-qU-I7p" secondAttribute="centerX" id="b1u-2H-si0"/>
                             <constraint firstItem="ejT-nF-HNb" firstAttribute="top" secondItem="TgV-z6-IcJ" secondAttribute="bottom" constant="300" id="ohD-gQ-Ooj"/>
                             <constraint firstItem="TgV-z6-IcJ" firstAttribute="centerX" secondItem="Kpz-qU-I7p" secondAttribute="centerX" id="tVC-Nd-cxQ"/>
@@ -808,13 +836,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="collectionView" destination="nGY-no-rsK" id="wss-CH-GyZ"/>
                         <outlet property="shareBtnView" destination="ejT-nF-HNb" id="ZKr-gZ-Gic"/>
-                        <outlet property="tokenLabel" destination="kvo-YG-rza" id="hy5-bz-c9T"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Sg-nk-Gsm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3135" y="-189"/>
+            <point key="canvasLocation" x="3134.7826086956525" y="-189.50892857142856"/>
         </scene>
         <!--Camera View-->
         <scene sceneID="ZpI-Mm-gpz">
@@ -921,6 +949,6 @@
         <image name="Plus.png" width="165" height="165"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="v39-9m-1CG"/>
+        <segue reference="ujF-oU-a8m"/>
     </inferredMetricsTieBreakers>
 </document>

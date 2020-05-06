@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateGameGamecodeView: UIViewController {
+class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     let createGameUrl = "http://192.168.0.100:3000/createGame"
     //let createGameUrl = "http://127.0.0.1:3000/createGame"
     var token = ""
@@ -16,9 +16,12 @@ class CreateGameGamecodeView: UIViewController {
     var shareUrl = ""
     var username = ""
     var parameter = ["":""]
+    var arr = ["1F36A"]
 
     @IBOutlet weak var shareBtnView: UIView!
         
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     @IBAction func shareLinkBtn(_ sender: UIButton) {
         let activityVC = UIActivityViewController(activityItems: [self.shareUrl], applicationActivities: nil)
         activityVC.popoverPresentationController?.sourceView = self.view
@@ -31,6 +34,8 @@ class CreateGameGamecodeView: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        collectionView.delegate = self
+        collectionView.dataSource = self
         let queue = DispatchQueue(label: "myQueue", attributes: .concurrent)
         // Do any additional setup after loading the view.
         addShadow(view: shareBtnView)
@@ -39,6 +44,21 @@ class CreateGameGamecodeView: UIViewController {
             print(self.token)
         }//async
         
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return arr.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
+        let cellIndex = indexPath.item
+        cell.text.text = arr[cellIndex]
+        return cell
     }
     
     func joinGame(parameter:[String:String]){
@@ -61,6 +81,7 @@ class CreateGameGamecodeView: UIViewController {
                     DispatchQueue.main.async {
                         //self.tokenLabel.text = self.token
                         print("token: \(self.token)")
+                        self.arr.append("new")
                     }//DispatchQueue
                 }
                 if let error = err {
@@ -104,7 +125,8 @@ class CreateGameGamecodeView: UIViewController {
                         self.tokenLabel.text = self.token
                         print("token: \(self.token)")
                         self.parameter = ["token": self.token, "username": self.username]
-                        self.joinGame(parameter: self.parameter)
+                        //self.joinGame(parameter: self.parameter)
+                        self.arr.append("new")
                     }//DispatchQueue
                 }
                 if let error = err {
