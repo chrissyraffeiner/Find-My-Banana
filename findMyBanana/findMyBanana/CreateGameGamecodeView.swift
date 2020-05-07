@@ -41,7 +41,7 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
         // Do any additional setup after loading the view.
         addShadow(view: shareBtnView)
         queue.async{
-             self.setupPost()
+            self.setupPost()
             self.poll()
             print(self.token)
         }//async
@@ -70,8 +70,6 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
                 if let data = data, let dataString = String(data: data, encoding: .utf8) {
                     //print("dataString: \(dataString)")
                     print(dataString)
-                    //self.saveToken(token:dataString)
-                    //print("token: \(self.token)")
                     
                     DispatchQueue.main.async {
                         print(dataString)
@@ -104,7 +102,7 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
                     DispatchQueue.main.async {
                         //self.tokenLabel.text = self.token
                         print("token: \(self.token)")
-                        self.arr.append("new")
+                       // self.arr.append("new")
                     }//DispatchQueue
                 }
                 if let error = err {
@@ -145,7 +143,7 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
                     self.shareUrl = self.token//"findMyBanana://\(self.token)"
                     print("url: \(self.shareUrl)")
                     DispatchQueue.main.async {
-                        self.tokenLabel.text = self.token
+                        //self.tokenLabel.text = self.token
                         print("token: \(self.token)")
                         self.parameter = ["token": self.token, "username": self.username]
                         //self.joinGame(parameter: self.parameter)

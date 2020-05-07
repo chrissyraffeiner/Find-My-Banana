@@ -39,8 +39,6 @@ class PartyRoomView: UIViewController {
                                //print("token: \(self.token)")
                                
                                DispatchQueue.main.async {
-                                   //self.tokenLabel.text = self.token
-                                  // print("token: \(self.token)")
                                    //self.arr.append("new")
                                    print(dataString)
                                    //self.poll()
