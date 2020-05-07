@@ -12,6 +12,8 @@ class PartyRoomView: UIViewController {
 
     @IBOutlet weak var usernameLabel: UILabel!
     var username = "player"
+    var counter = 0
+    var token = ""
     
     override func viewDidLoad() {
         usernameLabel.text = username
@@ -30,6 +32,10 @@ class PartyRoomView: UIViewController {
             var poststring = "token=\(token!)&username=\(username!)"
             request.httpBody = poststring.data(using: String.Encoding.utf8)
             
+    func poll(){
+        if let url = URL(string: "http://192.168.0.105:3000/poll?counter=\(self.counter)&token=\(self.token)"){
+            var request = URLRequest(url:url)
+            request.httpMethod = "GET"
             URLSession.shared.dataTask(with: request) { (data, response, err) in
                 if let data = data, let dataString = String(data: data, encoding: .utf8) {
                     //print("dataString: \(dataString)")
@@ -41,6 +47,8 @@ class PartyRoomView: UIViewController {
                         //self.tokenLabel.text = self.token
                        // print("token: \(self.token)")
                         //self.arr.append("new")
+                        print(dataString)
+                        self.poll()
                     }//DispatchQueue
                 }
                 if let error = err {
@@ -51,6 +59,10 @@ class PartyRoomView: UIViewController {
             print("URL ist flasch")
         }
     }
+        }
+    }
+    
+
     /*
     // MARK: - Navigation
 
