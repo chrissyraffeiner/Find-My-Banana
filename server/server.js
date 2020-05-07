@@ -9,6 +9,7 @@ let dbName = "FindMyBananaDB";
 const bodyParser = require("body-parser")
 
 var clientliste = [];
+var clientsResList = []
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 
@@ -52,11 +53,11 @@ app.post("/joinGame", function(req, res){
         });
       }
       user = {username: req.body.username, punkte: 0};
-
+      console.log(clientliste[req.body.token].length)
       //Long Polling
       //clients.push({username: req.body.username, gamecode: req.body.token});
       clientliste[req.body.token].push(req.body.username);
-      console.log(clientliste[req.body.token]);
+      console.log(clientliste[req.body.token].length);
 
       newlist.push(user);
       var newvalues = { $set: {userlist: newlist}};
@@ -67,16 +68,22 @@ app.post("/joinGame", function(req, res){
       db.close();
     });
   });
+  //res.send("User " +  req.body.username + " joined");
+  //send all users
+  for(client in clientsResList[req.body.token]){
+    console.log(client)
+  }
   res.send("User " +  req.body.username + " joined");
 });
 
 app.get("/poll", function(req,res){
-    let countliste = req.query.counter;
+    let counter = req.query.counter;
     let token = req.query.token;
-
-    if(countliste != clientliste[token].length){
+    
+    if(counter != clientliste[token].length){
       res.send(clientliste[token]);
     }else{
+      clientsResList.push(res)
       setTimeout(function (){res.send('Try again')}, 15000);//Timeout 15sek?
     }
 });
