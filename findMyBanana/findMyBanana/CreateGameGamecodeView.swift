@@ -16,7 +16,7 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
     var shareUrl = ""
     var username = ""
     var parameter = ["":""]
-    var arr = ["1F36A"]
+    var arr = ["\u{1F36A}"]
 
     @IBOutlet weak var shareBtnView: UIView!
         
@@ -41,6 +41,7 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
         addShadow(view: shareBtnView)
         queue.async{
              self.setupPost()
+            
             print(self.token)
         }//async
         
