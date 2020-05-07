@@ -71,7 +71,7 @@ app.post("/joinGame", function(req, res){
 });
 
 app.get("/poll", function(req,res){
-    let countliste = req.query.page;
+    let countliste = req.query.counter;
     let token = req.query.token;
 
     if(countliste != clientliste[token].length){
