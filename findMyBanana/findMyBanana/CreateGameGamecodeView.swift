@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateGameGamecodeView: UIViewController {
+class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     let createGameUrl = "http://192.168.0.105:3000/createGame"
     //let createGameUrl = "http://127.0.0.1:3000/createGame"
     var token = ""
@@ -61,6 +61,7 @@ class CreateGameGamecodeView: UIViewController {
         let cellIndex = indexPath.item
         cell.text.text = arr[cellIndex]
         return cell
+    }
     func poll(){
         if let url = URL(string: "http://192.168.0.105:3000/poll?counter=\(self.counter)&token=\(self.token)"){
             var request = URLRequest(url:url)

@@ -31,7 +31,8 @@ class PartyRoomView: UIViewController {
             //let jsondata = try? JSONEncoder().encode(model)
             var poststring = "token=\(token!)&username=\(username!)"
             request.httpBody = poststring.data(using: String.Encoding.utf8)
-            
+            }
+        }
     func poll(){
         if let url = URL(string: "http://192.168.0.105:3000/poll?counter=\(self.counter)&token=\(self.token)"){
             var request = URLRequest(url:url)
@@ -57,8 +58,6 @@ class PartyRoomView: UIViewController {
             }.resume()
         }else{
             print("URL ist flasch")
-        }
-    }
         }
     }
     
