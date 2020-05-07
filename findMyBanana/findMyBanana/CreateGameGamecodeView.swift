@@ -9,7 +9,7 @@
 import UIKit
 
 class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
-    let createGameUrl = "http://192.168.0.105:3000/createGame"
+    let createGameUrl = "http://192.168.56.1:3000/createGame"
     //let createGameUrl = "http://127.0.0.1:3000/createGame"
     var token = ""
     var jsonModel = GameModel(anz: 3, timeInSec: 5)
