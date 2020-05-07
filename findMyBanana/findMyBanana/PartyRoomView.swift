@@ -12,12 +12,37 @@ class PartyRoomView: UIViewController {
 
     @IBOutlet weak var usernameLabel: UILabel!
     var username = "player"
+    var counter = 0
+    var token = ""
     
     override func viewDidLoad() {
         usernameLabel.text = username
         super.viewDidLoad()
         print("hello, \(username)")
         // Do any additional setup after loading the view.
+    }
+    
+    func poll(){
+        if let url = URL(string: "http://192.168.0.105:3000/poll?counter=\(self.counter)&token=\(self.token)"){
+            var request = URLRequest(url:url)
+            request.httpMethod = "GET"
+            URLSession.shared.dataTask(with: request) { (data, response, err) in
+                if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                    //print("dataString: \(dataString)")
+                    print(dataString)
+                    //self.saveToken(token:dataString)
+                    //print("token: \(self.token)")
+                    
+                    DispatchQueue.main.async {
+                        print(dataString)
+                        self.poll()
+                    }//DispatchQueue
+                }
+                if let error = err {
+                    print("Error took place \(error)")
+                }
+            }.resume()
+        }
     }
     
 

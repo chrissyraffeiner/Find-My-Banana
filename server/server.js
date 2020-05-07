@@ -80,8 +80,12 @@ app.get("/poll", function(req,res){
     let counter = req.query.counter;
     let token = req.query.token;
     
-    if(counter != clientliste[token].length){
-      res.send(clientliste[token]);
+    if(clientliste[token].length > counter){//neuer ist inzwischenzeit dazu gejoined
+      //res.send(clientliste[token]);
+      res.send({
+        count: clientliste[token].length,
+        new: clientliste[token].slice(counter)
+      })
     }else{
       clientsResList.push(res)
       setTimeout(function (){res.send('Try again')}, 15000);//Timeout 15sek?
@@ -131,11 +135,12 @@ app.post("/createGame", function(req, res){
 
 //Schaut ob das Spiel bereits erstellt wurde
 app.use(express.json());
-app.post("/checktoken", function(req, res){
+app.get("/checktoken/:token", function(req, res){
+  let token = req.params.token
     MongoClient.connect(url, function(err, db) {
         if (err) throw err;
         var dbo = db.db(dbName);
-        var query = {gamecode: req.body.token};
+        var query = {gamecode: token};
         dbo.collection("Game").find(query).toArray(function(err, result) {
           if (err) throw err;
           console.log(result);

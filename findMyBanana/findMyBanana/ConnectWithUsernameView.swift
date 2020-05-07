@@ -44,7 +44,7 @@ class ConnectWithUsernameView: UIViewController {
     }
     
     func joinGame(parameter:[String:String]){
-        if let url = URL(string: "http://192.168.0.100:3000/joinGame") {
+        if let url = URL(string: "http://192.168.0.105:3000/joinGame") {
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             var username = parameter["username"]
@@ -93,6 +93,7 @@ class ConnectWithUsernameView: UIViewController {
         if(segue.identifier == "PartyRoom") {
             let vc = segue.destination as! PartyRoomView
             vc.username = usernameTF.text!
+            vc.token = token
         }
         
         if(segue.identifier == "PartyRoomAdmin"){

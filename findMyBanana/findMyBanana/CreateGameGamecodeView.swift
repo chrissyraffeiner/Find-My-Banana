@@ -9,13 +9,14 @@
 import UIKit
 
 class CreateGameGamecodeView: UIViewController {
-    let createGameUrl = "http://192.168.0.100:3000/createGame"
+    let createGameUrl = "http://192.168.0.105:3000/createGame"
     //let createGameUrl = "http://127.0.0.1:3000/createGame"
     var token = ""
     var jsonModel = GameModel(anz: 3, timeInSec: 5)
     var shareUrl = ""
     var username = ""
     var parameter = ["":""]
+    var counter = 0
 
     @IBOutlet weak var shareBtnView: UIView!
         
@@ -36,13 +37,36 @@ class CreateGameGamecodeView: UIViewController {
         addShadow(view: shareBtnView)
         queue.async{
              self.setupPost()
+            self.poll()
             print(self.token)
         }//async
         
     }
     
+    func poll(){
+        if let url = URL(string: "http://192.168.0.105:3000/poll?counter=\(self.counter)&token=\(self.token)"){
+            var request = URLRequest(url:url)
+            request.httpMethod = "GET"
+            URLSession.shared.dataTask(with: request) { (data, response, err) in
+                if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                    //print("dataString: \(dataString)")
+                    print(dataString)
+                    //self.saveToken(token:dataString)
+                    //print("token: \(self.token)")
+                    
+                    DispatchQueue.main.async {
+                        print(dataString)
+                    }//DispatchQueue
+                }
+                if let error = err {
+                    print("Error took place \(error)")
+                }
+            }.resume()
+        }
+    }
+    
     func joinGame(parameter:[String:String]){
-        if let url = URL(string: "http://192.168.0.100:3000/joinGame") {
+        if let url = URL(string: "http://192.168.0.105:3000/joinGame") {
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             var username = parameter["username"]
