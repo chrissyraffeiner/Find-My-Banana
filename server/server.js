@@ -77,7 +77,7 @@ app.get("/poll", function(req,res){
     if(countliste != clientliste[token].length){
       res.send(clientliste[token]);
     }else{
-      setTimeout(function (){res.send('Try again')}, 1500);//Timeout?
+      setTimeout(function (){res.send('Try again')}, 15000);//Timeout 15sek?
     }
 });
 
