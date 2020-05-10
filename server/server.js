@@ -70,13 +70,18 @@ app.post("/joinGame", function(req, res){
   });
   //res.send("User " +  req.body.username + " joined");
   //send all users
-  for(client in clientsResList[req.body.token]){
-    console.log(client)
+  while(clientsResList[req.body.token]> 0){
+    let client = clientsResList[req.body.token].pop()
+    client.send({
+      count: clientliste.length,
+      new: req.body.username
+    })
   }
   res.send("User " +  req.body.username + " joined");
 });
 
 app.get("/poll", function(req,res){
+  console.log("poll here")
     let counter = req.query.counter;
     let token = req.query.token;
     
@@ -87,10 +92,24 @@ app.get("/poll", function(req,res){
         new: clientliste[token].slice(counter)
       })
     }else{
-      clientsResList.push(res)
-      setTimeout(function (){res.send('Try again')}, 15000);//Timeout 15sek?
+      clientsResList[token].push(res)
+      setTimeout(()=>{
+          res.send('Try again')
+      }, 15000);//Timeout 15sek?
     }
 });
+
+app.get("/deleteAll", (req,res)=>{
+  MongoClient.connect(url, function(err, db) {
+    var dbo = db.db(dbName);
+    dbo.collection("Game").drop(function (err, delOk) {
+      if (err) throw err;
+      if (delOk) console.log("ok")
+      db.close()
+    })
+  });
+  res.send("deleted")
+})
 
 app.get("/findAll", (req, res)=>{
   MongoClient.connect(url, function(err, db) {
@@ -117,6 +136,7 @@ app.post("/createGame", function(req, res){
 
     //Long Polling Liste
     clientliste[token.toString()] = new Array();
+    clientsResList[token.toString()] = new Array()
 
     console.log(req.body.anz)
     //Store to DB

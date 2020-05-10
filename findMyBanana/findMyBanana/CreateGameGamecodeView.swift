@@ -42,7 +42,6 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
         addShadow(view: shareBtnView)
         queue.async{
             self.setupPost()
-            self.poll()
             print(self.token)
         }//async
         
@@ -63,16 +62,31 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
         return cell
     }
     func poll(){
+        print("poll startetd")
         if let url = URL(string: "http://192.168.0.105:3000/poll?counter=\(self.counter)&token=\(self.token)"){
             var request = URLRequest(url:url)
             request.httpMethod = "GET"
             URLSession.shared.dataTask(with: request) { (data, response, err) in
                 if let data = data, let dataString = String(data: data, encoding: .utf8) {
-                    //print("dataString: \(dataString)")
-                    print(dataString)
+                    print("data: \(data)")
+                    //print(dataString)
                     
                     DispatchQueue.main.async {
-                        print(dataString)
+                        if(dataString != "Try again"){
+                            if let x = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String:Any]{
+                                self.counter = x["count"] as! Int
+                                //String(data: x["new"] as! Data, encoding: .utf8)
+                                let values​ = x["new"] as! NSArray
+                                self.arr.append((values​[0] as! NSString) as String)
+                                print(self.arr)
+                            }else{
+                                print("failed parse")
+                            }
+                           self.poll()
+                        }else{
+                            print("was i ned")
+                            self.poll()
+                        }
                     }//DispatchQueue
                 }
                 if let error = err {
@@ -98,10 +112,10 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
                     print(dataString)
                     //self.saveToken(token:dataString)
                     //print("token: \(self.token)")
-                    
                     DispatchQueue.main.async {
                         //self.tokenLabel.text = self.token
                         print("token: \(self.token)")
+                        self.poll()
                        // self.arr.append("new")
                     }//DispatchQueue
                 }
@@ -146,7 +160,7 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
                         //self.tokenLabel.text = self.token
                         print("token: \(self.token)")
                         self.parameter = ["token": self.token, "username": self.username]
-                        //self.joinGame(parameter: self.parameter)
+                        self.joinGame(parameter: self.parameter)
                         self.arr.append("new")
                     }//DispatchQueue
                 }
