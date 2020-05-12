@@ -49,7 +49,8 @@ class ConnectWithPinView: UIViewController {
         textChanged(tag:-1, tf: TextFieldFive)
     }
     
-    let checkTokenUrl = "http://192.168.0.105:3000/checktoken"
+    //let checkTokenUrl = "http://192.168.0.105:3000/checktoken"
+    let checkTokenUrl = "http://192.168.1.107:3000/checktoken"
     var token = ""
     var gameExists:String = ""
     
