@@ -68,27 +68,36 @@ app.post("/joinGame", function (req, res) {
   });
   //res.send("User " +  req.body.username + " joined");
   //send all users
-  for (client in clientsResList[req.body.token]) {
-    console.log(client)
+  while(clientsResList[req.body.token]> 0){
+    let client = clientsResList[req.body.token].pop()
+    client.send({
+      count: clientliste.length,
+      new: req.body.username
+    })
+
   }
     res.send(clientliste);
 
 });
 
-app.get("/poll", function (req, res) {
-  let counter = req.query.counter;
-  let token = req.query.token;
- // console.log("token: " + token + ", boolean: " + (token==''))
-  if (token != "") {
-    if (clientliste[token].length > counter) {//neuer ist inzwischenzeit dazu gejoined
+app.get("/poll", function(req,res){
+  console.log("poll here")
+    let counter = req.query.counter;
+    let token = req.query.token;
+    
+    if(clientliste[token].length > counter){//neuer ist inzwischenzeit dazu gejoined
+
       //res.send(clientliste[token]);
       res.send({
         count: clientliste[token].length,
         new: clientliste[token].slice(counter)
       })
-    } else {
-      clientsResList.push(res)
-      setTimeout(function () { res.send('Try again') }, 15000);//Timeout 15sek?
+    }else{
+      clientsResList[token].push(res)
+      setTimeout(()=>{
+          res.send('Try again')
+      }, 15000);//Timeout 15sek?
+
     }
   } else {
     setTimeout(function () { res.send('Try again') }, 15000);//Timeout 15sek?
@@ -96,8 +105,21 @@ app.get("/poll", function (req, res) {
 
 });
 
-app.get("/findAll", (req, res) => {
-  MongoClient.connect(url, function (err, db) {
+app.get("/deleteAll", (req,res)=>{
+  MongoClient.connect(url, function(err, db) {
+    var dbo = db.db(dbName);
+    dbo.collection("Game").drop(function (err, delOk) {
+      if (err) throw err;
+      if (delOk) console.log("ok")
+      db.close()
+    })
+  });
+  res.send("deleted")
+})
+
+app.get("/findAll", (req, res)=>{
+  MongoClient.connect(url, function(err, db) {
+
     if (err) throw err;
     var dbo = db.db(dbName);
     //var query = {gamecode: req.body.token};
@@ -119,8 +141,10 @@ app.use(express.json());
 app.post("/createGame", function (req, res) {
   let token = Math.floor(Math.random() * 100000);
 
-  //Long Polling Liste
-  clientliste[token.toString()] = new Array();
+    //Long Polling Liste
+    clientliste[token.toString()] = new Array();
+    clientsResList[token.toString()] = new Array()
+
 
   console.log(token + ": " + req.body.anz + " Emojis, " + req.body.timeInSec + " sec")
   //Store to DB
