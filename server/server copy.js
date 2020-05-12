@@ -1,8 +1,11 @@
-const express = require("express")
-const app = express()
-const MongoClient = require('mongodb').MongoClient
-let url = "mongodb://localhost:27017/"
-let dbName = "FindMyBananaDB"
+const express = require("express");
+const app = express();
+const socket = require("socket.io");
+const http = require("http").createServer(express);
+const cryp = require('crypto');
+var MongoClient = require('mongodb').MongoClient;
+let url = "mongodb://localhost:27017/";
+let dbName = "FindMyBananaDB";
 const bodyParser = require("body-parser")
 
 var clientliste = [];
