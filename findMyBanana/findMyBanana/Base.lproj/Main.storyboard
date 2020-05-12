@@ -796,18 +796,32 @@
                                             <rect key="frame" x="0.0" y="0.0" width="85" height="85"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uYg-RT-p55">
-                                                    <rect key="frame" x="21" y="32" width="42" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uYg-RT-p55">
+                                                    <rect key="frame" x="10" y="27" width="64" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="user" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pSv-Jq-bHF">
+                                                    <rect key="frame" x="8" y="56" width="69" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="uYg-RT-p55" secondAttribute="trailing" constant="11" id="UX2-WO-uTR"/>
+                                                <constraint firstItem="uYg-RT-p55" firstAttribute="top" secondItem="6kv-96-Vd9" secondAttribute="top" constant="27" id="gVV-wz-i3Y"/>
+                                                <constraint firstItem="pSv-Jq-bHF" firstAttribute="top" secondItem="uYg-RT-p55" secondAttribute="bottom" constant="8" id="iaS-ag-FwE"/>
+                                                <constraint firstAttribute="trailing" secondItem="pSv-Jq-bHF" secondAttribute="trailing" constant="8" id="kxp-hM-IPn"/>
+                                                <constraint firstItem="uYg-RT-p55" firstAttribute="leading" secondItem="6kv-96-Vd9" secondAttribute="leading" constant="10" id="rMh-UE-WwV"/>
+                                                <constraint firstItem="pSv-Jq-bHF" firstAttribute="leading" secondItem="6kv-96-Vd9" secondAttribute="leading" constant="8" id="xdd-H7-sak"/>
+                                            </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="85" height="85"/>
                                         <connections>
                                             <outlet property="text" destination="uYg-RT-p55" id="ZSF-Dh-OAi"/>
+                                            <outlet property="username" destination="pSv-Jq-bHF" id="T5U-LI-YUJ"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -842,7 +856,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Sg-nk-Gsm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3134.7826086956525" y="-189.50892857142856"/>
+            <point key="canvasLocation" x="3044.9275362318845" y="-198.21428571428569"/>
         </scene>
         <!--Camera View-->
         <scene sceneID="ZpI-Mm-gpz">

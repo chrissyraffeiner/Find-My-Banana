@@ -17,8 +17,10 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
     var username = ""
     var parameter = ["":""]
     var arr = ["\u{1F36A}"]
+    var users = [""]
     var counter = 0
 
+    @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var shareBtnView: UIView!
         
     @IBOutlet weak var collectionView: UICollectionView!
@@ -37,6 +39,8 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
+        self.users[0] = username
+        //self.usernameLabel.text = username
         let queue = DispatchQueue(label: "myQueue", attributes: .concurrent)
         // Do any additional setup after loading the view.
         addShadow(view: shareBtnView)
@@ -59,6 +63,7 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
         let cellIndex = indexPath.item
         cell.text.text = arr[cellIndex]
+        cell.username.text = users[cellIndex]
         return cell
     }
     func poll(){
