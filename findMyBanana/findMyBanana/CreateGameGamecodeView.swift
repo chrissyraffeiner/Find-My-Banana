@@ -19,7 +19,8 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
     var shareUrl = ""
     var username = ""
     var parameter = ["":""]
-    var arr = ["\u{1F36A}"]
+    var emojis = ["\u{1F921}","\u{1F36A}","\u{1F988}","\u{1F41D}","\u{1F47B}"]
+    var arr:Array<String> = []
     var users = [""]
     var counter = 0
 
@@ -87,14 +88,19 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
                                 self.counter = x["count"] as! Int
                                 //String(data: x["new"] as! Data, encoding: .utf8)
                                 let values​ = x["new"] as! NSArray
-                                self.arr.append((values​[0] as! NSString) as String)
+                                //self.arr.append((values​[0] as! NSString) as String)
+                                let emoji:Int = Int(arc4random_uniform(3) + 1)
+                                print("zufallszahl: \(emoji)")
+                                self.arr.append(self.emojis[emoji])
+                                self.users.append((values​[0] as! NSString) as String)
+                                self.collectionView.reloadData()
                                 print(self.arr)
                             }else{
                                 print("failed parse")
                             }
                            self.poll()
                         }else{
-                            print("was i ned")
+                            print("nixx neues")
                             self.poll()
                         }
                     }//DispatchQueue
@@ -172,7 +178,6 @@ print(poststring)
                         print("token: \(self.token)")
                         self.parameter = ["token": self.token, "username": self.username]
                         self.joinGame(parameter: self.parameter)
-                        self.arr.append("new")
                     }//DispatchQueue
                 } else {
                     print("TEST4")

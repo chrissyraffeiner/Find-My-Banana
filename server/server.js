@@ -68,13 +68,16 @@ app.post("/joinGame", function (req, res) {
   });
   //res.send("User " +  req.body.username + " joined");
   //send all users
-  while(clientsResList[req.body.token]> 0){
+  console.log("clientsResList.length: " + clientsResList[req.body.token].length)
+  while(clientsResList[req.body.token].length> 0){
     let client = clientsResList[req.body.token].pop()
     client.send({
       count: clientliste.length,
       new: req.body.username
     })
 
+    console.log(client)
+    //res.setHeader()
   }
     res.send(clientliste);
 
@@ -99,9 +102,9 @@ app.get("/poll", function(req,res){
       }, 15000);//Timeout 15sek?
 
     }
-  } else {
-    setTimeout(function () { res.send('Try again') }, 15000);//Timeout 15sek?
-  }
+  //} else {
+    //setTimeout(function () { res.send('Try again') }, 15000);//Timeout 15sek?
+  //}
 
 });
 
