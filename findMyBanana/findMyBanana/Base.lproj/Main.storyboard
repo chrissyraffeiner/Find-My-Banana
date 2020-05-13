@@ -814,6 +814,8 @@
                                             <constraint firstItem="pSv-Jq-bHF" firstAttribute="centerX" secondItem="HjK-58-aim" secondAttribute="centerX" id="HrV-dy-o4V"/>
                                             <constraint firstAttribute="bottom" secondItem="pSv-Jq-bHF" secondAttribute="bottom" constant="20" id="atO-C9-MJw"/>
                                             <constraint firstItem="uYg-RT-p55" firstAttribute="top" secondItem="HjK-58-aim" secondAttribute="top" constant="27" id="f6q-ey-0Wt"/>
+                                            <constraint firstAttribute="bottom" secondItem="uYg-RT-p55" secondAttribute="bottom" constant="70" id="hIJ-oE-qoh"/>
+                                            <constraint firstItem="pSv-Jq-bHF" firstAttribute="top" secondItem="uYg-RT-p55" secondAttribute="bottom" constant="8" id="lnr-kk-5pT"/>
                                         </constraints>
                                         <size key="customSize" width="100" height="131"/>
                                         <connections>
