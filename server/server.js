@@ -7,6 +7,7 @@ var MongoClient = require('mongodb').MongoClient;
 let url = "mongodb://localhost:27017/";
 let dbName = "FindMyBananaDB";
 const bodyParser = require("body-parser")
+const semaphore = require("node-semaphore")
 
 var clientliste = [];
 var clientsResList = []
@@ -53,11 +54,9 @@ app.post("/joinGame", function(req, res){
         });
       }
       user = {username: req.body.username, punkte: 0};
-      console.log(clientliste[req.body.token].length)
       //Long Polling
       //clients.push({username: req.body.username, gamecode: req.body.token});
       clientliste[req.body.token].push(req.body.username);
-      console.log(clientliste[req.body.token].length);
 
       newlist.push(user);
       var newvalues = { $set: {userlist: newlist}};
@@ -70,32 +69,42 @@ app.post("/joinGame", function(req, res){
   });
   //res.send("User " +  req.body.username + " joined");
   //send all users
-  while(clientsResList[req.body.token]> 0){
-    let client = clientsResList[req.body.token].pop()
-    client.send({
-      count: clientliste.length,
-      new: req.body.username
-    })
+  let token = req.body.token
+  console.log("clientsResList length: " + clientsResList[token].length)
+
+  while(clientsResList[token].length > 0){
+    console.log(typeof clientliste[token].length)
+    let client = clientsResList[token].pop()
+    let count = clientliste[token].length.toString()
+    let data = {count: count, new: req.body.username}
+     client.send(data)
+    //client.send("yes")
   }
+  sem.release()
   res.send("User " +  req.body.username + " joined");
 });
 
-app.get("/poll", function(req,res){
-  console.log("poll here")
+app.get("/poll", async function(req,res){
+    console.log("poll here")
     let counter = req.query.counter;
     let token = req.query.token;
-    
     if(clientliste[token].length > counter){//neuer ist inzwischenzeit dazu gejoined
       //res.send(clientliste[token]);
-      res.send({
-        count: clientliste[token].length,
-        new: clientliste[token].slice(counter)
-      })
+      let count = clientliste[token].length.toString()
+      console.log("count: " + count)
+      let data = {count: count, new: clientliste[token][counter]}
+      res.send(data)
     }else{
-      clientsResList[token].push(res)
-      setTimeout(()=>{
+      console.log("counter: "+counter)
+      if(counter == 0 || clientsResList[token].length == 0){
+        console.log("push")
+        clientsResList[token].push(res)
+      }
+      sem.aquire(()=>{
+        setTimeout(()=>{
           res.send('Try again')
-      }, 15000);//Timeout 15sek?
+        }, 15000);//Timeout 15sek?
+      })
     }
 });
 
@@ -128,7 +137,7 @@ app.get("/findAll", (req, res)=>{
     });
 });
 })
-
+var sem
 //Erstellt einen Gamecode, und weißt angegebene Zeit und anzahl der Emojis zu.
 app.use(express.json());
 app.post("/createGame", function(req, res){
@@ -137,8 +146,9 @@ app.post("/createGame", function(req, res){
     //Long Polling Liste
     clientliste[token.toString()] = new Array();
     clientsResList[token.toString()] = new Array()
+    
+    sem = semaphore(2)
 
-    console.log(req.body.anz)
     //Store to DB
     MongoClient.connect(url, function(err, db) {
         if (err) throw err;
@@ -150,6 +160,7 @@ app.post("/createGame", function(req, res){
           db.close();
         });
       });
+      console.log("game created")
     res.send(token.toString());
 });
 
