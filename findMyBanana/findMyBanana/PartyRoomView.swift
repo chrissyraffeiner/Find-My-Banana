@@ -34,7 +34,7 @@ class PartyRoomView: UIViewController, UICollectionViewDelegate, UICollectionVie
     
     func joinGame(){
       //if let url = URL(string: "http://192.168.0.100:3000/joinGame") {
-        if let url = URL(string: "http://192.168.1.107:3000/joinGame") {
+        if let url = URL(string: "http://192.168.1.175:3000/joinGame") {
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             
@@ -62,7 +62,7 @@ class PartyRoomView: UIViewController, UICollectionViewDelegate, UICollectionVie
     
     func poll(){
         //if let url = URL(string: "http://192.168.0.105:3000/poll?counter=\(self.counter)&token=\(self.token)"){
-        if let url = URL(string: "http://192.168.1.107:3000/poll?counter=\(self.counter)&token=\(self.token)"){
+        if let url = URL(string: "http://192.168.1.175:3000/poll?counter=\(self.counter)&token=\(self.token)"){
             var request = URLRequest(url:url)
             request.httpMethod = "GET"
             URLSession.shared.dataTask(with: request) { (data, response, err) in
