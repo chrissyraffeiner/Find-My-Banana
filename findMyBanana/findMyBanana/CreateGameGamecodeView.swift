@@ -19,9 +19,12 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
     var shareUrl = ""
     var username = ""
     var parameter = ["":""]
-    var arr = ["\u{1F36A}"]
+    var emojis = ["\u{1F973}", "\u{1F36A}","\u{1F480}","\u{1F47E}","\u{1F98A}","\u{1F42C}","\u{1F41D}","\u{1F354}",]
+    var arr:Array<String> = []
+    var users:Array<String> = []
     var counter = 0
 
+    @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var shareBtnView: UIView!
         
     @IBOutlet weak var collectionView: UICollectionView!
@@ -41,13 +44,15 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
+        //self.users[0] = username
+        //self.arr[0] = self.emojis[Int.random(in: 0 ... 7)]
+        //self.usernameLabel.text = username
         let queue = DispatchQueue(label: "myQueue", attributes: .concurrent)
         // Do any additional setup after loading the view.
         addShadow(view: shareBtnView)
         queue.async{
             self.setupPost()
-            self.poll()
-            print("token: \(self.token)")
+            print(self.token)
         }//async
         
     }
@@ -57,26 +62,49 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return arr.count
+        return users.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
         let cellIndex = indexPath.item
         cell.text.text = arr[cellIndex]
+        cell.username.text = users[cellIndex]
+        print("user: \(users[cellIndex])")
         return cell
     }
     func poll(){
-        if let url = URL(string: "\(serverURL)/poll?counter=\(self.counter)&token=\(self.token)"){
+        print("poll startetd")
+        if let url = URL(string: "http://192.168.0.105:3000/poll?counter=\(self.counter)&token=\(self.token)"){
             var request = URLRequest(url:url)
             request.httpMethod = "GET"
             URLSession.shared.dataTask(with: request) { (data, response, err) in
                 if let data = data, let dataString = String(data: data, encoding: .utf8) {
-                    //print("dataString: \(dataString)")
-                    print(dataString)
+                    //print(dataString)
                     
                     DispatchQueue.main.async {
-                        print(dataString)
+                        if(dataString != "Try again"){
+                            if let x = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String:Any]{
+                                print(Int(x["count"] as! String))
+                                self.counter = Int(x["count"] as! String)!
+                                //String(data: x["new"] as! Data, encoding: .utf8)
+                                print(x["new"] as! String)
+                                //let values​ = x["new"] as! NSArray
+                                //self.arr.append((values​[0] as! NSString) as String)
+                                //self.users.append((values​[0] as! NSString) as String)
+                                self.users.append(x["new"] as! String)
+                                self.arr.append(self.emojis[Int.random(in: 0...7)])
+                                self.collectionView.reloadData()
+                                print("emojis \(self.arr)")
+                                print("users: \(self.users)")
+                            }else{
+                                print("failed parse")
+                            }
+                           self.poll()
+                        }else{
+                            print("nixx neues")
+                            self.poll()
+                        }
                     }//DispatchQueue
                 }
                 if let error = err {
@@ -102,7 +130,6 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
                     print(dataString)
                     //self.saveToken(token:dataString)
                     //print("token: \(self.token)")
-                    
                     DispatchQueue.main.async {
                         //self.tokenLabel.text = self.token
                         print("token: \(self.token)")
@@ -151,8 +178,8 @@ print(poststring)
                         //self.tokenLabel.text = self.token
                         print("token: \(self.token)")
                         self.parameter = ["token": self.token, "username": self.username]
-                        //self.joinGame(parameter: self.parameter)
-                        self.arr.append("new")
+                        self.poll()
+                        self.joinGame(parameter: self.parameter)
                     }//DispatchQueue
                 } else {
                     print("TEST4")
