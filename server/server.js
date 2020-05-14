@@ -107,10 +107,7 @@ app.get("/poll", async function(req,res){
         }, 15000);//Timeout 15sek?
       })
     }
-  } else {
-    setTimeout(function () { res.send('Try again') }, 15000);//Timeout 15sek?
-  }
-
+  
 });
 
 app.get("/deleteAll", (req,res)=>{
