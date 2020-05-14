@@ -10,8 +10,8 @@ import UIKit
 
 class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     //let serverURL = "http://192.168.0.105:3000"
-    let serverURL = "http://192.168.1.107:3000"
-    let createGameUrl = "http://192.168.1.107:3000/createGame"
+    let serverURL = "http://192.168.0.105:3000"
+    let createGameUrl = "http://192.168.0.105:3000/createGame"
     
     //let createGameUrl = "http://127.0.0.1:3000/createGame"
     var token = ""
@@ -80,10 +80,11 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
             request.httpMethod = "GET"
             URLSession.shared.dataTask(with: request) { (data, response, err) in
                 if let data = data, let dataString = String(data: data, encoding: .utf8) {
-                    //print(dataString)
+                    
                     
                     DispatchQueue.main.async {
-                        if(dataString != "Try again"){
+                        print("datastring: \(dataString)")
+                        if(dataString != ""){
                             if let x = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String:Any]{
                                 print(Int(x["count"] as! String))
                                 self.counter = Int(x["count"] as! String)!
@@ -161,12 +162,11 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
                             print("TERST1")
             let jsondata = try? JSONEncoder().encode(jsonModel)
             let poststring = "anz=\(jsonModel.anz)&timeInSec=\(jsonModel.timeInSec)"
-print(poststring)
+            print(poststring)
             request.httpBody = poststring.data(using: String.Encoding.utf8)
 
             URLSession.shared.dataTask(with: request) { (data, response, err) in
                 if let data = data, let dataString = String(data: data, encoding: .utf8) {
-                    print("TESET3")
                     //print("dataString: \(dataString)")
                     self.token = dataString
                     //self.saveToken(token:dataString)

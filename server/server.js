@@ -13,6 +13,7 @@ var clientliste = [];
 var clientsResList = []
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
+var t
 
 //DB erstellen
 MongoClient.connect(url + dbName, function(err, db) {
@@ -80,32 +81,45 @@ app.post("/joinGame", function(req, res){
      client.send(data)
     //client.send("yes")
   }
+  clearTimeout(t)
   sem.release()
   res.send("User " +  req.body.username + " joined");
 });
 
-app.get("/poll", async function(req,res){
+app.get("/poll",function(req,res){
+  console.log(semaphore)
     console.log("poll here")
     let counter = req.query.counter;
     let token = req.query.token;
-    if(clientliste[token].length > counter){//neuer ist inzwischenzeit dazu gejoined
-      //res.send(clientliste[token]);
-      let count = clientliste[token].length.toString()
-      console.log("count: " + count)
-      let data = {count: count, new: clientliste[token][counter]}
-      res.send(data)
-    }else{
-      console.log("counter: "+counter)
-      if(counter == 0 || clientsResList[token].length == 0){
-        console.log("push")
-        clientsResList[token].push(res)
-      }
-      sem.aquire(()=>{
-        setTimeout(()=>{
-          res.send('Try again')
-        }, 15000);//Timeout 15sek?
-      })
+    let test = true
+    if(counter == 0 || clientsResList[token].length == 0){
+      clientsResList[token].push(res)
     }
+      sem.acquire(()=>{
+        t = setTimeout(()=>{
+          console.log("timeout")
+          console.log("test: " + test)
+            res.send("Try again")
+          //res.set
+          //return
+          //res.sendStatus(404)
+        },29000);//Timeout 15sek?
+      })
+
+     /* if(clientliste[token].length > counter){//neuer ist inzwischenzeit dazu gejoined
+        console.log("something new")
+        console.log(t)
+        clearTimeout(t)
+        console.log(t)
+        //res.send(clientliste[token]);
+        let count = clientliste[token].length.toString()
+        let data = {count: count, new: clientliste[token][counter]}
+        //res.send(data)
+        sem.release()
+        res.send(data)
+      }else{*/
+        console.log("counter: "+counter)
+      //}
 });
 
 app.get("/deleteAll", (req,res)=>{
