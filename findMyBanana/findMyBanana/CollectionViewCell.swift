@@ -12,4 +12,6 @@ class CollectionViewCell: UICollectionViewCell {
     
     
     @IBOutlet weak var text: UILabel!
+    //@IBOutlet weak var usernamelabel: UILabel!
+    @IBOutlet weak var username: UILabel!
 }
