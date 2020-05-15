@@ -84,7 +84,7 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
                     
                     DispatchQueue.main.async {
                         print("datastring: \(dataString)")
-                        if(dataString != ""){
+                        if(dataString != "Try again"){
                             if let x = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String:Any]{
                                 print(Int(x["count"] as! String))
                                 self.counter = Int(x["count"] as! String)!

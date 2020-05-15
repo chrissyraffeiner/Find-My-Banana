@@ -13,7 +13,9 @@ var clientliste = [];
 var clientsResList = []
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
-var t
+var timeout
+let test = false
+let index = 0
 
 //DB erstellen
 MongoClient.connect(url + dbName, function(err, db) {
@@ -73,16 +75,16 @@ app.post("/joinGame", function(req, res){
   let token = req.body.token
   console.log("clientsResList length: " + clientsResList[token].length)
 
+  sem.release()
+  clearTimeout(this.timeout)
   while(clientsResList[token].length > 0){
     console.log(typeof clientliste[token].length)
     let client = clientsResList[token].pop()
     let count = clientliste[token].length.toString()
     let data = {count: count, new: req.body.username}
-     client.send(data)
+    client.send(data)
     //client.send("yes")
   }
-  clearTimeout(t)
-  sem.release()
   res.send("User " +  req.body.username + " joined");
 });
 
@@ -91,19 +93,23 @@ app.get("/poll",function(req,res){
     console.log("poll here")
     let counter = req.query.counter;
     let token = req.query.token;
-    let test = true
-    if(counter == 0 || clientsResList[token].length == 0){
+    if(counter == 0 || clientsResList[token].length == 0 || test){
       clientsResList[token].push(res)
+      if(clientsResList[token.length] == index){
+        test = false
+      }
     }
       sem.acquire(()=>{
-        t = setTimeout(()=>{
+        this.timeout=setTimeout(()=>{
           console.log("timeout")
-          console.log("test: " + test)
-            res.send("Try again")
-          //res.set
-          //return
-          //res.sendStatus(404)
-        },29000);//Timeout 15sek?
+          index = clientsResList[token].length
+          while(clientsResList[token].length > 0){
+            clientsResList[token].pop()
+          }
+          test = true
+          sem.release()
+          return res.send("Try again")
+        },29000)//Timeout 15sek?
       })
 
      /* if(clientliste[token].length > counter){//neuer ist inzwischenzeit dazu gejoined
@@ -161,7 +167,7 @@ app.post("/createGame", function(req, res){
     clientliste[token.toString()] = new Array();
     clientsResList[token.toString()] = new Array()
     
-    sem = semaphore(2)
+    sem = semaphore(5)
 
     //Store to DB
     MongoClient.connect(url, function(err, db) {
