@@ -89,11 +89,12 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
                                 print(Int(x["count"] as! String))
                                 self.counter = Int(x["count"] as! String)!
                                 //String(data: x["new"] as! Data, encoding: .utf8)
-                                print(x["new"] as! String)
+                                print(x["users"])
                                 //let values​ = x["new"] as! NSArray
                                 //self.arr.append((values​[0] as! NSString) as String)
                                 //self.users.append((values​[0] as! NSString) as String)
-                                self.users.append(x["new"] as! String)
+                                //self.users.append(x["users"] as! String)
+                                self.users = x["users"] as! Array<String>
                                 self.arr.append(self.emojis[Int.random(in: 0...7)])
                                 self.collectionView.reloadData()
                                 print("emojis \(self.arr)")

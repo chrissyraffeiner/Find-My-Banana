@@ -59,7 +59,6 @@ app.post("/joinGame", function(req, res){
       user = {username: req.body.username, punkte: 0};
       //Long Polling
       //clients.push({username: req.body.username, gamecode: req.body.token});
-      clientliste[req.body.token].push(req.body.username);
 
       newlist.push(user);
       var newvalues = { $set: {userlist: newlist}};
@@ -75,14 +74,18 @@ app.post("/joinGame", function(req, res){
   let token = req.body.token
   console.log("clientsResList length: " + clientsResList[token].length)
 
+  console.log("push clientListe")
+  clientliste[req.body.token].push(req.body.username);
   sem.release()
   clearTimeout(this.timeout)
+  console.log("vor while schleife")
   while(clientsResList[token].length > 0){
     console.log(typeof clientliste[token].length)
     let client = clientsResList[token].pop()
     let count = clientliste[token].length.toString()
     let data = {count: count, new: req.body.username}
-    client.send(data)
+    //client.send(data)
+    client.send({count: count, users: clientliste[token]})
     //client.send("yes")
   }
   res.send("User " +  req.body.username + " joined");
@@ -197,6 +200,7 @@ app.get("/checktoken/:token", function(req, res){
           console.log(result);
           db.close();
           if(result.length == 0){
+            
             res.send(false);
           }else{
             res.send(true);
