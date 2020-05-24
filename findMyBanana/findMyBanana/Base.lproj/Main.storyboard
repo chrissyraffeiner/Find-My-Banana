@@ -576,21 +576,26 @@
                                             <rect key="frame" x="0.0" y="0.0" width="98" height="126"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RlM-nm-4KT">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RlM-nm-4KT">
                                                     <rect key="frame" x="28" y="38" width="42" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XqN-br-eMu">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XqN-br-eMu">
                                                     <rect key="frame" x="11" y="67" width="76" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="RlM-nm-4KT" firstAttribute="centerX" secondItem="eKB-hU-L7I" secondAttribute="centerX" id="F8a-gx-qv3"/>
+                                                <constraint firstItem="RlM-nm-4KT" firstAttribute="top" secondItem="eKB-hU-L7I" secondAttribute="top" constant="38" id="FZ1-8J-m9o"/>
+                                                <constraint firstItem="XqN-br-eMu" firstAttribute="centerX" secondItem="eKB-hU-L7I" secondAttribute="centerX" id="M0g-jU-bLp"/>
+                                                <constraint firstAttribute="bottom" secondItem="XqN-br-eMu" secondAttribute="bottom" constant="38" id="ue2-Ax-e8H"/>
+                                                <constraint firstItem="XqN-br-eMu" firstAttribute="top" secondItem="RlM-nm-4KT" secondAttribute="bottom" constant="8" id="zrR-6q-lfb"/>
+                                            </constraints>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="98" height="126"/>
                                         <connections>

@@ -45,9 +45,9 @@ class PartyRoomView: UIViewController, UICollectionViewDelegate, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "partyCell", for: indexPath) as! CollectionPartyViewCell
         let cellIndex = indexPath.item
-        cell.text.text = arr[cellIndex]
-        cell.usernameLabel.text = users[cellIndex]
-        print("user: \(users[cellIndex])")
+        print("index: \(cellIndex), users: \(users), arr: \(arr)")
+        cell.text.text = self.arr[cellIndex]
+        cell.usernameLabel.text = self.users[cellIndex]
         return cell
     }
     
@@ -101,15 +101,15 @@ class PartyRoomView: UIViewController, UICollectionViewDelegate, UICollectionVie
                                self.counter = Int(x["count"] as! String)!
                                //String(data: x["new"] as! Data, encoding: .utf8)
                               // print(x["new"] as! String)
-                            self.users = x["users"] as! Array<String>
+                                self.users = x["users"] as! Array<String>
                                //let values​ = x["new"] as! NSArray
                                //self.arr.append((values​[0] as! NSString) as String)
                                //self.users.append((values​[0] as! NSString) as String)
                                //self.users.append(x["new"] as! String)
                                self.arr.append(self.emojis[Int.random(in: 0...7)])
+                                print("emojis \(self.arr)")
+                                print("users: \(self.users)")
                                self.collectionView.reloadData()
-                               print("emojis \(self.arr)")
-                               print("users: \(self.users)")
                            }else{
                                print("failed parse")
                            }
