@@ -20,6 +20,7 @@ class PartyRoomView: UIViewController, UICollectionViewDelegate, UICollectionVie
     var users:Array<String> = []
     var parameter = ["":""]
     var emojis = ["\u{1F973}", "\u{1F36A}","\u{1F480}","\u{1F47E}","\u{1F98A}","\u{1F42C}","\u{1F41D}","\u{1F354}",]
+    let localServer = "http://192.168.0.105:3000"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +28,8 @@ class PartyRoomView: UIViewController, UICollectionViewDelegate, UICollectionVie
         print("hello, \(username)")
         let queue = DispatchQueue(label: "myQueue", attributes: .concurrent)
         // Do any additional setup after loading the view.
-        self.parameter = ["token": self.token, "username": self.username]
+        var emoji = self.emojis[Int.random(in: 0...7)]
+        self.parameter = ["token": self.token, "username": self.username, "emoji": emoji]
         queue.async{
             self.poll()
             self.joinGame(parameter: self.parameter)
@@ -52,7 +54,8 @@ class PartyRoomView: UIViewController, UICollectionViewDelegate, UICollectionVie
     }
     
     func joinGame(parameter:[String:String]){
-        if let url = URL(string: "http://192.168.0.105:3000/joinGame") {
+        let urlString =  "\(localServer)/joinGame"
+        if let url = URL(string: urlString) {
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             var username = parameter["username"]
@@ -83,7 +86,7 @@ class PartyRoomView: UIViewController, UICollectionViewDelegate, UICollectionVie
             }
         
     func poll(){
-        if let url = URL(string: "http://192.168.0.105:3000/poll?counter=\(self.counter)&token=\(self.token)"){
+        if let url = URL(string: "\(localServer)/poll?counter=\(self.counter)&token=\(self.token)"){
             var request = URLRequest(url:url)
             request.httpMethod = "GET"
             URLSession.shared.dataTask(with: request) { (data, response, err) in
@@ -106,7 +109,7 @@ class PartyRoomView: UIViewController, UICollectionViewDelegate, UICollectionVie
                                //self.arr.append((values​[0] as! NSString) as String)
                                //self.users.append((values​[0] as! NSString) as String)
                                //self.users.append(x["new"] as! String)
-                               self.arr.append(self.emojis[Int.random(in: 0...7)])
+                               self.arr = x["emojis"] as! Array<String>
                                 print("emojis \(self.arr)")
                                 print("users: \(self.users)")
                                self.collectionView.reloadData()

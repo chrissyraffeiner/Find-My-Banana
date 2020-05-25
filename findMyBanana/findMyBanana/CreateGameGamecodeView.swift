@@ -10,8 +10,9 @@ import UIKit
 
 class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     //let serverURL = "http://192.168.0.105:3000"
-    let serverURL = "http://192.168.0.105:3000"
-    let createGameUrl = "http://192.168.0.105:3000/createGame"
+    let serverURL = "http://31.214.245.100:3000"
+    let localServer = "http://192.168.0.105:3000"
+    let createGameUrl = "http://31.214.245.100:3000/createGame"
     
     //let createGameUrl = "http://127.0.0.1:3000/createGame"
     var token = ""
@@ -19,10 +20,11 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
     var shareUrl = ""
     var username = ""
     var parameter = ["":""]
-    var emojis = ["\u{1F973}", "\u{1F36A}","\u{1F480}","\u{1F47E}","\u{1F98A}","\u{1F42C}","\u{1F41D}","\u{1F354}",]
-    var arr:Array<String> = []
-    var users:Array<String> = []
+    var emojis = ["\u{1F973}", "\u{1F36A}","\u{1F480}","\u{1F47E}","\u{1F98A}","\u{1F42C}","\u{1F41D}","\u{1F354}"]
+    //var arr:Array<String> = []
+    //var users:Array<String> = []
     var counter = 0
+    var user:Array<Dictionary<String,String>> = []
 
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var shareBtnView: UIView!
@@ -62,20 +64,20 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return users.count
+        return user.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
         let cellIndex = indexPath.item
-        cell.text.text = arr[cellIndex]
-        cell.username.text = users[cellIndex]
-        print("user: \(users[cellIndex])")
+        cell.text.text = user[cellIndex]["emoji"]
+        cell.username.text = user[cellIndex]["username"]
+        print("user: \(user[cellIndex])")
         return cell
     }
     func poll(){
         print("poll startetd")
-        if let url = URL(string: "http://192.168.0.105:3000/poll?counter=\(self.counter)&token=\(self.token)"){
+        if let url = URL(string: "\(localServer)/poll?counter=\(self.counter)&token=\(self.token)"){
             var request = URLRequest(url:url)
             request.httpMethod = "GET"
             URLSession.shared.dataTask(with: request) { (data, response, err) in
@@ -94,11 +96,11 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
                                 //self.arr.append((values​[0] as! NSString) as String)
                                 //self.users.append((values​[0] as! NSString) as String)
                                 //self.users.append(x["users"] as! String)
-                                self.users = x["users"] as! Array<String>
-                                self.arr.append(self.emojis[Int.random(in: 0...7)])
+                                
+                                //self.users = x["users"].username as! Array<String>
+                                //self.arr = x["users"].emoji as! Array<String>
+                                self.user = x["users"] as! Array<Dictionary<String,String>>
                                 self.collectionView.reloadData()
-                                print("emojis \(self.arr)")
-                                print("users: \(self.users)")
                             }else{
                                 print("failed parse")
                             }
@@ -117,13 +119,14 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     func joinGame(parameter:[String:String]){
-        if let url = URL(string: "\(serverURL)/joinGame") {
+        if let url = URL(string: "\(localServer)/joinGame") {
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             var username = parameter["username"]
             var token = parameter["token"]
+            var emoji = parameter["emoji"]
             //let jsondata = try? JSONEncoder().encode(model)
-            var poststring = "token=\(token!)&username=\(username!)"
+            var poststring = "token=\(token!)&username=\(username!)&emoji=\(emoji!)"
             request.httpBody = poststring.data(using: String.Encoding.utf8)
             
             URLSession.shared.dataTask(with: request) { (data, response, err) in
@@ -157,7 +160,7 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
     
     func setupPost() {
         
-        if let url = URL(string: self.createGameUrl) {
+        if let url = URL(string: "\(localServer)/createGame") {
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
                             print("TERST1")
@@ -178,7 +181,10 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
                     DispatchQueue.main.async {
                         //self.tokenLabel.text = self.token
                         print("token: \(self.token)")
-                        self.parameter = ["token": self.token, "username": self.username]
+                        var emoji = self.emojis[Int.random(in: 0...7)]
+                        //print("emoji: \(emoji)")
+                        self.parameter = ["token": self.token, "username": self.username, "emoji": self.emojis[Int.random(in: 0...7)]]
+                        print(self.parameter)
                         self.poll()
                         self.joinGame(parameter: self.parameter)
                     }//DispatchQueue

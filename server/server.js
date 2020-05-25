@@ -56,10 +56,9 @@ app.post("/joinGame", function(req, res){
           newlist.push(element);
         });
       }
-      user = {username: req.body.username, punkte: 0};
+      user = {username: req.body.username, emoji: req.body.emoji, punkte: 0};
       //Long Polling
       //clients.push({username: req.body.username, gamecode: req.body.token});
-
       newlist.push(user);
       var newvalues = { $set: {userlist: newlist}};
       dbo.collection("Game").updateOne(query, newvalues, function(err, res) {
@@ -75,10 +74,11 @@ app.post("/joinGame", function(req, res){
   console.log("clientsResList length: " + clientsResList[token].length)
 
   console.log("push clientListe")
-  clientliste[req.body.token].push(req.body.username);
+  clientliste[req.body.token].push({username:req.body.username, emoji:req.body.emoji});
   sem.release()
   clearTimeout(this.timeout)
   console.log("vor while schleife")
+  console.log(clientliste[token])
   while(clientsResList[token].length > 0){
     console.log(typeof clientliste[token].length)
     let client = clientsResList[token].pop()
@@ -130,6 +130,10 @@ app.get("/poll",function(req,res){
         console.log("counter: "+counter)
       //}
 });
+
+app.get("/emojiToFind", (req, res)=>{
+  
+})
 
 app.get("/deleteAll", (req,res)=>{
   MongoClient.connect(url, function(err, db) {
