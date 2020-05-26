@@ -51,7 +51,7 @@ class ConnectWithPinView: UIViewController {
     
     let checkTokenUrl = "http://31.214.245.100:3000/checktoken"
     let localServer = "http://192.168.0.105:3000"
-    //let checkTokenUrl = "http://192.168.1.107:3000/checktoken"
+
     var token = ""
     var gameExists:String = ""
     

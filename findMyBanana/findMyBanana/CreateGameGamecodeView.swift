@@ -9,10 +9,10 @@
 import UIKit
 
 class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
-    //let serverURL = "http://192.168.0.105:3000"
     let serverURL = "http://31.214.245.100:3000"
     let localServer = "http://192.168.0.105:3000"
     let createGameUrl = "http://31.214.245.100:3000/createGame"
+
     
     //let createGameUrl = "http://127.0.0.1:3000/createGame"
     var token = ""
@@ -77,7 +77,7 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
     }
     func poll(){
         print("poll startetd")
-        if let url = URL(string: "\(localServer)/poll?counter=\(self.counter)&token=\(self.token)"){
+        if let url = URL(string: "\(serverURL)/poll?counter=\(self.counter)&token=\(self.token)"){
             var request = URLRequest(url:url)
             request.httpMethod = "GET"
             URLSession.shared.dataTask(with: request) { (data, response, err) in
@@ -119,7 +119,8 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     func joinGame(parameter:[String:String]){
-        if let url = URL(string: "\(localServer)/joinGame") {
+
+        if let url = URL(string: "\(serverURL)/joinGame") {
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             var username = parameter["username"]
@@ -167,10 +168,12 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
             let jsondata = try? JSONEncoder().encode(jsonModel)
             let poststring = "anz=\(jsonModel.anz)&timeInSec=\(jsonModel.timeInSec)"
             print(poststring)
+
             request.httpBody = poststring.data(using: String.Encoding.utf8)
 
             URLSession.shared.dataTask(with: request) { (data, response, err) in
                 if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                    print("TESET3")
                     //print("dataString: \(dataString)")
                     self.token = dataString
                     //self.saveToken(token:dataString)
