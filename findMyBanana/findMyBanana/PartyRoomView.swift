@@ -14,13 +14,14 @@ class PartyRoomView: UIViewController, UICollectionViewDelegate, UICollectionVie
     var username = ""
     var counter = 0
     var token = ""
+    //@IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var collectionView: UICollectionView!
     
     var arr:Array<String> = []
     var users:Array<String> = []
     var parameter = ["":""]
     var emojis = ["\u{1F973}", "\u{1F36A}","\u{1F480}","\u{1F47E}","\u{1F98A}","\u{1F42C}","\u{1F41D}","\u{1F354}",]
-    let localServer = "http://192.168.0.105:3000"
+    let localServer = "http://192.168.1.175:3000"
     var user:Array<Dictionary<String,String>> = []
     
     override func viewDidLoad() {
@@ -28,7 +29,7 @@ class PartyRoomView: UIViewController, UICollectionViewDelegate, UICollectionVie
         collectionView.dataSource = self
 
       super.viewDidLoad()
-        usernameLabel.text = username
+        //usernameLabel.text = username
         print("hello, \(username)")
         let queue = DispatchQueue(label: "myQueue", attributes: .concurrent)
         // Do any additional setup after loading the view.
@@ -135,23 +136,6 @@ class PartyRoomView: UIViewController, UICollectionViewDelegate, UICollectionVie
         }
     }
     
-   
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return arr.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
-        let cellIndex = indexPath.item
-        print(username)
-        cell.text.text = "\(arr[cellIndex])\n\(username)"
-        return cell
-    }
     
     /*
      // MARK: - Navigation
