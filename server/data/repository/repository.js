@@ -31,14 +31,14 @@ module.exports = {
 
     },
 
-    getUser: async function (req) {
+    getUser: function (req) {
         MongoClient.connect(url, function (err, client) {
             if (err) console.log("error in join game: " + err)
             const db = client.db(dbName)
             let cursor = db.collection("Game").find({ _id: req.params.token.toString() })
             cursor.forEach(c => {
-                console.log(c)
-                return c.userlist
+               // console.log(c)
+                return c
             })
             client.close()
         })

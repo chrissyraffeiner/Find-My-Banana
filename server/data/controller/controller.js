@@ -19,8 +19,8 @@ app.get("poll", function(req,res) {
     res.send(repo.poll())
 })
 
-app.get("/getUsers/:token", async function(req,res) {
-    res.send(await repo.getUser(req))
+app.get("/getUsers/:token", function(req,res) {
+    res.send(repo.getUser(req))
 })
 
 app.get("/checkToken/:token", function(req,res){

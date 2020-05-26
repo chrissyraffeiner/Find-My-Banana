@@ -49,8 +49,9 @@ class ConnectWithPinView: UIViewController {
         textChanged(tag:-1, tf: TextFieldFive)
     }
     
-    //let checkTokenUrl = "http://192.168.0.105:3000/checktoken"
-    let checkTokenUrl = "http://192.168.1.107:3000/checktoken"
+    let checkTokenUrl = "http://31.214.245.100:3000/checktoken"
+    let localServer = "http://192.168.0.105:3000"
+
     var token = ""
     var gameExists:String = ""
     
@@ -145,7 +146,7 @@ class ConnectWithPinView: UIViewController {
     }
     
     func setupGet(){
-        if let url = URL(string: "\(self.checkTokenUrl)/\(self.token)"){
+        if let url = URL(string: "\(self.localServer)/checktoken/\(self.token)"){
             var request = URLRequest(url: url)
             request.httpMethod = "GET"
             URLSession.shared.dataTask(with: request) { (data, response, error) in
