@@ -24,7 +24,10 @@ class PartyRoomView: UIViewController, UICollectionViewDelegate, UICollectionVie
     var user:Array<Dictionary<String,String>> = []
     
     override func viewDidLoad() {
-        super.viewDidLoad()
+        collectionView.delegate = self
+        collectionView.dataSource = self
+
+      super.viewDidLoad()
         usernameLabel.text = username
         print("hello, \(username)")
         let queue = DispatchQueue(label: "myQueue", attributes: .concurrent)
@@ -35,6 +38,8 @@ class PartyRoomView: UIViewController, UICollectionViewDelegate, UICollectionVie
             self.joinGame(parameter: self.parameter)
             print(self.token)
         }
+//        joinGame()
+  //      poll()
         // Do any additional setup after loading the view.
     }
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -62,39 +67,35 @@ class PartyRoomView: UIViewController, UICollectionViewDelegate, UICollectionVie
             var emoji = parameter["emoji"]
             //let jsondata = try? JSONEncoder().encode(model)
             var poststring = "token=\(token!)&username=\(username!)&emoji=\(emoji!)"
+
             request.httpBody = poststring.data(using: String.Encoding.utf8)
             URLSession.shared.dataTask(with: request) { (data, response, err) in
-                           if let data = data, let dataString = String(data: data, encoding: .utf8) {
-                               //print("dataString: \(dataString)")
-                               print(dataString)
-                               //self.saveToken(token:dataString)
-                               //print("token: \(self.token)")
-                               
-                               DispatchQueue.main.async {
-                                   //self.arr.append("new")
-                                   print(dataString)
-                                   //self.poll()
-                               }//DispatchQueue
-                           }
-                           if let error = err {
-                               print("Error took place \(error)")
-                           }
-                       }.resume()
-                   }else{
-                       print("URL ist flasch")
-                   }
-            }
-        
+                if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                    
+                    print(dataString)
+                    
+                    DispatchQueue.main.async {
+                        self.arr.append("new")
+                        print(dataString)
+                    }//DispatchQueue
+                }
+                if let error = err {
+                    print("Error took place \(error)")
+                }
+            }.resume()
+        }else{
+            print("URL ist flasch")
+        }
+    }
+    
     func poll(){
         if let url = URL(string: "\(localServer)/poll?counter=\(self.counter)&token=\(self.token)"){
+
             var request = URLRequest(url:url)
             request.httpMethod = "GET"
             URLSession.shared.dataTask(with: request) { (data, response, err) in
                 if let data = data, let dataString = String(data: data, encoding: .utf8) {
-                    //print("dataString: \(dataString)")
                     print(dataString)
-                    //self.saveToken(token:dataString)
-                    //print("token: \(self.token)")
                     
                     DispatchQueue.main.async {
                        print("datastring: \(dataString)")
@@ -122,6 +123,7 @@ class PartyRoomView: UIViewController, UICollectionViewDelegate, UICollectionVie
                            print("nixx neues")
                            self.poll()
                        }
+
                     }//DispatchQueue
                 }
                 if let error = err {
@@ -133,15 +135,32 @@ class PartyRoomView: UIViewController, UICollectionViewDelegate, UICollectionVie
         }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+   
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
     }
-    */
-
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return arr.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
+        let cellIndex = indexPath.item
+        print(username)
+        cell.text.text = "\(arr[cellIndex])\n\(username)"
+        return cell
+    }
+    
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destination.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }

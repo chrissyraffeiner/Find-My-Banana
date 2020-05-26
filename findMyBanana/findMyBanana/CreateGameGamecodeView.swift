@@ -5,7 +5,6 @@
 //  Created by Maja Drinovac on 17.03.20.
 //  Copyright © 2020 Laura Riener. All rights reserved.
 //
-
 import UIKit
 
 class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
@@ -15,6 +14,7 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
 
     
     //let createGameUrl = "http://127.0.0.1:3000/createGame"
+
     var token = ""
     var jsonModel = GameModel(anz: 3, timeInSec: 5)
     var shareUrl = ""
@@ -38,7 +38,6 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
         self.present(activityVC, animated: true, completion: nil)
     }
     
-    //@IBOutlet weak var tokenLabel: UILabel!
     @IBOutlet weak var tokenLabel: UILabel!
     
     
@@ -73,11 +72,13 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
         cell.text.text = user[cellIndex]["emoji"]
         cell.username.text = user[cellIndex]["username"]
         print("user: \(user[cellIndex])")
+
         return cell
     }
     func poll(){
         print("poll startetd")
         if let url = URL(string: "\(localServer)/poll?counter=\(self.counter)&token=\(self.token)"){
+
             var request = URLRequest(url:url)
             request.httpMethod = "GET"
             URLSession.shared.dataTask(with: request) { (data, response, err) in
@@ -121,6 +122,7 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
     func joinGame(parameter:[String:String]){
 
         if let url = URL(string: "\(localServer)/joinGame") {
+
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             var username = parameter["username"]
@@ -164,20 +166,22 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
         if let url = URL(string: "\(localServer)/createGame") {
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
-                            print("TERST1")
+                        
             let jsondata = try? JSONEncoder().encode(jsonModel)
             let poststring = "anz=\(jsonModel.anz)&timeInSec=\(jsonModel.timeInSec)"
             print(poststring)
 
             request.httpBody = poststring.data(using: String.Encoding.utf8)
 
+
+            request.httpBody = poststring.data(using: String.Encoding.utf8)
+            
             URLSession.shared.dataTask(with: request) { (data, response, err) in
                 if let data = data, let dataString = String(data: data, encoding: .utf8) {
-                    print("TESET3")
                     //print("dataString: \(dataString)")
                     self.token = dataString
                     //self.saveToken(token:dataString)
-                    print("token1: \(self.token)")
+                    //print("token: \(self.token)")
                     
                     self.shareUrl = self.token//"findMyBanana://\(self.token)"
                     print("url: \(self.shareUrl)")
@@ -191,8 +195,6 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
                         self.poll()
                         self.joinGame(parameter: self.parameter)
                     }//DispatchQueue
-                } else {
-                    print("TEST4")
                 }
                 if let error = err {
                     print("Error took place \(error)")
