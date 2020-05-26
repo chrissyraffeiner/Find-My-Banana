@@ -54,8 +54,9 @@ class PartyRoomView: UIViewController, UICollectionViewDelegate, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "partyCell", for: indexPath) as! CollectionPartyViewCell
         let cellIndex = indexPath.item
-        cell.text.text = user[cellIndex]["emoji"]
-        cell.usernameLabel.text = user[cellIndex]["username"]
+        cell.text.text = user[cellIndex]["emoji"]!
+       // cell.usernameLabel.text = user[cellIndex]["username"]!
+        print(user[cellIndex])
         return cell
     }
     

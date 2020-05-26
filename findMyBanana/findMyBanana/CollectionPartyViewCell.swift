@@ -11,5 +11,5 @@ import UIKit
 class CollectionPartyViewCell: UICollectionViewCell {
     
     @IBOutlet weak var text: UILabel!
-    @IBOutlet weak var usernameLabel: UILabel!
+    //@IBOutlet weak var usernameLabel: UILabel!
 }
