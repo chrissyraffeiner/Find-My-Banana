@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -623,6 +624,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SL4-qk-KEC" userLabel="Party Room">
                                 <rect key="frame" x="87" y="118" width="240" height="128"/>
                                 <subviews>
@@ -654,8 +656,10 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon metro-hour-glass.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="XTe-UY-8ex">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="600"/>
                                     </imageView>
+
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E0h-Ug-9MZ" userLabel="usernames">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="600"/>
+
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -705,6 +709,83 @@
                                     </mask>
                                 </variation>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SL4-qk-KEC">
+                                <rect key="frame" x="87" y="191" width="240" height="128"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Party" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ad0-1M-Y28">
+                                        <rect key="frame" x="20" y="41" width="91.5" height="45"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="37"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Room" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b7X-4x-XFU">
+                                        <rect key="frame" x="119.5" y="42" width="100" height="45"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="37"/>
+                                        <color key="textColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="128" id="1hF-i9-b2J"/>
+                                    <constraint firstItem="b7X-4x-XFU" firstAttribute="leading" secondItem="ad0-1M-Y28" secondAttribute="trailing" constant="8" id="1ix-Zg-n68"/>
+                                    <constraint firstItem="ad0-1M-Y28" firstAttribute="leading" secondItem="SL4-qk-KEC" secondAttribute="leading" constant="20" id="O8b-lP-CS3"/>
+                                    <constraint firstItem="b7X-4x-XFU" firstAttribute="top" secondItem="SL4-qk-KEC" secondAttribute="top" constant="42" id="j2N-n6-eg0"/>
+                                    <constraint firstAttribute="width" constant="240" id="s6j-Qv-12z"/>
+                                    <constraint firstItem="ad0-1M-Y28" firstAttribute="top" secondItem="SL4-qk-KEC" secondAttribute="top" constant="41" id="tCe-Rz-ZfC"/>
+                                </constraints>
+                            </view>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="oZ7-KG-Vin">
+                                <rect key="frame" x="20" y="305" width="374" height="363"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="kGr-G1-PRW">
+                                    <size key="itemSize" width="98" height="126"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="partyCell" id="f5P-DF-5l6" customClass="CollectionPartyViewCell" customModule="findMyBanana" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="98" height="126"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="eKB-hU-L7I">
+                                            <rect key="frame" x="0.0" y="0.0" width="98" height="126"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RlM-nm-4KT">
+                                                    <rect key="frame" x="28" y="38" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XqN-br-eMu">
+                                                    <rect key="frame" x="11" y="67" width="76" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="RlM-nm-4KT" firstAttribute="centerX" secondItem="eKB-hU-L7I" secondAttribute="centerX" id="F8a-gx-qv3"/>
+                                                <constraint firstItem="RlM-nm-4KT" firstAttribute="top" secondItem="eKB-hU-L7I" secondAttribute="top" constant="38" id="FZ1-8J-m9o"/>
+                                                <constraint firstItem="XqN-br-eMu" firstAttribute="centerX" secondItem="eKB-hU-L7I" secondAttribute="centerX" id="M0g-jU-bLp"/>
+                                                <constraint firstAttribute="bottom" secondItem="XqN-br-eMu" secondAttribute="bottom" constant="38" id="ue2-Ax-e8H"/>
+                                                <constraint firstItem="XqN-br-eMu" firstAttribute="top" secondItem="RlM-nm-4KT" secondAttribute="bottom" constant="8" id="zrR-6q-lfb"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <size key="customSize" width="98" height="126"/>
+                                        <connections>
+                                            <outlet property="text" destination="RlM-nm-4KT" id="XcX-xL-cWk"/>
+                                            <outlet property="usernameLabel" destination="XqN-br-eMu" id="Ge2-Hr-XgY"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="6NE-Vd-gLK" id="PSe-pq-0SD"/>
+                                    <outlet property="delegate" destination="6NE-Vd-gLK" id="MhZ-nt-085"/>
+                                </connections>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" red="0.97247451543807983" green="0.9725908637046814" blue="0.97243505716323853" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -736,6 +817,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Join Game" id="V5V-em-gl2"/>
                     <connections>
+                        <outlet property="collectionView" destination="oZ7-KG-Vin" id="zeI-QK-Jhj"/>
                         <outlet property="usernameLabel" destination="E0h-Ug-9MZ" id="U0f-At-qHC"/>
                     </connections>
                 </viewController>
