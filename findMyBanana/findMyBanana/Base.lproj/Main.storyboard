@@ -922,7 +922,7 @@
                                     </imageView>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" indicatorStyle="white" keyboardDismissMode="onDrag" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="nGY-no-rsK" userLabel="Collection View Usernames">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="614"/>
-                                        <color key="backgroundColor" systemColor="systemPurpleColor" red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" sectionInsetReference="safeArea" id="zYb-kF-lhh">
                                             <size key="itemSize" width="85" height="85"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -942,20 +942,20 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="USERNAME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mNI-VD-fMQ" userLabel="Username">
-                                                            <rect key="frame" x="21" y="32" width="91" height="21"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USERNAME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mNI-VD-fMQ" userLabel="Username">
+                                                            <rect key="frame" x="-3" y="64" width="91" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                     <constraints>
+                                                        <constraint firstAttribute="bottom" secondItem="mNI-VD-fMQ" secondAttribute="bottom" id="BjI-A7-spY"/>
                                                         <constraint firstItem="uYg-RT-p55" firstAttribute="centerX" secondItem="6kv-96-Vd9" secondAttribute="centerX" id="EM5-LW-VK6"/>
                                                         <constraint firstItem="uYg-RT-p55" firstAttribute="centerY" secondItem="6kv-96-Vd9" secondAttribute="centerY" id="dS7-Ef-m8l"/>
+                                                        <constraint firstItem="mNI-VD-fMQ" firstAttribute="centerX" secondItem="6kv-96-Vd9" secondAttribute="centerX" id="tbQ-6l-c6I"/>
                                                     </constraints>
                                                 </collectionViewCellContentView>
-                                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
                                                     <outlet property="text" destination="uYg-RT-p55" id="ZSF-Dh-OAi"/>
                                                     <outlet property="username" destination="mNI-VD-fMQ" id="PK0-gi-ya0"/>
