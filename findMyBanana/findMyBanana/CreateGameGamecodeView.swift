@@ -116,7 +116,7 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
         }
     }
     
-    
+
     
     func addShadow(view: UIView){
         view.layer.shadowColor = UIColor.lightGray.cgColor
