@@ -5,17 +5,14 @@
 //  Created by Maja Drinovac on 17.03.20.
 //  Copyright © 2020 Laura Riener. All rights reserved.
 //
-
 import UIKit
 
 class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     let serverURL = "http://31.214.245.100:3000"
-    let localServer = "http://192.168.0.105:3000"
-    let createGameUrl = "http://31.214.245.100:3000/createGame"
+    let localServer = "http://192.168.1.175:3000"
 
-    
-    //let createGameUrl = "http://127.0.0.1:3000/createGame"
     var token = ""
+    let spielerliste = Spielerliste()
     var jsonModel = GameModel(anz: 3, timeInSec: 5)
     var shareUrl = ""
     var username = ""
@@ -26,7 +23,6 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
     var counter = 0
     var user:Array<Dictionary<String,String>> = []
 
-    @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var shareBtnView: UIView!
         
     @IBOutlet weak var collectionView: UICollectionView!
@@ -38,7 +34,6 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
         self.present(activityVC, animated: true, completion: nil)
     }
     
-    //@IBOutlet weak var tokenLabel: UILabel!
     @IBOutlet weak var tokenLabel: UILabel!
     
     
@@ -64,6 +59,7 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print(user.count)
         return user.count
     }
     
@@ -73,11 +69,13 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
         cell.text.text = user[cellIndex]["emoji"]
         cell.username.text = user[cellIndex]["username"]
         print("user: \(user[cellIndex])")
+
         return cell
     }
     func poll(){
         print("poll startetd")
-        if let url = URL(string: "\(serverURL)/poll?counter=\(self.counter)&token=\(self.token)"){
+        if let url = URL(string: "\(localServer)/poll?counter=\(self.counter)&token=\(self.token)"){
+
             var request = URLRequest(url:url)
             request.httpMethod = "GET"
             URLSession.shared.dataTask(with: request) { (data, response, err) in
@@ -118,38 +116,7 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
         }
     }
     
-    func joinGame(parameter:[String:String]){
 
-        if let url = URL(string: "\(serverURL)/joinGame") {
-            var request = URLRequest(url: url)
-            request.httpMethod = "POST"
-            var username = parameter["username"]
-            var token = parameter["token"]
-            var emoji = parameter["emoji"]
-            //let jsondata = try? JSONEncoder().encode(model)
-            var poststring = "token=\(token!)&username=\(username!)&emoji=\(emoji!)"
-            request.httpBody = poststring.data(using: String.Encoding.utf8)
-            
-            URLSession.shared.dataTask(with: request) { (data, response, err) in
-                if let data = data, let dataString = String(data: data, encoding: .utf8) {
-                    //print("dataString: \(dataString)")
-                    print(dataString)
-                    //self.saveToken(token:dataString)
-                    //print("token: \(self.token)")
-                    DispatchQueue.main.async {
-                        //self.tokenLabel.text = self.token
-                        print("token: \(self.token)")
-                       // self.arr.append("new")
-                    }//DispatchQueue
-                }
-                if let error = err {
-                    print("Error took place \(error)")
-                }
-            }.resume()
-        }else{
-            print("URL ist flasch")
-        }
-    }
     
     func addShadow(view: UIView){
         view.layer.shadowColor = UIColor.lightGray.cgColor
@@ -164,35 +131,23 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
         if let url = URL(string: "\(localServer)/createGame") {
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
-                            print("TERST1")
-            let jsondata = try? JSONEncoder().encode(jsonModel)
+                        
             let poststring = "anz=\(jsonModel.anz)&timeInSec=\(jsonModel.timeInSec)"
-            print(poststring)
-
             request.httpBody = poststring.data(using: String.Encoding.utf8)
-
+            
             URLSession.shared.dataTask(with: request) { (data, response, err) in
                 if let data = data, let dataString = String(data: data, encoding: .utf8) {
-                    print("TESET3")
-                    //print("dataString: \(dataString)")
                     self.token = dataString
-                    //self.saveToken(token:dataString)
-                    print("token1: \(self.token)")
-                    
                     self.shareUrl = self.token//"findMyBanana://\(self.token)"
                     print("url: \(self.shareUrl)")
                     DispatchQueue.main.async {
-                        //self.tokenLabel.text = self.token
+                        self.tokenLabel.text = self.token
                         print("token: \(self.token)")
-                        var emoji = self.emojis[Int.random(in: 0...7)]
-                        //print("emoji: \(emoji)")
                         self.parameter = ["token": self.token, "username": self.username, "emoji": self.emojis[Int.random(in: 0...7)]]
                         print(self.parameter)
                         self.poll()
                         self.joinGame(parameter: self.parameter)
                     }//DispatchQueue
-                } else {
-                    print("TEST4")
                 }
                 if let error = err {
                     print("Error took place \(error)")
@@ -202,6 +157,70 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
             print("URL ist flasch")
         }
         
+    }
+    
+    func joinGame(parameter:[String:String]){
+
+        if let url = URL(string: "\(localServer)/joinGame") {
+
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            let username = parameter["username"]
+            let token = parameter["token"]
+            let emoji = parameter["emoji"]
+            let poststring = "token=\(token!)&username=\(username!)&emoji=\(emoji!)"
+            request.httpBody = poststring.data(using: String.Encoding.utf8)
+            
+            URLSession.shared.dataTask(with: request) { (data, response, err) in
+                if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                    print("dataString: \(dataString)")
+                    print("data: \(data)")
+                    let spieler = Spieler()
+                    if let jsonObj = try? JSONSerialization.jsonObject(with: data, options: []) as? [[String:Any]]{
+                               print("obj= \(jsonObj)")
+                               
+                               for dict in jsonObj {
+                                   print("dictFOR= \(dict)")
+                                let username = dict["username"] as! String
+                                    let emoji = dict["emoji"] as! String
+                           //     self.user = dict["username"] as! Array<Dictionary<String,String>>
+                             //   self.user = dict["emoji"] as! Array<Dictionary<String,String>>
+                                self.user.append( dict as! Dictionary<String,String>)
+                                spieler.username = username
+                                spieler.emoji = emoji
+                                self.spielerliste.spieler.append(spieler)
+
+                                print("usernem: \(username), emoji: \(emoji)")
+                               }
+                       // self.user = jsonObj["username"] as! Array<Dictionary<String,String>>
+
+                    }
+
+                    DispatchQueue.main.async {
+                        print("token: \(self.token)")
+                      /*  self.user = []
+                        print("spielerliste count: \(self.spielerliste.spieler.count)")
+                        print("user count: \(self.user.count)")
+                        for i in 0..<self.spielerliste.spieler.count {
+                          //  self.user[i]["emoji"]?.append("String") //(self.spielerliste.spieler[i].emoji)
+                            self.user[i]["username"] += (self.spielerliste.spieler[i].username)
+                            print(self.user[i]["username"])
+                            self.user = self.spielerliste.spieler as! Array<Dictionary<String,String>>
+
+                        }*/
+                        print("user count: \(self.user.count)")
+
+                        self.collectionView.reloadData()
+
+                    }//DispatchQueue
+                }
+                if let error = err {
+                    print("Error took place \(error)")
+                }
+            }.resume()
+        }else{
+            print("URL ist flasch")
+        }
     }
     
   fileprivate func next(){

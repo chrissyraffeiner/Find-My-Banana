@@ -35,10 +35,7 @@ class ConnectWithUsernameView: UIViewController {
         if(self.admin){
             performSegue(withIdentifier: "PartyRoomAdmin", sender: self)
         }else{
-            var parameter = ["token": self.token, "username": usernameTF.text!]
-            queue.async {
-                self.joinGame(parameter: parameter)
-            }
+            
             performSegue(withIdentifier: "PartyRoom", sender: self)
         }
     }
