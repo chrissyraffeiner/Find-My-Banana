@@ -21,6 +21,7 @@ class PartyRoomView: UIViewController, UICollectionViewDelegate, UICollectionVie
     var parameter = ["":""]
     var emojis = ["\u{1F973}", "\u{1F36A}","\u{1F480}","\u{1F47E}","\u{1F98A}","\u{1F42C}","\u{1F41D}","\u{1F354}",]
     let localServer = "http://192.168.0.105:3000"
+    var user:Array<Dictionary<String,String>> = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,8 +29,7 @@ class PartyRoomView: UIViewController, UICollectionViewDelegate, UICollectionVie
         print("hello, \(username)")
         let queue = DispatchQueue(label: "myQueue", attributes: .concurrent)
         // Do any additional setup after loading the view.
-        var emoji = self.emojis[Int.random(in: 0...7)]
-        self.parameter = ["token": self.token, "username": self.username, "emoji": emoji]
+        self.parameter = ["token": self.token, "username": self.username, "emoji": self.emojis[Int.random(in: 0...7)]]
         queue.async{
             self.poll()
             self.joinGame(parameter: self.parameter)
@@ -41,15 +41,14 @@ class PartyRoomView: UIViewController, UICollectionViewDelegate, UICollectionVie
         return 1
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return users.count
+        return self.user.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "partyCell", for: indexPath) as! CollectionPartyViewCell
         let cellIndex = indexPath.item
-        print("index: \(cellIndex), users: \(users), arr: \(arr)")
-        cell.text.text = self.arr[cellIndex]
-        cell.usernameLabel.text = self.users[cellIndex]
+        cell.text.text = user[cellIndex]["emoji"]
+        cell.usernameLabel.text = user[cellIndex]["username"]
         return cell
     }
     
@@ -60,8 +59,9 @@ class PartyRoomView: UIViewController, UICollectionViewDelegate, UICollectionVie
             request.httpMethod = "POST"
             var username = parameter["username"]
             var token = parameter["token"]
+            var emoji = parameter["emoji"]
             //let jsondata = try? JSONEncoder().encode(model)
-            var poststring = "token=\(token!)&username=\(username!)"
+            var poststring = "token=\(token!)&username=\(username!)&emoji=\(emoji!)"
             request.httpBody = poststring.data(using: String.Encoding.utf8)
             URLSession.shared.dataTask(with: request) { (data, response, err) in
                            if let data = data, let dataString = String(data: data, encoding: .utf8) {
@@ -104,12 +104,13 @@ class PartyRoomView: UIViewController, UICollectionViewDelegate, UICollectionVie
                                self.counter = Int(x["count"] as! String)!
                                //String(data: x["new"] as! Data, encoding: .utf8)
                               // print(x["new"] as! String)
-                                self.users = x["users"] as! Array<String>
+                                //self.users = x["users"] as! Array<String>
                                //let values​ = x["new"] as! NSArray
                                //self.arr.append((values​[0] as! NSString) as String)
                                //self.users.append((values​[0] as! NSString) as String)
                                //self.users.append(x["new"] as! String)
-                               self.arr = x["emojis"] as! Array<String>
+                               //self.arr = x["emojis"] as! Array<String>
+                            self.user = x["users"] as! Array<Dictionary<String,String>>
                                 print("emojis \(self.arr)")
                                 print("users: \(self.users)")
                                self.collectionView.reloadData()

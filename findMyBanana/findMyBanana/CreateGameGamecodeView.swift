@@ -77,7 +77,7 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
     }
     func poll(){
         print("poll startetd")
-        if let url = URL(string: "\(serverURL)/poll?counter=\(self.counter)&token=\(self.token)"){
+        if let url = URL(string: "\(localServer)/poll?counter=\(self.counter)&token=\(self.token)"){
             var request = URLRequest(url:url)
             request.httpMethod = "GET"
             URLSession.shared.dataTask(with: request) { (data, response, err) in
@@ -120,7 +120,7 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
     
     func joinGame(parameter:[String:String]){
 
-        if let url = URL(string: "\(serverURL)/joinGame") {
+        if let url = URL(string: "\(localServer)/joinGame") {
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             var username = parameter["username"]
