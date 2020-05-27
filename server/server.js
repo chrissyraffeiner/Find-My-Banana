@@ -7,10 +7,8 @@ const bodyParser = require("body-parser")
 const semaphore = require("node-semaphore")
 const fs = require("fs")
 
-//var clientliste = []
+var clientliste = [];
 var clientsResList = []
-var sem
-var timeout
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 let timeout
@@ -19,44 +17,28 @@ let test = false
 let index = 0
 let emojis
 
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
-app.use(express.json())
-
-
 //DB erstellen
 MongoClient.connect(url + dbName, function (err, db) {
-  if (err) throw err
-  console.log("FindMyBananaDB created!")
-  db.close()
-})
+  if (err) throw err;
+  console.log("FindMyBananaDB created!");
+  db.close();
+});
 
 //Collection Game erstellen (Tabelle)
-MongoClient.connect(url, function (err, client) {
-  if (err) throw err
-  var db = client.db(dbName)
-  db.createCollection("Game", function (err, res) {
-    if (err) throw err
-    console.log("Collection Game created!")
-    client.close()
-  })
-})
-
-//Collection User erstellen (Tabelle)
-MongoClient.connect(url, function (err, client) {
-  if (err) throw err
-  var db = client.db(dbName)
-  db.createCollection("User", function (err, res) {
-    if (err) throw err
-    console.log("Collection User created!")
-    client.close()
-  })
-})
+MongoClient.connect(url, function (err, db) {
+  if (err) throw err;
+  var dbo = db.db(dbName);
+  dbo.createCollection("Game", function (err, res) {
+    if (err) throw err;
+    console.log("Collection Game created!");
+    db.close();
+  });
+});
 
 //Message / Test
 app.get("/message", function (req, res) {
-  res.send("server works")
-})
+  res.send("server works");
+});
 
 
 app.use(express.json());
@@ -134,17 +116,17 @@ app.get("/poll_game", function(req,res){
 
 app.get("/poll",function(req,res){
   console.log(semaphore)
-  console.log("poll here")
-  let counter = req.query.counter;
-  let token = req.query.token;
+    console.log("poll here")
+    let counter = req.query.counter;
+    let token = req.query.token;
 
-  if (counter == 0 || clientsResList[token].length == 0 || test) {
-    clientsResList[token].push(res)
-    if (clientsResList[token.length] == index) {
-      test = false
+  if(counter == 0 || clientsResList[token].length == 0 || test){
+      clientsResList[token].push(res)
+      if(clientsResList[token.length] == index){
+        test = false
 
+      }
     }
-  }
 
       sem.acquire(()=>{
         this.timeout=setTimeout(()=>{
@@ -177,7 +159,7 @@ app.get("/poll",function(req,res){
         console.log("counter: "+counter)
       //}
 
-})
+});
 
 app.get("/emojiToFind", (req, res)=>{
   let rand = Math.floor(Math.random(10)*10)
@@ -189,78 +171,83 @@ app.get("/emojiToFind", (req, res)=>{
   res.send(findItem)
 })
 
-app.get("/deleteAll", (req, res) => {
-  MongoClient.connect(url, function (err, client) {
-    var db = client.db(dbName);
-    db.collection("Game").drop(function (err, delOk) {
-      if (err) console.log("error in deleteAll: " + err)
+app.get("/deleteAll", (req,res)=>{
+  MongoClient.connect(url, function(err, db) {
+    var dbo = db.db(dbName);
+    dbo.collection("Game").drop(function (err, delOk) {
+      if (err) throw err;
       if (delOk) console.log("ok")
-      client.close()
+      db.close()
     })
   });
   res.send("deleted")
 })
 
-//Gibt die User mit dem jeweiligen token zurück
-app.get("/getUsers/:token", (req, res) => {
-  MongoClient.connect(url, function (err, client) {
-    if (err) console.log("error in join game: " + err)
-    const db = client.db(dbName)
-    let cursor = db.collection("Game").find({ _id: req.params.token.toString() })
-    cursor.forEach(c => {
-      console.log(c)
-      res.send(c.userlist)
-    })
-    client.close()
-  })
-})
-//Erstellt einen Gamecode, und weißt angegebene Zeit und anzahl der Emojis zu.
+app.get("/findAll", (req, res)=>{
+  MongoClient.connect(url, function(err, db) {
 
-app.post("/createGame", function (req, res) {
-  let token
-  do {
-    token = Math.floor(Math.random() * 100000)
-  } while (token < 10000 || token >= 100000)
-
-  //Long Polling Liste
-  //clientliste[token.toString()] = new Array();
-  clientsResList[token.toString()] = new Array()
-
-  sem = semaphore(5)
-
-  //Store to DB
-  MongoClient.connect(url, function (err, client) {
-    if (err) console.log("error in create game: " + err)
-    var db = client.db(dbName);
-    db.collection("Game").insertOne(
-      { _id: token.toString(), anzahl: req.body.anz, timeInSec: req.body.timeInSec, userlist: [] },
-      function (err, res) {
-        if (err) console.log("error in create game: " + err)
-        console.log("Spiel mit GameCode: " + token + ", Emojianzahl: " + req.body.anz + ", TimeInSec: " + req.body.timeInSec + " Useranz: " + [].length + " erstellt");
-      });
-    client.close()
-  });
-  console.log("game created")
-  res.send(token.toString());
-
-});
-
-//Schaut ob das Spiel bereits erstellt wurde
-
-app.get("/checktoken/:token", function (req, res) {
-  MongoClient.connect(url, function (err, client) {
     if (err) throw err;
-    const db = client.db(dbName);
-    db.collection("Game").find({ _id: req.params.token }).toArray(function (err, result) {
+    var dbo = db.db(dbName);
+    //var query = {gamecode: req.body.token};
+    dbo.collection("Game").find().toArray(function (err, result) {
       if (err) throw err;
       console.log(result);
-      client.close();
+      db.close();
       if (result.length == 0) {
         res.send(false);
       } else {
         res.send(true);
       }
     });
+  });
+})
+var sem
+//Erstellt einen Gamecode, und weißt angegebene Zeit und anzahl der Emojis zu.
+app.use(express.json());
+app.post("/createGame", function (req, res) {
+  let token = Math.floor(Math.random() * 100000);
+
+    //Long Polling Liste
+    clientliste[token.toString()] = new Array();
+    clientsResList[token.toString()] = new Array()
+    
+    sem = semaphore(2)
+
+    //Store to DB
+    MongoClient.connect(url, function(err, db) {
+        if (err) throw err;
+        var dbo = db.db(dbName);
+        var newgame = {gamecode: token.toString(), anzahl: req.body.anz, timeInSec: req.body.timeInSec, userlist: []};
+        dbo.collection("Game").insertOne(newgame, function(err, res) {
+          if (err) throw err;
+          console.log("Spiel mit GameCode: " + token + ", Emojianzahl: " + req.body.anz + ", TimeInSec: " + req.body.timeInSec + " Useranz: " + [].length + " erstellt");
+          db.close();
+        });
+      });
+      console.log("game created")
+    res.send(token.toString());
+
+});
+
+//Schaut ob das Spiel bereits erstellt wurde
+app.use(express.json());
+app.get("/checktoken/:token", function (req, res) {
+  let token = req.params.token
+    MongoClient.connect(url, function(err, db) {
+        if (err) throw err;
+        var dbo = db.db(dbName);
+        var query = {gamecode: token};
+        dbo.collection("Game").find(query).toArray(function(err, result) {
+          if (err) throw err;
+          console.log(result);
+          db.close();
+          if(result.length == 0){
+            
+            res.send(false);
+          }else{
+            res.send(true);
+          } 
+        });
 
   });
 });
