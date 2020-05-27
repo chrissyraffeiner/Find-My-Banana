@@ -81,7 +81,9 @@ class CameraView: UIViewController {
                     isCountdownFinished = true
                     animatedView.removeFromSuperview()
                     findView.removeFromSuperview()
+                    print("preview")
                     view.bringSubviewToFront(preview)
+                    startCapture()
                 }
             }
         }
@@ -94,9 +96,7 @@ class CameraView: UIViewController {
     
     func startCapture(){
         guard let captureDevice = AVCaptureDevice.default(for: .video) else { return }
-        
         session.sessionPreset = .photo
-        
         guard let input = try? AVCaptureDeviceInput(device: captureDevice) else { return }
         
         session.addInput(input)
@@ -104,38 +104,39 @@ class CameraView: UIViewController {
         session.startRunning()
         
         let previewLayer = AVCaptureVideoPreviewLayer(session: session)
-        view.layer.addSublayer(previewLayer)
-        previewLayer.frame = view.frame
+        previewLayer.videoGravity = .resizeAspectFill
+        self.preview.layer.addSublayer(previewLayer)
+        previewLayer.frame = self.preview.frame
         
         let output = AVCaptureVideoDataOutput()
-        
         output.setSampleBufferDelegate(self as? AVCaptureVideoDataOutputSampleBufferDelegate, queue: DispatchQueue(label: "videoQueue"))
         
         session.addOutput(output)
     }
     
     func detectScene(image: CIImage){
-        guard let model = try? VNCoreMLModel(for: YOLOv3Tiny().model) else { return }
+                guard let model = try? VNCoreMLModel(for: YOLOv3Tiny().model) else { return }
+
     }
     
     func captureOutput(_ output:AVCaptureOutput, didOutput samplebuffer: CMSampleBuffer, from connection: AVCaptureConnection){
+    
+    guard let pixelBuffer: CVPixelBuffer = CMSampleBufferGetImageBuffer(samplebuffer) else {return}
+    
+    guard let model = try? VNCoreMLModel(for: YOLOv3Tiny().model) else {return }
+    
+    
+    let request = VNCoreMLRequest(model: model){ (finishedReq, err) in
+        DispatchQueue.main.async(execute: {
+            // perform all the UI updates on the main queue
+            if let results = finishedReq.results as? [VNDetectedObjectObservation]{
+                self.drawResults(results)
+            }
+        })
         
-        guard let pixelBuffer: CVPixelBuffer = CMSampleBufferGetImageBuffer(samplebuffer) else {return}
-        
-        guard let model = try? VNCoreMLModel(for: YOLOv3Tiny().model) else {return }
-        
-        
-        let request = VNCoreMLRequest(model: model){ (finishedReq, err) in
-            DispatchQueue.main.async(execute: {
-                // perform all the UI updates on the main queue
-                if let results = finishedReq.results as? [VNDetectedObjectObservation]{
-                    self.drawResults(results)
-                }
-            })
-            
-        }
-        
-        try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([request])
+    }
+    
+    try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([request])
     }
     
     func drawResults(_ results: [Any]){
