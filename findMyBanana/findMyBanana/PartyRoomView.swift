@@ -21,7 +21,8 @@ class PartyRoomView: UIViewController, UICollectionViewDelegate, UICollectionVie
     var users:Array<String> = []
     var parameter = ["":""]
     var emojis = ["\u{1F973}", "\u{1F36A}","\u{1F480}","\u{1F47E}","\u{1F98A}","\u{1F42C}","\u{1F41D}","\u{1F354}",]
-    let localServer = "http://192.168.1.175:3000"
+    //let localServer = "http://192.168.1.175:3000"
+    let localServer = "http://192.168.0.105:3000"
     var user:Array<Dictionary<String,String>> = []
     
     override func viewDidLoad() {
@@ -53,8 +54,9 @@ class PartyRoomView: UIViewController, UICollectionViewDelegate, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "partyCell", for: indexPath) as! CollectionPartyViewCell
         let cellIndex = indexPath.item
-        cell.text.text = user[cellIndex]["emoji"]
-        cell.usernameLabel.text = user[cellIndex]["username"]
+        cell.text.text = user[cellIndex]["emoji"]!
+       // cell.usernameLabel.text = user[cellIndex]["username"]!
+        print(user[cellIndex])
         return cell
     }
     
