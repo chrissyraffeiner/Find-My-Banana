@@ -130,7 +130,14 @@ app.get("/poll",function(req,res){
 
       sem.acquire(()=>{
         this.timeout=setTimeout(()=>{
-          tryAgain(token, res)
+          console.log("timeout")
+          index = clientsResList[token].length
+          while(clientsResList[token].length > 0){
+            clientsResList[token].pop()
+          }
+          //test = true
+          sem.release()
+          return res.send("Try again")
         },29000).ref()
         /*this.timeout = setTimeout(()=>{
           tryAgain(token, res)
@@ -153,17 +160,6 @@ app.get("/poll",function(req,res){
       //}
 
 });
-
-function tryAgain(token,res){
-  console.log("timeout")
-  index = clientsResList[token].length
-  while(clientsResList[token].length > 0){
-    clientsResList[token].pop()
-  }
-  //test = true
-  sem.release()
-  return res.send("Try again")
-}
 
 app.get("/emojiToFind", (req, res)=>{
   let rand = Math.floor(Math.random(10)*10)
