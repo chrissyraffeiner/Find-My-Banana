@@ -61,47 +61,20 @@ app.get("/message", function (req, res) {
 
 app.use(express.json());
 app.post("/joinGame", function (req, res) {
-  MongoClient.connect(url, function (err, client) {
-    if (err) console.log("error in join game: " + err)
-    const db = client.db(dbName)
-    db.collection("Game").updateOne(
-      { _id: req.body.token.toString() },
-      {
-        $push: {
-          userlist: {
-            username: req.body.username,
-            emoji: req.body.emoji
-          }
-        }
+  MongoClient.connect(url, function (err, db) {
+    if (err) throw err;
+    var dbo = db.db(dbName);
+    var query = { gamecode: req.body.token };
+    console.log(query)
+    dbo.collection("Game").find(query).toArray(function (err, result) {
+      if (err) throw err;
+      newlist = new Array();
+      console.log("result: " + result[0].userlist[0]);
+      if (result[0].userlist != null) {
+        result[0].userlist.forEach(element => {
+          newlist.push(element);
+        });
       }
-    )
-    let cursor = db.collection("Game").find({ _id: req.body.token.toString() })
-    let userlist = []
-    cursor.forEach(c => {
-      console.log(c.userlist)
-      userlist = c.userlist
-      console.log("setted: " + userlist)
-      res.send(userlist)
-
-      console.log("userlist: " + cursor)
-      sem.release()
-      clearTimeout(this.timeout)
-      console.log("vor while-schleife")
-      let token = req.body.token
-      while (clientsResList[token].length > 0) {
-        console.log(typeof clientsResList[token].length)
-        let user = clientsResList[token].pop()
-        //let count = clientliste[token].length.toString()
-        //let data = {count: clientliste[token].length.toString(), new: req.body.username}
-        //client.send(data)
-        console.log(userlist)
-        user.send({ count: userlist.length.toString(), users: userlist })
-        //client.send("yes")
-      }
-      console.log("User " + req.body.username + " joined")
-      //  console.log("send: " + userlist)
-    })
-    client.close()
 
       user = {username: req.body.username, emoji: req.body.emoji, punkte: 0};
 
@@ -207,6 +180,7 @@ app.get("/poll",function(req,res){
 })
 
 app.get("/emojiToFind", (req, res) => {
+})
 
 app.get("/emojiToFind", (req, res)=>{
   let rand = Math.floor(Math.random(10)*10)
