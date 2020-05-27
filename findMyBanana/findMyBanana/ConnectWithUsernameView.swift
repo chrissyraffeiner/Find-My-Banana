@@ -10,6 +10,9 @@ import UIKit
 
 class ConnectWithUsernameView: UIViewController {
 
+    let localServer = "http://192.168.1.175:3000"
+    //let localServer = "http://192.168.0.105:3000"
+    
     @IBOutlet weak var usernameTF: UITextField!
     var jsonModel = GameModel(anz: 3, timeInSec: 5)
     var admin:Bool = false
@@ -41,7 +44,7 @@ class ConnectWithUsernameView: UIViewController {
     }
     
     func joinGame(parameter:[String:String]){
-        if let url = URL(string: "http://31.214.245.100:3000/joinGame") {
+        if let url = URL(string: "\(localServer)/joinGame") {
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             var username = parameter["username"]

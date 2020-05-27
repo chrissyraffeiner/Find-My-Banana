@@ -9,8 +9,8 @@ import UIKit
 
 class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     let serverURL = "http://31.214.245.100:3000"
-    //let localServer = "http://192.168.1.175:3000"
-    let localServer = "http://192.168.0.105:3000"
+    let localServer = "http://192.168.1.175:3000"
+    //let localServer = "http://192.168.0.105:3000"
 
     var token = ""
     let spielerliste = Spielerliste()

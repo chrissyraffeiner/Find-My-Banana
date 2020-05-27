@@ -14,15 +14,22 @@ import CoreML
 class CameraView: UIViewController {
 
     @IBOutlet weak var preview: UIView!
-    let session = AVCaptureSession()
     @IBOutlet weak var animatedView: UIView!
     @IBOutlet weak var answerLabel: UILabel!
+    @IBOutlet weak var pointsLabel: UILabel!
+    @IBOutlet weak var detectedLabel: UILabel!
+    @IBOutlet weak var userButton: UIButton!
     
+    var points = 0
+    let session = AVCaptureSession()
     var counter = 0
     var counterTimer = Timer()
     var counterStartValue = 3
     var isCountdownFinished = false
     var einstellungen = GameModel(anz: 3, timeInSec: 5)
+    
+    var found=false
+    var item = "banana"
     
     var audioPlayer:AVAudioPlayer?
     
@@ -31,6 +38,10 @@ class CameraView: UIViewController {
     @IBOutlet weak var findTime: UILabel!
     
     var isEmojiShown = false
+    
+    @IBAction func showHideUser(_ sender: UIButton) {
+    }
+    
     
     override func viewDidLoad() {
         findTime.text = "find in under \(einstellungen.timeInSec) sec"
@@ -83,6 +94,20 @@ class CameraView: UIViewController {
                     findView.removeFromSuperview()
                     print("preview")
                     view.bringSubviewToFront(preview)
+                    preview.bringSubviewToFront(answerLabel)
+                    preview.bringSubviewToFront(pointsLabel)
+                    preview.bringSubviewToFront(userButton)
+                    preview.bringSubviewToFront(detectedLabel)
+                    
+                    answerLabel.layer.zPosition = 10
+                    pointsLabel.layer.zPosition = 10
+                    userButton.layer.zPosition = 10
+                    detectedLabel.layer.zPosition = 10
+
+                    view.bringSubviewToFront(preview.subviews[0])
+                    view.bringSubviewToFront(preview.subviews[1])
+                    view.bringSubviewToFront(preview.subviews[2])
+                    view.bringSubviewToFront(preview.subviews[3])
                     startCapture()
                 }
             }
@@ -106,7 +131,8 @@ class CameraView: UIViewController {
         let previewLayer = AVCaptureVideoPreviewLayer(session: session)
         previewLayer.videoGravity = .resizeAspectFill
         self.preview.layer.addSublayer(previewLayer)
-        previewLayer.frame = self.preview.frame
+        previewLayer.frame = view.frame
+        previewLayer.frame = previewLayer.bounds
         
         let output = AVCaptureVideoDataOutput()
         output.setSampleBufferDelegate(self as? AVCaptureVideoDataOutputSampleBufferDelegate, queue: DispatchQueue(label: "videoQueue"))
@@ -145,8 +171,22 @@ class CameraView: UIViewController {
             
             let first = objectRecognized.labels[0]
             print(first.identifier)
-            answerLabel.text = first.identifier
+            if(!found) {
+                answerLabel.text = first.identifier
+            if(first.identifier == item) {
+                points+=1
+                pointsLabel.text = "\(points)"
+                found = true
+                showGreenBorder()
+            }
+            }
         }
+    }
+    
+    func showGreenBorder(){
+        /*self.preview.layer.borderWidth = 1
+        self.preview.layer.borderColor = UIColor(red:222/255, green:225/255, blue:227/255, alpha: 1).cgColor*/
+        answerLabel.textColor = UIColor(red:0/255, green:225/255, blue:0/255, alpha: 1)
     }
 
     /*
