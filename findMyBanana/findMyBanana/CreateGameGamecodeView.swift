@@ -229,6 +229,7 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     func sendGameStart(){
+        print("send game start")
         if let url = URL(string: "\(localServer)/startGame?token=\(self.token)"){
             var request = URLRequest(url:url)
             request.httpMethod = "GET"
@@ -246,15 +247,15 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
     }
     
   fileprivate func next(){
-    queue.async {
-        self.sendGameStart()
-    }
     performSegue(withIdentifier: "gameStart", sender: self)
   }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
       
       if(segue.identifier == "gameStart") {
+        queue.async {
+            self.sendGameStart()
+        }
         let vc = segue.destination as! CameraView
         vc.einstellungen = jsonModel
       }
