@@ -5,6 +5,7 @@ let url = "mongodb://localhost:27017/"
 let dbName = "FindMyBananaDB"
 const bodyParser = require("body-parser")
 const semaphore = require("node-semaphore")
+const fs = require("fs")
 
 var clientliste = [];
 var clientsResList = []
@@ -13,6 +14,7 @@ app.use(bodyParser.json())
 var timeout
 let test = false
 let index = 0
+let emojis
 
 //DB erstellen
 MongoClient.connect(url + dbName, function (err, db) {
@@ -137,7 +139,13 @@ app.get("/poll",function(req,res){
 });
 
 app.get("/emojiToFind", (req, res)=>{
-  
+  let rand = Math.floor(Math.random(10)*10)
+  let keys = Object.keys(emojis)
+  let values = Object.values(emojis)
+
+  let findItem = {"emoji":keys[rand],"name":values[rand]}
+
+  res.send(findItem)
 })
 
 app.get("/deleteAll", (req,res)=>{
@@ -221,6 +229,12 @@ app.get("/checktoken/:token", function (req, res) {
   });
 });
 
+function readFile(){
+  let rawdata = fs.readFileSync("emojis.json")
+  emojis = JSON.parse(rawdata)
+}
+
 app.listen(3000, function () {
+  readFile()
   console.log("server listens on port 3000");
 });
