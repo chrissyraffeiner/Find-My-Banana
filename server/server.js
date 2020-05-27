@@ -179,9 +179,6 @@ app.get("/poll",function(req,res){
 
 })
 
-app.get("/emojiToFind", (req, res) => {
-})
-
 app.get("/emojiToFind", (req, res)=>{
   let rand = Math.floor(Math.random(10)*10)
   let keys = Object.keys(emojis)
