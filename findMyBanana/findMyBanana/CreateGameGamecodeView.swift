@@ -232,7 +232,10 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
       
       if(segue.identifier == "gameStart") {
           let vc = segue.destination as! CameraView
-        vc.einstellungen = jsonModel
+            vc.einstellungen = jsonModel
+            vc.user = user
+        vc.username = username
+        //vc.emoji = emoji
       }
   }
     
