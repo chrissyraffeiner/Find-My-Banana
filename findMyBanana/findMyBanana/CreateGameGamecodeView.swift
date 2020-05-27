@@ -23,6 +23,7 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
     //var users:Array<String> = []
     var counter = 0
     var user:Array<Dictionary<String,String>> = []
+    let queue = DispatchQueue(label: "myQueue", attributes: .concurrent)
 
     @IBOutlet weak var shareBtnView: UIView!
         
@@ -45,7 +46,6 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
         //self.users[0] = username
         //self.arr[0] = self.emojis[Int.random(in: 0 ... 7)]
         //self.usernameLabel.text = username
-        let queue = DispatchQueue(label: "myQueue", attributes: .concurrent)
         // Do any additional setup after loading the view.
         addShadow(view: shareBtnView)
         queue.async{
@@ -85,28 +85,32 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
                     
                     DispatchQueue.main.async {
                         print("datastring: \(dataString)")
-                        if(dataString != "Try again"){
-                            if let x = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String:Any]{
-                                print(Int(x["count"] as! String))
-                                self.counter = Int(x["count"] as! String)!
-                                //String(data: x["new"] as! Data, encoding: .utf8)
-                                print(x["users"])
-                                //let values​ = x["new"] as! NSArray
-                                //self.arr.append((values​[0] as! NSString) as String)
-                                //self.users.append((values​[0] as! NSString) as String)
-                                //self.users.append(x["users"] as! String)
-                                
-                                //self.users = x["users"].username as! Array<String>
-                                //self.arr = x["users"].emoji as! Array<String>
-                                self.user = x["users"] as! Array<Dictionary<String,String>>
-                                self.collectionView.reloadData()
-                            }else{
-                                print("failed parse")
-                            }
-                           self.poll()
-                        }else{
+                        if(dataString == "Try again"){
                             print("nixx neues")
                             self.poll()
+                        }else{
+                            if(dataString == "Game started"){
+                                print("game started")
+                            }else{
+                                if let x = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String:Any]{
+                                     print(Int(x["count"] as! String))
+                                     self.counter = Int(x["count"] as! String)!
+                                     //String(data: x["new"] as! Data, encoding: .utf8)
+                                     print(x["users"])
+                                     //let values​ = x["new"] as! NSArray
+                                     //self.arr.append((values​[0] as! NSString) as String)
+                                     //self.users.append((values​[0] as! NSString) as String)
+                                     //self.users.append(x["users"] as! String)
+                                     
+                                     //self.users = x["users"].username as! Array<String>
+                                     //self.arr = x["users"].emoji as! Array<String>
+                                     self.user = x["users"] as! Array<Dictionary<String,String>>
+                                     self.collectionView.reloadData()
+                                 }else{
+                                     print("failed parse")
+                                 }
+                                self.poll()
+                            }
                         }
                     }//DispatchQueue
                 }
@@ -224,14 +228,34 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
         }
     }
     
+    func sendGameStart(){
+        if let url = URL(string: "\(localServer)/startGame?token=\(self.token)"){
+            var request = URLRequest(url:url)
+            request.httpMethod = "GET"
+            URLSession.shared.dataTask(with: request) { (data, response, err) in
+                if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                    DispatchQueue.main.async{
+                        print(dataString)
+                    }
+                }
+                if let error = err {
+                    print("Error took place \(error)")
+                }
+            }.resume()
+        }
+    }
+    
   fileprivate func next(){
-      performSegue(withIdentifier: "gameStart", sender: self)
+    queue.async {
+        self.sendGameStart()
+    }
+    performSegue(withIdentifier: "gameStart", sender: self)
   }
 
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
       
       if(segue.identifier == "gameStart") {
-          let vc = segue.destination as! CameraView
+        let vc = segue.destination as! CameraView
         vc.einstellungen = jsonModel
       }
   }

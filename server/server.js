@@ -11,7 +11,8 @@ var clientliste = [];
 var clientsResList = []
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-var timeout
+let timeout
+let timeouts = []
 let test = false
 let index = 0
 let emojis
@@ -38,6 +39,7 @@ MongoClient.connect(url, function (err, db) {
 app.get("/message", function (req, res) {
   res.send("server works");
 });
+
 
 app.use(express.json());
 app.post("/joinGame", function (req, res) {
@@ -78,6 +80,7 @@ app.post("/joinGame", function (req, res) {
   console.log("push clientListe")
   clientliste[req.body.token].push({username:req.body.username, emoji:req.body.emoji});
   sem.release()
+  console.log("clear timeout")
   clearTimeout(this.timeout)
   console.log("vor while schleife")
   console.log(clientliste[token])
@@ -93,6 +96,23 @@ app.post("/joinGame", function (req, res) {
   res.send("User " +  req.body.username + " joined");
 
 });
+
+app.get("/startGame", function(req,res){
+  console.log("start game...")
+  let token = req.query.token
+  sem.release()
+  console.log("clear timeout")
+  clearTimeout(this.timeout)
+  while(clientsResList[token].length > 0){
+    let client = clientsResList[token].pop()
+    client.send("Game started")
+  }
+  res.send("Game started")
+})
+
+app.get("/poll_game", function(req,res){
+  
+})
 
 app.get("/poll",function(req,res){
   console.log(semaphore)
@@ -110,15 +130,11 @@ app.get("/poll",function(req,res){
 
       sem.acquire(()=>{
         this.timeout=setTimeout(()=>{
-          console.log("timeout")
-          index = clientsResList[token].length
-          while(clientsResList[token].length > 0){
-            clientsResList[token].pop()
-          }
-          test = true
-          sem.release()
-          return res.send("Try again")
-        },29000)//Timeout 15sek?
+          tryAgain(token, res)
+        },29000).ref()
+        /*this.timeout = setTimeout(()=>{
+          tryAgain(token, res)
+        },29000).ref()//Timeout 15sek?*/
       })
 
      /* if(clientliste[token].length > counter){//neuer ist inzwischenzeit dazu gejoined
@@ -137,6 +153,17 @@ app.get("/poll",function(req,res){
       //}
 
 });
+
+function tryAgain(token,res){
+  console.log("timeout")
+  index = clientsResList[token].length
+  while(clientsResList[token].length > 0){
+    clientsResList[token].pop()
+  }
+  //test = true
+  sem.release()
+  return res.send("Try again")
+}
 
 app.get("/emojiToFind", (req, res)=>{
   let rand = Math.floor(Math.random(10)*10)
@@ -188,7 +215,7 @@ app.post("/createGame", function (req, res) {
     clientliste[token.toString()] = new Array();
     clientsResList[token.toString()] = new Array()
     
-    sem = semaphore(5)
+    sem = semaphore(2)
 
     //Store to DB
     MongoClient.connect(url, function(err, db) {
