@@ -11,6 +11,10 @@ const fs = require("fs")
 var clientsResList = []
 var sem
 var timeout
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+let timeout
+let timeouts = []
 let test = false
 let index = 0
 let emojis
@@ -54,53 +58,81 @@ app.get("/message", function (req, res) {
   res.send("server works")
 })
 
+
+app.use(express.json());
 app.post("/joinGame", function (req, res) {
-  MongoClient.connect(url, function (err, client) {
-    if (err) console.log("error in join game: " + err)
-    const db = client.db(dbName)
-    db.collection("Game").updateOne(
-      { _id: req.body.token.toString() },
-      {
-        $push: {
-          userlist: {
-            username: req.body.username,
-            emoji: req.body.emoji
-          }
-        }
+  MongoClient.connect(url, function (err, db) {
+    if (err) throw err;
+    var dbo = db.db(dbName);
+    var query = { gamecode: req.body.token };
+    console.log(query)
+    dbo.collection("Game").find(query).toArray(function (err, result) {
+      if (err) throw err;
+      newlist = new Array();
+      console.log("result: " + result[0].userlist[0]);
+      if (result[0].userlist != null) {
+        result[0].userlist.forEach(element => {
+          newlist.push(element);
+        });
       }
-    )
-    let cursor = db.collection("Game").find({ _id: req.body.token.toString() })
-    let userlist = []
-    cursor.forEach(c => {
-      console.log(c.userlist)
-      userlist = c.userlist
-      console.log("setted: " + userlist)
-      res.send(userlist)
 
-      console.log("userlist: " + cursor)
-      sem.release()
-      clearTimeout(this.timeout)
-      console.log("vor while-schleife")
-      let token = req.body.token
-      while (clientsResList[token].length > 0) {
-        console.log(typeof clientsResList[token].length)
-        let user = clientsResList[token].pop()
-        //let count = clientliste[token].length.toString()
-        //let data = {count: clientliste[token].length.toString(), new: req.body.username}
-        //client.send(data)
-        console.log(userlist)
-        user.send({ count: userlist.length.toString(), users: userlist })
-        //client.send("yes")
-      }
-      console.log("User " + req.body.username + " joined")
-      //  console.log("send: " + userlist)
-    })
-    client.close()
+      user = {username: req.body.username, emoji: req.body.emoji, punkte: 0};
 
-  })
+      //Long Polling
+      //clients.push({username: req.body.username, gamecode: req.body.token});
+      newlist.push(user);
+      var newvalues = { $set: { userlist: newlist } };
+      dbo.collection("Game").updateOne(query, newvalues, function (err, res) {
+        if (err) throw err;
+        console.log("User " + req.body.username + " added");
+      });
+      db.close();
+    });
+  });
+  //res.send("User " +  req.body.username + " joined");
+  //send all users
+
+  let token = req.body.token
+  console.log("clientsResList length: " + clientsResList[token].length)
+
+  console.log("push clientListe")
+  clientliste[req.body.token].push({username:req.body.username, emoji:req.body.emoji});
+  sem.release()
+  console.log("clear timeout")
+  clearTimeout(this.timeout)
+  console.log("vor while schleife")
+  console.log(clientliste[token])
+  while(clientsResList[token].length > 0){
+    console.log(typeof clientliste[token].length)
+    let client = clientsResList[token].pop()
+    let count = clientliste[token].length.toString()
+    let data = {count: count, new: req.body.username}
+    //client.send(data)
+    client.send({count: count, users: clientliste[token]})
+    //client.send("yes")
+  }
+  res.send("User " +  req.body.username + " joined");
+
+});
+
+app.get("/startGame", function(req,res){
+  console.log("start game...")
+  let token = req.query.token
+  sem.release()
+  console.log("clear timeout")
+  clearTimeout(this.timeout)
+  while(clientsResList[token].length > 0){
+    let client = clientsResList[token].pop()
+    client.send("Game started")
+  }
+  res.send("Game started")
 })
 
-app.get("/poll", function (req, res) {
+app.get("/poll_game", function(req,res){
+  
+})
+
+app.get("/poll",function(req,res){
   console.log(semaphore)
   console.log("poll here")
   let counter = req.query.counter;
@@ -114,37 +146,38 @@ app.get("/poll", function (req, res) {
     }
   }
 
-  sem.acquire(() => {
-    this.timeout = setTimeout(() => {
-      console.log("timeout")
-      index = clientsResList[token].length
-      while (clientsResList[token].length > 0) {
-        clientsResList[token].pop()
-      }
-      test = true
-      sem.release()
-      return res.send("Try again")
-    }, 29000)//Timeout 15sek?
-  })
+      sem.acquire(()=>{
+        this.timeout=setTimeout(()=>{
+          console.log("timeout")
+          index = clientsResList[token].length
+          while(clientsResList[token].length > 0){
+            clientsResList[token].pop()
+          }
+          //test = true
+          sem.release()
+          return res.send("Try again")
+        },29000).ref()
+        /*this.timeout = setTimeout(()=>{
+          tryAgain(token, res)
+        },29000).ref()//Timeout 15sek?*/
+      })
 
-  /* if(clientliste[token].length > counter){//neuer ist inzwischenzeit dazu gejoined
-     console.log("something new")
-     console.log(t)
-     clearTimeout(t)
-     console.log(t)
-     //res.send(clientliste[token]);
-     let count = clientliste[token].length.toString()
-     let data = {count: count, new: clientliste[token][counter]}
-     //res.send(data)
-     sem.release()
-     res.send(data)
-   }else{*/
-  console.log("counter: " + counter)
-  //}
+     /* if(clientliste[token].length > counter){//neuer ist inzwischenzeit dazu gejoined
+        console.log("something new")
+        console.log(t)
+        clearTimeout(t)
+        console.log(t)
+        //res.send(clientliste[token]);
+        let count = clientliste[token].length.toString()
+        let data = {count: count, new: clientliste[token][counter]}
+        //res.send(data)
+        sem.release()
+        res.send(data)
+      }else{*/
+        console.log("counter: "+counter)
+      //}
 
 })
-
-app.get("/emojiToFind", (req, res) => {
 
 app.get("/emojiToFind", (req, res)=>{
   let rand = Math.floor(Math.random(10)*10)
