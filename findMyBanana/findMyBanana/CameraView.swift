@@ -28,11 +28,11 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
     var counterStartValue = 3
     var isCountdownFinished = false
     
-    var einstellungen = GameModel(anz: 3, timeInSec: 5)
+    var einstellungen = GameModel(anz: 3, timeInSec: 5, token: "")
     var points = 0
     var username = ""
     var emoji = ""
-    var user:Array<Dictionary<String,String>> = []
+    var user:Array<Dictionary<String,Any>> = []
 
     var open = false
     var found=false
@@ -46,6 +46,9 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
     
     var isEmojiShown = false
     var dataSource = DataSource()
+    
+    var users:Array<Dictionary<String, Any>> = []
+    let localServer = "http://192.168.0.105"
 
     
     @IBAction func showHideUser(_ sender: UIButton) {
@@ -64,6 +67,7 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
     override func viewDidLoad() {
         findTime.text = "find in under \(einstellungen.timeInSec) sec"
         super.viewDidLoad()
+        print("model: \(einstellungen)")
         view.bringSubviewToFront(animatedView)
         userTable.dataSource = dataSource
         userTable.delegate = self
@@ -210,8 +214,13 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
             if(!found) {
                 answerLabel.text = first.identifier
             if(first.identifier == item) {
-                points+=1
-                pointsLabel.text = "\(points)"
+                //points+=1
+                //pointsLabel.text = "\(points)"
+                var parameter = ["username": self.username, "emoji": self.emoji, "punkte": String(points)]
+                let queue = DispatchQueue(label: "queue", attributes: .concurrent)
+                queue.async {
+                    self.foundItem(parameter: parameter)
+                }
                 found = true
                 showGreenBorder()
             }
@@ -225,9 +234,116 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
         answerLabel.textColor = UIColor(red:0/255, green:225/255, blue:0/255, alpha: 1)
     }
 
+    func poll(){
+        print("poll startetd")
+        if let url = URL(string: "\(localServer)/poll?counter=\(self.counter)&token=\(self.einstellungen.token)"){
 
+            var request = URLRequest(url:url)
+            request.httpMethod = "GET"
+            URLSession.shared.dataTask(with: request) { (data, response, err) in
+                if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                    
+                    
+                    DispatchQueue.main.async {
+                        print("datastring: \(dataString)")
+                        if(dataString == "Try again"){
+                            print("nixx neues")
+                            self.poll()
+                        }else{
+                            if(dataString == "Game started"){
+                                print("game started")
+                            }else{
+                                if let x = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String:Any]{
+                                     print(Int(x["count"] as! String))
+                                     self.counter = Int(x["count"] as! String)!
+                                     //String(data: x["new"] as! Data, encoding: .utf8)
+                                     print(x["users"])
+                                     //let values​ = x["new"] as! NSArray
+                                     //self.arr.append((values​[0] as! NSString) as String)
+                                     //self.users.append((values​[0] as! NSString) as String)
+                                     //self.users.append(x["users"] as! String)
+                                     
+                                     //self.users = x["users"].username as! Array<String>
+                                     //self.arr = x["users"].emoji as! Array<String>
+                                     self.user = x["users"] as! Array<Dictionary<String,String>>
+                                 }else{
+                                     print("failed parse")
+                                 }
+                                self.poll()
+                            }
+                        }
+                    }//DispatchQueue
+                }
+                if let error = err {
+                    print("Error took place \(error)")
+                }
+            }.resume()
+        }
+    }
     
-    
+    func foundItem(parameter:[String:String]){
+
+        if let url = URL(string: "\(localServer)/foundItem") {
+
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            let username = parameter["username"]
+            let token = parameter["token"]
+            let emoji = parameter["emoji"]
+            let points = parameter["punkte"]
+            let poststring = "token=\(token!)&spieler=\(username!)&emoji=\(emoji!)&punkte=\(points)"
+            request.httpBody = poststring.data(using: String.Encoding.utf8)
+            
+            URLSession.shared.dataTask(with: request) { (data, response, err) in
+                if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                    print("dataString: \(dataString)")
+                    print("data: \(data)")
+                    let spieler = Spieler()
+                    if let jsonObj = try? JSONSerialization.jsonObject(with: data, options: []) as? [[String:Any]]{
+                               print("obj= \(jsonObj)")
+                               
+                               for dict in jsonObj {
+                                   print("dictFOR= \(dict)")
+                                let username = dict["username"] as! String
+                                    let emoji = dict["emoji"] as! String
+                                let punkte = dict["punkte"] as! String
+                           //     self.user = dict["username"] as! Array<Dictionary<String,String>>
+                             //   self.user = dict["emoji"] as! Array<Dictionary<String,String>>
+                                //self.user.append( dict as! Dictionary<String,String>)
+                                spieler.username = username
+                                spieler.emoji = emoji
+                                
+                                //self.spielerliste.spieler.append(spieler)
+
+                                print("usernem: \(username), emoji: \(emoji)")
+                               }
+                       // self.user = jsonObj["username"] as! Array<Dictionary<String,String>>
+
+                    }
+
+                    DispatchQueue.main.async {
+                      /*  self.user = []
+                        print("spielerliste count: \(self.spielerliste.spieler.count)")
+                        print("user count: \(self.user.count)")
+                        for i in 0..<self.spielerliste.spieler.count {
+                          //  self.user[i]["emoji"]?.append("String") //(self.spielerliste.spieler[i].emoji)
+                            self.user[i]["username"] += (self.spielerliste.spieler[i].username)
+                            print(self.user[i]["username"])
+                            self.user = self.spielerliste.spieler as! Array<Dictionary<String,String>>
+
+                        }*/
+                        print("user count: \(self.user.count)")
+
+                    }//DispatchQueue
+                }
+                if let error = err {
+                    print("Error took place \(error)")
+                }
+            }.resume()
+        }else{
+            print("URL ist flasch")
+        }
+    }
     /*
     // MARK: - Navigation
 
@@ -242,7 +358,7 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
 
 class DataSource : NSObject, UITableViewDataSource {
     
-    var user:Array<Dictionary<String,String>> = []
+    var user:Array<Dictionary<String,Any>> = []
 
     func numberOfSections(in tableView: UITableView) -> Int { //Spalten
         return 1
@@ -254,8 +370,8 @@ class DataSource : NSObject, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-     
-        cell.textLabel?.text = user[indexPath.row]["punkte"]!
+        var punkte:Int = user[indexPath.row]["punkte"]! as! Int
+        cell.textLabel?.text = String(punkte)
         cell.detailTextLabel?.text = "\(user[indexPath.row]["username"]!) \(user[indexPath.row]["emoji"]!)"
         return cell
     }

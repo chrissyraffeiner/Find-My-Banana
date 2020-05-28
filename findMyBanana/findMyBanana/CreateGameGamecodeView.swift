@@ -9,12 +9,12 @@ import UIKit
 
 class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     let serverURL = "http://31.214.245.100:3000"
-    let localServer = "http://192.168.1.175:3000"
-    //let localServer = "http://192.168.0.105:3000"
+    //let localServer = "http://192.168.1.175:3000"
+    let localServer = "http://192.168.0.105:3000"
 
     var token = ""
     let spielerliste = Spielerliste()
-    var jsonModel = GameModel(anz: 3, timeInSec: 5)
+    var jsonModel = GameModel(anz: 3, timeInSec: 5, token: "")
     var shareUrl = ""
     var username = ""
     var parameter = ["":""]
@@ -22,7 +22,7 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
     //var arr:Array<String> = []
     //var users:Array<String> = []
     var counter = 0
-    var user:Array<Dictionary<String,String>> = []
+    var user:Array<Dictionary<String,Any>> = []
     let queue = DispatchQueue(label: "myQueue", attributes: .concurrent)
 
     @IBOutlet weak var shareBtnView: UIView!
@@ -43,6 +43,7 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
+        jsonModel.token = self.token
         //self.users[0] = username
         //self.arr[0] = self.emojis[Int.random(in: 0 ... 7)]
         //self.usernameLabel.text = username
@@ -67,8 +68,8 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
         let cellIndex = indexPath.item
-        cell.text.text = user[cellIndex]["emoji"]
-        cell.username.text = user[cellIndex]["username"]
+        cell.text.text = user[cellIndex]["emoji"] as! String
+        cell.username.text = user[cellIndex]["username"] as! String
         print("user: \(user[cellIndex])")
 
         return cell
@@ -104,7 +105,7 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
                                      
                                      //self.users = x["users"].username as! Array<String>
                                      //self.arr = x["users"].emoji as! Array<String>
-                                     self.user = x["users"] as! Array<Dictionary<String,String>>
+                                     self.user = x["users"] as! Array<Dictionary<String,Any>>
                                      self.collectionView.reloadData()
                                  }else{
                                      print("failed parse")
