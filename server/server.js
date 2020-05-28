@@ -70,6 +70,7 @@ app.post("/joinGame", function (req, res) {
         if (err) throw err;
         console.log("User " + req.body.username + " added");
       });
+      res.send(user);
       db.close();
     });
   });
@@ -79,7 +80,7 @@ app.post("/joinGame", function (req, res) {
   let token = req.body.token
   console.log("clientsResList length: " + clientsResList[token].length)
   console.log("push clientListe")
-  clientliste[req.body.token].push({username:req.body.username, emoji:req.body.emoji, punkte: 0});
+  clientliste[req.body.token].push({username:req.body.username, emoji:req.body.emoji, punkte: "0"});
   sem.release()
   console.log("clear timeout join game")
   //clear all timeouts
@@ -99,7 +100,6 @@ app.post("/joinGame", function (req, res) {
     client.send({count: count, users: clientliste[token]})
     //client.send("yes")
   }
-  res.send("User " +  req.body.username + " joined");
 
 });
 
