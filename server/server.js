@@ -62,7 +62,6 @@ app.post("/joinGame", function (req, res) {
       }
 
       user = {username: req.body.username, emoji: req.body.emoji, punkte: 0};
-      users[token].push(user)
       //Long Polling
       //clients.push({username: req.body.username, gamecode: req.body.token});
       newlist.push(user);
@@ -80,10 +79,15 @@ app.post("/joinGame", function (req, res) {
   let token = req.body.token
   console.log("clientsResList length: " + clientsResList[token].length)
   console.log("push clientListe")
-  clientliste[req.body.token].push({username:req.body.username, emoji:req.body.emoji});
+  clientliste[req.body.token].push({username:req.body.username, emoji:req.body.emoji, punkte: 0});
   sem.release()
-  console.log("clear timeout")
-  clearTimeout(this.timeout)
+  console.log("clear timeout join game")
+  //clear all timeouts
+  console.log(timeouts[token])
+  for(let i = 0; i < timeouts[token].length; i++){
+    clearTimeout(timeouts[token][i])
+  }
+  //clearTimeout(this.timeout)
   console.log("vor while schleife")
   console.log(clientliste[token])
   while(clientsResList[token].length > 0){
@@ -102,11 +106,16 @@ app.post("/joinGame", function (req, res) {
 app.get("/startGame", function(req,res){
   console.log("start game...")
   let token = req.query.token
+  users[token] = new Array()
   foundItem[token] = new Array()
-  console.log(users[token])
   sem.release()
   console.log("clear timeout")
-  clearTimeout(this.timeout)
+  // clear all timeouts
+  console.log("timeouts: ",timeouts[token].length)
+  for(let i = 0; i < timeouts[token].length; i++){
+    clearTimeout(timeouts[token][i])
+  }
+  //clearTimeout(this.timeout)
   while(clientsResList[token].length > 0){
     let client = clientsResList[token].pop()
     client.send("Game started")
@@ -130,7 +139,7 @@ app.get("/poll",function(req,res){
     }
 
       sem.acquire(()=>{
-        this.timeout=setTimeout(()=>{
+        timeouts[token].push(setTimeout(()=>{
           console.log("timeout")
           index = clientsResList[token].length
           while(clientsResList[token].length > 0){
@@ -139,9 +148,9 @@ app.get("/poll",function(req,res){
           test = true
           sem.release()
           return res.send("Try again")
-        },29000).ref()
+        },29000))
       })
-
+    
 });
 
 app.get("/emojiToFind", (req, res)=>{
@@ -193,7 +202,9 @@ app.post("/createGame", function (req, res) {
     //Long Polling Liste
     clientliste[token.toString()] = new Array();
     clientsResList[token.toString()] = new Array()
-    users[token.toString()] = new Array()
+    timeouts[token.toString()] = new Array()
+
+    console.log(timeouts[token.toString()])
     
     sem = semaphore(2)
 
@@ -258,15 +269,11 @@ app.post("/foundItem", (req, res)=>{
           user["punkte"]++
           foundItem[token].push(user)
           sem.release()
-          clearTimeout(this.timeout)
-          while(clientsResList[token].length > 0){
-            console.log(foundItem[token].length)
-            let client = clientsResList[token].pop()
-            let count = foundItem[token].length
-            //let data = {count: count, new: req.body.username}
-            //client.send(data)
-            client.send({count: count, users: foundItem[token]})
-            //client.send("yes")
+          //clearTimeout(this.timeout)
+          //clear all timeouts
+          console.log("timeouts: ", timeouts[token])
+          for(let i = 0; i < timeouts[token].length; i++){
+            clearTimeout(timeouts[token][i])
           }
         }
       });
@@ -275,7 +282,16 @@ app.post("/foundItem", (req, res)=>{
       dbo.collection("Game").updateOne(query, newvalues, (err,result)=>{
         if(err) throw err;
         console.log("updated")
-        users[token] = result[0].userlist;
+        users[token] = newlist;
+        while(clientsResList[token].length > 0){
+          console.log(foundItem[token].length)
+          let client = clientsResList[token].pop()
+          let count = foundItem[token].length
+          //let data = {count: count, new: req.body.username}
+          //client.send(data)
+          client.send({count: count, users: users[token]})
+          //client.send("yes")
+        }
         db.close()
       })
     })
