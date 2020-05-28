@@ -13,6 +13,7 @@ class CreateGameEmojiView:  UIViewController, UIPickerViewDelegate, UIPickerView
     @IBOutlet weak var emojiPicker: UIPickerView!
     var anz : Int = 3
     var timeInSec : Int = 5
+    var token:String = ""
     
     
     @IBAction func nextGesture(_ sender: UIScreenEdgePanGestureRecognizer) {

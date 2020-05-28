@@ -10,13 +10,13 @@ import UIKit
 
 class ConnectWithUsernameView: UIViewController {
 
-    let localServer = "http://192.168.1.175:3000"
-    //let localServer = "http://192.168.0.105:3000"
+    //let localServer = "http://192.168.1.175:3000"
+    let localServer = "http://192.168.0.105:3000"
     
     @IBOutlet weak var usernameTF: UITextField!
-    var jsonModel = GameModel(anz: 3, timeInSec: 5)
-    var admin:Bool = false
     var token:String = ""
+    var jsonModel = GameModel(anz: 3, timeInSec: 5, token: "")
+    var admin:Bool = false
     
     @IBAction func gestureNext(_ sender: UIScreenEdgePanGestureRecognizer) {
         if(sender.state == .began){
@@ -29,6 +29,7 @@ class ConnectWithUsernameView: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        jsonModel = GameModel(anz: 3, timeInSec: 5, token: self.token)
         //addShadow(tf: usernameTF)
         // Do any additional setup after loading the view.
         
