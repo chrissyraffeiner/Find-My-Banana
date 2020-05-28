@@ -251,7 +251,9 @@ app.get("/checktoken/:token", function (req, res) {
 app.use(express.json());
 app.post("/foundItem", (req, res)=>{
   let token = req.body.token
-  let player = req.body.spieler
+  let username = req.body.username
+  let emoji = req.body.emoji
+  let punkte = req.body.punkte
 
   //upgrade punkte anzahl in db
   MongoClient.connect(url, function(err,db){
@@ -263,9 +265,9 @@ app.post("/foundItem", (req, res)=>{
       if(err) throw err;
       console.log(result[0].userlist)
       result[0].userlist.forEach(user => {
-        if(user["username"] == player["username"]){
+        if(user["username"] == username){
           console.log("user found")
-          player["emoji"] = user["emoji"]
+          emoji = user["emoji"]
           user["punkte"]++
           foundItem[token].push(user)
           sem.release()

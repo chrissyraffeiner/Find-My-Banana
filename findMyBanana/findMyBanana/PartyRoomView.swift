@@ -21,9 +21,9 @@ class PartyRoomView: UIViewController, UICollectionViewDelegate, UICollectionVie
     var users:Array<String> = []
     var parameter = ["":""]
     var emojis = ["\u{1F973}", "\u{1F36A}","\u{1F480}","\u{1F47E}","\u{1F98A}","\u{1F42C}","\u{1F41D}","\u{1F354}",]
-    let localServer = "http://192.168.1.175:3000"
-    //let localServer = "http://192.168.0.105:3000"
-    var user:Array<Dictionary<String,String>> = []
+    //let localServer = "http://192.168.1.175:3000"
+    let localServer = "http://192.168.0.105:3000"
+    var user:Array<Dictionary<String,Any>> = []
     
     override func viewDidLoad() {
         collectionView.delegate = self
@@ -54,8 +54,8 @@ class PartyRoomView: UIViewController, UICollectionViewDelegate, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "partyCell", for: indexPath) as! CollectionPartyViewCell
         let cellIndex = indexPath.item
-        cell.text.text = user[cellIndex]["emoji"]!
-        cell.username.text = user[cellIndex]["username"]!
+        cell.text.text = user[cellIndex]["emoji"]! as! String
+        cell.username.text = user[cellIndex]["username"]! as! String
         print(user[cellIndex])
         return cell
     }
@@ -109,6 +109,7 @@ class PartyRoomView: UIViewController, UICollectionViewDelegate, UICollectionVie
                             if(dataString == "Game started"){
                                 print("game started")
                                 //perform segue
+                                self.performSegue(withIdentifier: "partyJoin", sender: self)
                             }else{
                                 print("kein try again kein game started")
                                 if let x = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String:Any]{
@@ -122,7 +123,7 @@ class PartyRoomView: UIViewController, UICollectionViewDelegate, UICollectionVie
                                      //self.users.append((values​[0] as! NSString) as String)
                                      //self.users.append(x["new"] as! String)
                                      //self.arr = x["emojis"] as! Array<String>
-                                  self.user = x["users"] as! Array<Dictionary<String,String>>
+                                  self.user = x["users"] as! Array<Dictionary<String,Any>>
                                       print("emojis \(self.arr)")
                                       print("users: \(self.users)")
                                      self.collectionView.reloadData()
@@ -145,14 +146,16 @@ class PartyRoomView: UIViewController, UICollectionViewDelegate, UICollectionVie
     }
     
     
-    /*
+    
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
+         
+         if(segue.identifier == "partyJoin") {
+           let vc = segue.destination as! CameraView
+         }
      }
-     */
+     
     
 }
