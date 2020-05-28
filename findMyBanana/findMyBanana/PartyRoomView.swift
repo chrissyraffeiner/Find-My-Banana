@@ -102,31 +102,37 @@ class PartyRoomView: UIViewController, UICollectionViewDelegate, UICollectionVie
                     
                     DispatchQueue.main.async {
                        print("datastring: \(dataString)")
-                       if(dataString != "Try again"){
-                           if let x = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String:Any]{
-                               print(Int(x["count"] as! String))
-                               self.counter = Int(x["count"] as! String)!
-                               //String(data: x["new"] as! Data, encoding: .utf8)
-                              // print(x["new"] as! String)
-                                //self.users = x["users"] as! Array<String>
-                               //let values​ = x["new"] as! NSArray
-                               //self.arr.append((values​[0] as! NSString) as String)
-                               //self.users.append((values​[0] as! NSString) as String)
-                               //self.users.append(x["new"] as! String)
-                               //self.arr = x["emojis"] as! Array<String>
-                            self.user = x["users"] as! Array<Dictionary<String,String>>
-                                print("emojis \(self.arr)")
-                                print("users: \(self.users)")
-                               self.collectionView.reloadData()
-                           }else{
-                               print("failed parse")
-                           }
-                          self.poll()
-                       }else{
-                           print("nixx neues")
-                           self.poll()
-                       }
-
+                        if(dataString == "Try again"){
+                            print("nixx neues")
+                            self.poll()
+                        }else{
+                            if(dataString == "Game started"){
+                                print("game started")
+                                //perform segue
+                            }else{
+                                print("kein try again kein game started")
+                                if let x = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String:Any]{
+                                     print(Int(x["count"] as! String))
+                                     self.counter = Int(x["count"] as! String)!
+                                     //String(data: x["new"] as! Data, encoding: .utf8)
+                                    // print(x["new"] as! String)
+                                      //self.users = x["users"] as! Array<String>
+                                     //let values​ = x["new"] as! NSArray
+                                     //self.arr.append((values​[0] as! NSString) as String)
+                                     //self.users.append((values​[0] as! NSString) as String)
+                                     //self.users.append(x["new"] as! String)
+                                     //self.arr = x["emojis"] as! Array<String>
+                                  self.user = x["users"] as! Array<Dictionary<String,String>>
+                                      print("emojis \(self.arr)")
+                                      print("users: \(self.users)")
+                                     self.collectionView.reloadData()
+                                 }else{
+                                     print("failed parse")
+                                 }
+                                print("poll...")
+                                self.poll()
+                            }
+                        }
                     }//DispatchQueue
                 }
                 if let error = err {
