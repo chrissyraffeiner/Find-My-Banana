@@ -109,6 +109,7 @@ class PartyRoomView: UIViewController, UICollectionViewDelegate, UICollectionVie
                             if(dataString == "Game started"){
                                 print("game started")
                                 //perform segue
+                                self.performSegue(withIdentifier: "partyJoin", sender: self)
                             }else{
                                 print("kein try again kein game started")
                                 if let x = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String:Any]{
@@ -145,14 +146,16 @@ class PartyRoomView: UIViewController, UICollectionViewDelegate, UICollectionVie
     }
     
     
-    /*
+    
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
+         
+         if(segue.identifier == "partyJoin") {
+           let vc = segue.destination as! CameraView
+         }
      }
-     */
+     
     
 }

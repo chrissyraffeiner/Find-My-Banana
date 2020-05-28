@@ -665,7 +665,7 @@
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" reuseIdentifier="partyCell" translatesAutoresizingMaskIntoConstraints="NO" id="YRp-lJ-mDO" customClass="CollectionPartyViewCell" customModule="findMyBanana" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" fixedFrame="YES" reuseIdentifier="partyCell" translatesAutoresizingMaskIntoConstraints="NO" id="YRp-lJ-mDO" customClass="CollectionPartyViewCell" customModule="findMyBanana" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="85" height="85"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="2Cf-WB-UOv" customClass="CollectionPartyViewCell" customModule="findMyBanana" customModuleProvider="target">
@@ -754,6 +754,7 @@
                     <navigationItem key="navigationItem" title="Join Game" id="V5V-em-gl2"/>
                     <connections>
                         <outlet property="collectionView" destination="HXd-Qm-Zk4" id="5z6-FW-Kvl"/>
+                        <segue destination="icc-1o-e1e" kind="show" identifier="partyJoin" id="xT0-N9-NpS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TBv-mu-iR0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1239,6 +1240,7 @@
         <image name="Plus.png" width="165" height="165"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="xT0-N9-NpS"/>
         <segue reference="v39-9m-1CG"/>
     </inferredMetricsTieBreakers>
 </document>

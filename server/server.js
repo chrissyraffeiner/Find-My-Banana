@@ -79,7 +79,7 @@ app.post("/joinGame", function (req, res) {
   let token = req.body.token
   console.log("clientsResList length: " + clientsResList[token].length)
   console.log("push clientListe")
-  clientliste[req.body.token].push({username:req.body.username, emoji:req.body.emoji, punkte: 0});
+  clientliste[req.body.token].push({username:req.body.username, emoji:req.body.emoji});
   sem.release()
   console.log("clear timeout join game")
   //clear all timeouts
