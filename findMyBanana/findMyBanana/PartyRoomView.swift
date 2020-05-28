@@ -21,8 +21,8 @@ class PartyRoomView: UIViewController, UICollectionViewDelegate, UICollectionVie
     var users:Array<String> = []
     var parameter = ["":""]
     var emojis = ["\u{1F973}", "\u{1F36A}","\u{1F480}","\u{1F47E}","\u{1F98A}","\u{1F42C}","\u{1F41D}","\u{1F354}",]
-    //let localServer = "http://192.168.1.175:3000"
-    let localServer = "http://192.168.0.105:3000"
+    let localServer = "http://192.168.1.175:3000"
+    //let localServer = "http://192.168.0.105:3000"
     var user:Array<Dictionary<String,String>> = []
     
     override func viewDidLoad() {
@@ -55,7 +55,7 @@ class PartyRoomView: UIViewController, UICollectionViewDelegate, UICollectionVie
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "partyCell", for: indexPath) as! CollectionPartyViewCell
         let cellIndex = indexPath.item
         cell.text.text = user[cellIndex]["emoji"]!
-       // cell.usernameLabel.text = user[cellIndex]["username"]!
+        cell.username.text = user[cellIndex]["username"]!
         print(user[cellIndex])
         return cell
     }
@@ -65,11 +65,11 @@ class PartyRoomView: UIViewController, UICollectionViewDelegate, UICollectionVie
         if let url = URL(string: urlString) {
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
-            var username = parameter["username"]
-            var token = parameter["token"]
-            var emoji = parameter["emoji"]
+            let username = parameter["username"]
+            let token = parameter["token"]
+            let emoji = parameter["emoji"]
             //let jsondata = try? JSONEncoder().encode(model)
-            var poststring = "token=\(token!)&username=\(username!)&emoji=\(emoji!)"
+            let poststring = "token=\(token!)&username=\(username!)&emoji=\(emoji!)"
 
             request.httpBody = poststring.data(using: String.Encoding.utf8)
             URLSession.shared.dataTask(with: request) { (data, response, err) in

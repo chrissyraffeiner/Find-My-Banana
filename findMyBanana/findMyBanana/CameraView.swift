@@ -11,18 +11,32 @@ import AVFoundation
 import Vision
 import CoreML
 
-class CameraView: UIViewController {
+class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegate, UITableViewDelegate {
 
     @IBOutlet weak var preview: UIView!
-    let session = AVCaptureSession()
     @IBOutlet weak var animatedView: UIView!
     @IBOutlet weak var answerLabel: UILabel!
+    @IBOutlet weak var pointsLabel: UILabel!
+    @IBOutlet weak var detectedLabel: UILabel!
+    @IBOutlet weak var userButton: UIButton!
     
+    @IBOutlet weak var userTable: UITableView!
+    
+    let session = AVCaptureSession()
     var counter = 0
     var counterTimer = Timer()
     var counterStartValue = 3
     var isCountdownFinished = false
+    
     var einstellungen = GameModel(anz: 3, timeInSec: 5)
+    var points = 0
+    var username = ""
+    var emoji = ""
+    var user:Array<Dictionary<String,String>> = []
+
+    var open = false
+    var found=false
+    var item = "banana"
     
     var audioPlayer:AVAudioPlayer?
     
@@ -31,11 +45,29 @@ class CameraView: UIViewController {
     @IBOutlet weak var findTime: UILabel!
     
     var isEmojiShown = false
+    var dataSource = DataSource()
+
+    
+    @IBAction func showHideUser(_ sender: UIButton) {
+        if open {
+            userTable.layer.zPosition = -10
+            
+        } else {
+            
+            userTable.layer.zPosition = 60
+
+        }
+        open = !open
+    }
+    
     
     override func viewDidLoad() {
         findTime.text = "find in under \(einstellungen.timeInSec) sec"
         super.viewDidLoad()
         view.bringSubviewToFront(animatedView)
+        userTable.dataSource = dataSource
+        userTable.delegate = self
+        dataSource.user = user
         startCountdown()
     }
     
@@ -82,8 +114,14 @@ class CameraView: UIViewController {
                     animatedView.removeFromSuperview()
                     findView.removeFromSuperview()
                     print("preview")
-                    view.bringSubviewToFront(preview)
+                    //view.bringSubviewToFront(preview)
+                    
+                    answerLabel.layer.zPosition = 10
+                    pointsLabel.layer.zPosition = 10
+                    userButton.layer.zPosition = 10
+                    detectedLabel.layer.zPosition = 10
                     startCapture()
+                    print("start capture")
                 }
             }
         }
@@ -95,48 +133,72 @@ class CameraView: UIViewController {
     }
     
     func startCapture(){
-        guard let captureDevice = AVCaptureDevice.default(for: .video) else { return }
-        session.sessionPreset = .photo
-        guard let input = try? AVCaptureDeviceInput(device: captureDevice) else { return }
+        pointsLabel.text = "\(points)"
+        if let captureDevice = AVCaptureDevice.default(for: .video){
+            session.sessionPreset = .photo
+            if let input = try? AVCaptureDeviceInput(device: captureDevice) {
+                session.addInput(input)
+                
+                session.startRunning()
+                
+                let previewLayer = AVCaptureVideoPreviewLayer(session: session)
+                previewLayer.videoGravity = .resizeAspectFill
+                self.preview.layer.addSublayer(previewLayer)
+                previewLayer.frame = view.frame
+                previewLayer.frame = previewLayer.bounds
+                
+                let output = AVCaptureVideoDataOutput()
+                output.setSampleBufferDelegate(self as? AVCaptureVideoDataOutputSampleBufferDelegate, queue: DispatchQueue(label: "videoQueue"))
+                print("131")
+                session.addOutput(output)
+            }
+            else {
+                return
+                
+            }
+            
+            
+        } else {
+            print("116")
+            return
+        }
         
-        session.addInput(input)
-        
-        session.startRunning()
-        
-        let previewLayer = AVCaptureVideoPreviewLayer(session: session)
-        previewLayer.videoGravity = .resizeAspectFill
-        self.preview.layer.addSublayer(previewLayer)
-        previewLayer.frame = self.preview.frame
-        
-        let output = AVCaptureVideoDataOutput()
-        output.setSampleBufferDelegate(self as? AVCaptureVideoDataOutputSampleBufferDelegate, queue: DispatchQueue(label: "videoQueue"))
-        
-        session.addOutput(output)
     }
     
     func detectScene(image: CIImage){
-                guard let model = try? VNCoreMLModel(for: YOLOv3Tiny().model) else { return }
+        if let model = try? VNCoreMLModel(for: YOLOv3Tiny().model){} else { print("fehler 148") }
 
     }
     
     func captureOutput(_ output:AVCaptureOutput, didOutput samplebuffer: CMSampleBuffer, from connection: AVCaptureConnection){
-    
-    guard let pixelBuffer: CVPixelBuffer = CMSampleBufferGetImageBuffer(samplebuffer) else {return}
-    
-    guard let model = try? VNCoreMLModel(for: YOLOv3Tiny().model) else {return }
-    
-    
-    let request = VNCoreMLRequest(model: model){ (finishedReq, err) in
-        DispatchQueue.main.async(execute: {
-            // perform all the UI updates on the main queue
-            if let results = finishedReq.results as? [VNDetectedObjectObservation]{
-                self.drawResults(results)
+        if let pixelBuffer: CVPixelBuffer = try? CMSampleBufferGetImageBuffer(samplebuffer) {
+            if let model = try? VNCoreMLModel(for: YOLOv3Tiny().model) {
+                let request = VNCoreMLRequest(model: model){ (finishedReq, err) in
+                    print(err)
+                DispatchQueue.main.async(execute: {
+
+                    // perform all the UI updates on the main queue
+                    if let results = finishedReq.results as? [VNDetectedObjectObservation]{
+                        self.drawResults(results)
+                    }
+                })
+                
+                }
+            try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([request])
+
+            
+            
+                
+            } else {
+                print("fehler 173")
             }
-        })
-        
-    }
+            
+        }
+        else {
+            print("fehler 176")
+            return}
     
-    try? VNImageRequestHandler(cvPixelBuffer: pixelBuffer, options: [:]).perform([request])
+    
     }
     
     func drawResults(_ results: [Any]){
@@ -145,10 +207,27 @@ class CameraView: UIViewController {
             
             let first = objectRecognized.labels[0]
             print(first.identifier)
-            answerLabel.text = first.identifier
+            if(!found) {
+                answerLabel.text = first.identifier
+            if(first.identifier == item) {
+                points+=1
+                pointsLabel.text = "\(points)"
+                found = true
+                showGreenBorder()
+            }
+            }
         }
     }
+    
+    func showGreenBorder(){
+        /*self.preview.layer.borderWidth = 1
+        self.preview.layer.borderColor = UIColor(red:222/255, green:225/255, blue:227/255, alpha: 1).cgColor*/
+        answerLabel.textColor = UIColor(red:0/255, green:225/255, blue:0/255, alpha: 1)
+    }
 
+
+    
+    
     /*
     // MARK: - Navigation
 
@@ -159,4 +238,26 @@ class CameraView: UIViewController {
     }
     */
 
+}
+
+class DataSource : NSObject, UITableViewDataSource {
+    
+    var user:Array<Dictionary<String,String>> = []
+
+    func numberOfSections(in tableView: UITableView) -> Int { //Spalten
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return user.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+     
+        cell.textLabel?.text = user[indexPath.row]["punkte"]!
+        cell.detailTextLabel?.text = "\(user[indexPath.row]["username"]!) \(user[indexPath.row]["emoji"]!)"
+        return cell
+    }
+    
 }
