@@ -182,7 +182,6 @@ app.post("/createGame", function (req, res) {
 })
 
 //Schaut ob das Spiel bereits erstellt wurde
-app.use(express.json())
 app.get("/checktoken/:token", function (req, res) {
   let token = req.params.token
   MongoClient.connect(url, function (err, db) {
