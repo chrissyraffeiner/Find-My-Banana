@@ -43,7 +43,6 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
-        jsonModel.token = self.token
         //self.users[0] = username
         //self.arr[0] = self.emojis[Int.random(in: 0 ... 7)]
         //self.usernameLabel.text = username
@@ -51,7 +50,7 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
         addShadow(view: shareBtnView)
         queue.async{
             self.setupPost()
-            print(self.token)
+            print("token: \(self.token), jsonmodel: \(self.jsonModel.token)")
         }//async
         
     }
@@ -151,6 +150,8 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
                         print("token: \(self.token)")
                         self.parameter = ["token": self.token, "username": self.username, "emoji": self.emojis[Int.random(in: 0...7)]]
                         print(self.parameter)
+                        self.jsonModel.token = self.token
+                        print("view did load token: \(self.token), model: \(self.jsonModel)")
                         self.poll()
                         self.joinGame(parameter: self.parameter)
                     }//DispatchQueue
@@ -237,7 +238,7 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
             URLSession.shared.dataTask(with: request) { (data, response, err) in
                 if let data = data, let dataString = String(data: data, encoding: .utf8) {
                     DispatchQueue.main.async{
-                        print(dataString)
+                        print("datastring: \(dataString), jsonModel: \(self.jsonModel)")
                     }
                 }
                 if let error = err {

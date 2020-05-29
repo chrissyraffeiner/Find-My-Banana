@@ -11,7 +11,23 @@ import AVFoundation
 import Vision
 import CoreML
 
-class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegate, UITableViewDelegate {
+class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegate, UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int { //Spalten
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return user.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        var punkte:Int = user[indexPath.row]["punkte"]! as! Int
+        cell.textLabel?.text = String(punkte)
+        cell.detailTextLabel?.text = "\(user[indexPath.row]["username"]!) \(user[indexPath.row]["emoji"]!)"
+        return cell
+    }
+    
 
     @IBOutlet weak var preview: UIView!
     @IBOutlet weak var animatedView: UIView!
@@ -48,7 +64,7 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
     var dataSource = DataSource()
     
     var users:Array<Dictionary<String, Any>> = []
-    let localServer = "http://192.168.0.105"
+    let localServer = "http://192.168.0.105:3000"
 
     
     @IBAction func showHideUser(_ sender: UIButton) {
@@ -67,11 +83,11 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
     override func viewDidLoad() {
         findTime.text = "find in under \(einstellungen.timeInSec) sec"
         super.viewDidLoad()
-        print("model: \(einstellungen)")
+        print("model cameraView: \(einstellungen)")
         view.bringSubviewToFront(animatedView)
-        userTable.dataSource = dataSource
+        userTable.dataSource = self
         userTable.delegate = self
-        dataSource.user = user
+        //dataSource.user = user
         startCountdown()
     }
     
@@ -124,8 +140,13 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
                     pointsLabel.layer.zPosition = 10
                     userButton.layer.zPosition = 10
                     detectedLabel.layer.zPosition = 10
-                    startCapture()
+                    let queue = DispatchQueue(label: "queue", attributes: .concurrent)
+                    queue.async {
+                        self.poll()
+                    }
+                    //self.startCapture()
                     print("start capture")
+                    
                 }
             }
         }
@@ -254,8 +275,9 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
                                 print("game started")
                             }else{
                                 if let x = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String:Any]{
-                                     print(Int(x["count"] as! String))
-                                     self.counter = Int(x["count"] as! String)!
+                                    let temp = Int(x["count"]! as! NSNumber)
+                                     print("count: \(type(of: temp))")
+                                    self.counter = temp
                                      //String(data: x["new"] as! Data, encoding: .utf8)
                                      print(x["users"])
                                      //let values​ = x["new"] as! NSArray
@@ -265,7 +287,9 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
                                      
                                      //self.users = x["users"].username as! Array<String>
                                      //self.arr = x["users"].emoji as! Array<String>
-                                     self.user = x["users"] as! Array<Dictionary<String,String>>
+                                     self.user = x["users"] as! Array<Dictionary<String,Any>>
+                                    print("usertable user: \(self.user)")
+                                    self.userTable.reloadData()
                                  }else{
                                      print("failed parse")
                                  }
