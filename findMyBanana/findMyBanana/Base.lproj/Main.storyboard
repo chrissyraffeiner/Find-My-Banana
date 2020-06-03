@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qII-P2-htN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qII-P2-htN">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -628,13 +628,13 @@
                                 <rect key="frame" x="87" y="118" width="240" height="128"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Party" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ad0-1M-Y28">
-                                        <rect key="frame" x="20" y="41" width="91.5" height="45"/>
+                                        <rect key="frame" x="20" y="41" width="90.5" height="45"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="37"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Room" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b7X-4x-XFU">
-                                        <rect key="frame" x="119.5" y="42" width="100" height="45"/>
+                                        <rect key="frame" x="118.5" y="42" width="100" height="45"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="37"/>
                                         <color key="textColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -1043,7 +1043,7 @@
                                 <rect key="frame" x="87" y="118" width="240" height="100"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Party" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L4D-yl-RHd">
-                                        <rect key="frame" x="20.5" y="29" width="91.5" height="45"/>
+                                        <rect key="frame" x="21.5" y="29" width="90.5" height="45"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="37"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -1177,7 +1177,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B1y-xu-MqT">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -1198,6 +1198,12 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="34a-2J-uln">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="timer" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yh2-Aq-Oh6">
+                                        <rect key="frame" x="165.5" y="140" width="83" height="45.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="38"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CHN-rq-yad">
                                         <rect key="frame" x="30" y="833" width="26" height="33"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="27"/>
@@ -1270,8 +1276,10 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Y9t-tW-gWj" secondAttribute="trailing" constant="30" id="0DS-eV-AcA"/>
                                     <constraint firstItem="CHN-rq-yad" firstAttribute="leading" secondItem="34a-2J-uln" secondAttribute="leading" constant="30" id="2Uy-MK-1uM"/>
+                                    <constraint firstItem="Yh2-Aq-Oh6" firstAttribute="centerX" secondItem="34a-2J-uln" secondAttribute="centerX" id="3wp-A8-2sA"/>
                                     <constraint firstAttribute="trailing" secondItem="2PL-W7-AMa" secondAttribute="trailing" constant="30" id="8GI-tL-YfS"/>
                                     <constraint firstItem="YY3-FY-sTH" firstAttribute="top" secondItem="34a-2J-uln" secondAttribute="top" constant="90" id="MFV-Gi-AqQ"/>
+                                    <constraint firstItem="Yh2-Aq-Oh6" firstAttribute="top" secondItem="YY3-FY-sTH" secondAttribute="bottom" constant="20" id="QBv-jB-8aF"/>
                                     <constraint firstItem="YY3-FY-sTH" firstAttribute="leading" secondItem="34a-2J-uln" secondAttribute="leading" constant="30" id="SsL-fo-0x4"/>
                                     <constraint firstItem="htX-vq-2Xo" firstAttribute="leading" secondItem="34a-2J-uln" secondAttribute="leading" constant="30" id="bc6-3i-uLY"/>
                                     <constraint firstAttribute="bottom" secondItem="2PL-W7-AMa" secondAttribute="bottom" constant="30" id="cui-R3-30B"/>
@@ -1309,6 +1317,7 @@
                         <outlet property="findView" destination="O6g-Jv-d91" id="BOn-Vv-8dx"/>
                         <outlet property="pointsLabel" destination="2PL-W7-AMa" id="fW3-r9-FlQ"/>
                         <outlet property="preview" destination="34a-2J-uln" id="Cgw-dq-Vhw"/>
+                        <outlet property="timerLabel" destination="Yh2-Aq-Oh6" id="8Qe-ez-163"/>
                         <outlet property="userButton" destination="CHN-rq-yad" id="AdT-g6-gAL"/>
                         <outlet property="userTable" destination="htX-vq-2Xo" id="fGS-zg-04D"/>
                     </connections>
