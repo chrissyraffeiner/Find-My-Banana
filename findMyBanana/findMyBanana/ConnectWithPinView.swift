@@ -149,7 +149,7 @@ class ConnectWithPinView: UIViewController {
     }
     
     func setupGet(){
-        if let url = URL(string: "\(self.localServer)/checktoken/\(self.token)"){
+        if let url = URL(string: "\(self.serverURL)/checktoken/\(self.token)"){
             var request = URLRequest(url: url)
             request.httpMethod = "GET"
             URLSession.shared.dataTask(with: request) { (data, response, error) in

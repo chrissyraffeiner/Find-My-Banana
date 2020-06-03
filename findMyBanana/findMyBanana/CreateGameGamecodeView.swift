@@ -76,7 +76,7 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
     }
     func poll(){
         print("poll startetd")
-        if let url = URL(string: "\(localServer)/poll?counter=\(self.counter)&token=\(self.token)"){
+        if let url = URL(string: "\(serverURL)/poll?counter=\(self.counter)&token=\(self.token)"){
 
             var request = URLRequest(url:url)
             request.httpMethod = "GET"
@@ -134,7 +134,7 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
     
     func setupPost() {
         
-        if let url = URL(string: "\(localServer)/createGame") {
+        if let url = URL(string: "\(serverURL)/createGame") {
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
                         
@@ -169,7 +169,7 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
     
     func joinGame(parameter:[String:String]){
 
-        if let url = URL(string: "\(localServer)/joinGame") {
+        if let url = URL(string: "\(serverURL)/joinGame") {
 
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
@@ -233,7 +233,7 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
     
     func sendGameStart(){
         print("send game start")
-        if let url = URL(string: "\(localServer)/startGame?token=\(self.token)"){
+        if let url = URL(string: "\(serverURL)/startGame?token=\(self.token)"){
             var request = URLRequest(url:url)
             request.httpMethod = "GET"
             URLSession.shared.dataTask(with: request) { (data, response, err) in
