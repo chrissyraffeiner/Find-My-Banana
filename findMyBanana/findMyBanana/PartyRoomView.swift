@@ -21,10 +21,12 @@ class PartyRoomView: UIViewController, UICollectionViewDelegate, UICollectionVie
     var users:Array<String> = []
     var parameter = ["":""]
     var emojis = ["\u{1F973}", "\u{1F36A}","\u{1F480}","\u{1F47E}","\u{1F98A}","\u{1F42C}","\u{1F41D}","\u{1F354}",]
+
     let localServer = "http://192.168.1.175:8080"
     let serverURL = "http://vm112.htl-leonding.ac.at:8080"
     //let localServer = "http://192.168.0.105:3000"
-    var user:Array<Dictionary<String,Any>> = []
+
+  var user:Array<Dictionary<String,Any>> = []
     
     override func viewDidLoad() {
         collectionView.delegate = self

@@ -8,10 +8,12 @@
 import UIKit
 
 class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+
     //let serverURL = "http://31.214.245.100:3000"
     let localServer = "http://192.168.1.175:8080"
     //let localServer = "http://192.168.0.105:3000"
     let serverURL = "http://vm112.htl-leonding.ac.at:8080"
+
 
     var token = ""
     let spielerliste = Spielerliste()
@@ -51,7 +53,7 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
         addShadow(view: shareBtnView)
         queue.async{
             self.setupPost()
-            print("token: \(self.token), jsonmodel: \(self.jsonModel.token)")
+            print("token: \(self.token), jsonmodel: \(self.jsonModel)")
         }//async
         
     }
@@ -137,8 +139,9 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
         if let url = URL(string: "\(serverURL)/createGame") {
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
-                        
+            
             let poststring = "anz=\(jsonModel.anz)&timeInSec=\(jsonModel.timeInSec)"
+            print(poststring)
             request.httpBody = poststring.data(using: String.Encoding.utf8)
             
             URLSession.shared.dataTask(with: request) { (data, response, err) in

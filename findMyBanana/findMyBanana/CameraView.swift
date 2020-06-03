@@ -73,8 +73,8 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
 
     @IBOutlet weak var findItemLabel: UILabel!
     
-    let pathToSound = Bundle.main.path(forResource: "countdown_sound", ofType: "wav")!
     let url = URL(fileURLWithPath: Bundle.main.path(forResource: "countdown_sound", ofType: "wav")!)
+    let cameraSoundUrl = URL(fileURLWithPath: Bundle.main.path(forResource: "camera", ofType: "mp3")!)
     
     @IBAction func showHideUser(_ sender: UIButton) {
         if open {
@@ -102,13 +102,13 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
         userTable.dataSource = self
         userTable.delegate = self
         //dataSource.user = user
-        prepareSound()
+        prepareSound(soundURL:url)
         startCountdown()
     }
     
-    func prepareSound(){
+    func prepareSound(soundURL:URL){
         do{
-            audioPlayer = try? AVAudioPlayer(contentsOf: url)
+            audioPlayer = try? AVAudioPlayer(contentsOf: soundURL)
             //audioPlayer?.play()
         }catch{
             print("ned so")
@@ -202,6 +202,7 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
     }
     
     func startCapture(){
+        prepareSound(soundURL: cameraSoundUrl)
         pointsLabel.text = "\(points)"
         if let captureDevice = AVCaptureDevice.default(for: .video){
             session.sessionPreset = .photo
@@ -296,6 +297,7 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
     func showGreenBorder(){
         /*self.preview.layer.borderWidth = 1
         self.preview.layer.borderColor = UIColor(red:222/255, green:225/255, blue:227/255, alpha: 1).cgColor*/
+        audioPlayer?.play()
         answerLabel.textColor = UIColor(red:0/255, green:225/255, blue:0/255, alpha: 1)
     }
 
