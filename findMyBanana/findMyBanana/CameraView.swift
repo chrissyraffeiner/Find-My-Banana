@@ -64,9 +64,15 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
     var dataSource = DataSource()
     
     var users:Array<Dictionary<String, Any>> = []
+
     //let localServer = "http://192.168.0.105:3000"
     let localServer = "http://192.168.1.175:8080"
+    var itemU = "\u{1F973}"
 
+    @IBOutlet weak var findItemLabel: UILabel!
+    
+    let pathToSound = Bundle.main.path(forResource: "countdown_sound", ofType: "wav")!
+    let url = URL(fileURLWithPath: Bundle.main.path(forResource: "countdown_sound", ofType: "wav")!)
     
     @IBAction func showHideUser(_ sender: UIButton) {
         if open {
@@ -84,12 +90,49 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
     override func viewDidLoad() {
         findTime.text = "find in under \(einstellungen.timeInSec) sec"
         super.viewDidLoad()
+        let queue = DispatchQueue(label:"queue")
         print("model cameraView: \(einstellungen)")
+        queue.async{
+            self.getItem()
+        }
         view.bringSubviewToFront(animatedView)
         userTable.dataSource = self
         userTable.delegate = self
         //dataSource.user = user
+        prepareSound()
         startCountdown()
+    }
+    
+    func prepareSound(){
+        do{
+            audioPlayer = try? AVAudioPlayer(contentsOf: url)
+            //audioPlayer?.play()
+        }catch{
+            print("ned so")
+        }
+    }
+    
+    func getItem(){
+        var itemU = ""
+        var item = ""
+        if let url = URL(string: "\(localServer)/emojiToFind"){
+            var request = URLRequest(url:url)
+            request.httpMethod = "GET"
+            URLSession.shared.dataTask(with: request) { (data, response, err) in
+                if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                    if let obj = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String:Any]{
+                        itemU = obj["emoji"] as! String
+                        item = obj["name"] as! String
+                    }
+                    DispatchQueue.main.async{
+                        print("unicode: \(itemU), name: \(item)")
+                        self.item = item
+                        self.itemU = itemU
+                        self.findItemLabel.text = self.itemU
+                    }
+                }
+            }.resume()
+        }
     }
     
     func startCountdown(){
@@ -104,14 +147,7 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
     
     @objc func decrementCounter(){
         if(!isCountdownFinished){
-            let pathToSound = Bundle.main.path(forResource: "countdown_sound", ofType: "wav")!
-            let url = URL(fileURLWithPath: pathToSound)
-            do{
-                audioPlayer = try AVAudioPlayer(contentsOf: url)
-                audioPlayer?.play()
-            }catch{
-                print("ned so")
-            }
+            audioPlayer?.play()
             counter -= 1
             switch(counter){
             case 2:

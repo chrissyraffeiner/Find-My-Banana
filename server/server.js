@@ -158,7 +158,10 @@ app.get("/emojiToFind", (req, res)=>{
   let keys = Object.keys(emojis)
   let values = Object.values(emojis)
 
-  let findItem = {"emoji":keys[rand],"name":values[rand]}
+  //let unicode = "\\u{" + keys[rand] + "}"
+
+  let findItem = {"emoji": keys[rand],"name":values[rand]}
+  console.log(findItem)
 
   res.send(findItem)
 })
