@@ -76,6 +76,7 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
     let url = URL(fileURLWithPath: Bundle.main.path(forResource: "countdown_sound", ofType: "wav")!)
     let cameraSoundUrl = URL(fileURLWithPath: Bundle.main.path(forResource: "camera", ofType: "mp3")!)
     let failedSoundUrl = URL(fileURLWithPath: Bundle.main.path(forResource: "ohno", ofType: "mp3")!)
+    var timerIsFinished = false
     
     @IBAction func showHideUser(_ sender: UIButton) {
         if open {
@@ -416,25 +417,26 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
         }
     }
     func startTimer(){
-        prepareSound(soundURL: cameraSoundUrl)
+        prepareSound(soundURL: failedSoundUrl)
         counter = einstellungen.timeInSec
         timerLabel.layer.zPosition = 10
         counterTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timer), userInfo: nil, repeats: true)
     }
     
     @objc func timer(){
-        counter-=1
-        print("\(counter)")
-        if(counter <= 3) {
-            timerLabel.textColor = UIColor(red:255/255, green:0/255, blue:0/255, alpha: 1)
-        }
-        timerLabel.text = "\(counter)"
-        if(counter == 0){
-            audioPlayer?.play()
-        }
-        if(counter<=0){
-            timerLabel.layer.zPosition = 0
-            counterTimer.invalidate()
+        if(!timerIsFinished){
+            counter-=1
+            print("\(counter)")
+            if(counter <= 3) {
+                timerLabel.textColor = UIColor(red:255/255, green:0/255, blue:0/255, alpha: 1)
+            }
+            timerLabel.text = "\(counter)"
+            if(counter<=0){
+                audioPlayer?.play()
+                timerLabel.layer.zPosition = 0
+                counterTimer.invalidate()
+                timerIsFinished = true
+            }
         }
     }
     /*
