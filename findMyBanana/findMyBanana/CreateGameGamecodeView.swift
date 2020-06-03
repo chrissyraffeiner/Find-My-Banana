@@ -8,9 +8,12 @@
 import UIKit
 
 class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
-    let serverURL = "http://31.214.245.100:3000"
-    //let localServer = "http://192.168.1.175:8080"
-    let localServer = "http://192.168.0.105:3000"
+
+    //let serverURL = "http://31.214.245.100:3000"
+    let localServer = "http://192.168.1.175:8080"
+    //let localServer = "http://192.168.0.105:3000"
+    let serverURL = "http://vm112.htl-leonding.ac.at:8080"
+
 
     var token = ""
     let spielerliste = Spielerliste()
@@ -75,7 +78,7 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
     }
     func poll(){
         print("poll startetd")
-        if let url = URL(string: "\(localServer)/poll?counter=\(self.counter)&token=\(self.token)"){
+        if let url = URL(string: "\(serverURL)/poll?counter=\(self.counter)&token=\(self.token)"){
 
             var request = URLRequest(url:url)
             request.httpMethod = "GET"
@@ -133,7 +136,7 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
     
     func setupPost() {
         
-        if let url = URL(string: "\(localServer)/createGame") {
+        if let url = URL(string: "\(serverURL)/createGame") {
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             
@@ -169,7 +172,7 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
     
     func joinGame(parameter:[String:String]){
 
-        if let url = URL(string: "\(localServer)/joinGame") {
+        if let url = URL(string: "\(serverURL)/joinGame") {
 
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
@@ -233,7 +236,7 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
     
     func sendGameStart(){
         print("send game start")
-        if let url = URL(string: "\(localServer)/startGame?token=\(self.token)"){
+        if let url = URL(string: "\(serverURL)/startGame?token=\(self.token)"){
             var request = URLRequest(url:url)
             request.httpMethod = "GET"
             URLSession.shared.dataTask(with: request) { (data, response, err) in
