@@ -67,6 +67,7 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
 
     //let localServer = "http://192.168.0.105:3000"
     let localServer = "http://192.168.1.175:8080"
+    let serverURL = "http://vm112.htl-leonding.ac.at:8080"
     var itemU = "\u{1F973}"
 
     @IBOutlet weak var findItemLabel: UILabel!
@@ -115,7 +116,7 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
     func getItem(){
         var itemU = ""
         var item = ""
-        if let url = URL(string: "\(localServer)/emojiToFind"){
+        if let url = URL(string: "\(serverURL)/emojiToFind"){
             var request = URLRequest(url:url)
             request.httpMethod = "GET"
             URLSession.shared.dataTask(with: request) { (data, response, err) in
@@ -294,7 +295,7 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
 
     func poll(){
         print("poll startetd")
-        if let url = URL(string: "\(localServer)/poll?counter=\(self.counter)&token=\(self.einstellungen.token)"){
+        if let url = URL(string: "\(serverURL)/poll?counter=\(self.counter)&token=\(self.einstellungen.token)"){
 
             var request = URLRequest(url:url)
             request.httpMethod = "GET"
@@ -344,7 +345,7 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
     
     func foundItem(parameter:[String:String]){
 
-        if let url = URL(string: "\(localServer)/foundItem") {
+        if let url = URL(string: "\(serverURL)/foundItem") {
 
             var request = URLRequest(url: url)
             request.httpMethod = "POST"

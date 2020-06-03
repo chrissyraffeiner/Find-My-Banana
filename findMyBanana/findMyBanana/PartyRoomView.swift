@@ -22,6 +22,7 @@ class PartyRoomView: UIViewController, UICollectionViewDelegate, UICollectionVie
     var parameter = ["":""]
     var emojis = ["\u{1F973}", "\u{1F36A}","\u{1F480}","\u{1F47E}","\u{1F98A}","\u{1F42C}","\u{1F41D}","\u{1F354}",]
     let localServer = "http://192.168.1.175:8080"
+    let serverURL = "http://vm112.htl-leonding.ac.at:8080"
     //let localServer = "http://192.168.0.105:3000"
     var user:Array<Dictionary<String,Any>> = []
     
@@ -61,7 +62,7 @@ class PartyRoomView: UIViewController, UICollectionViewDelegate, UICollectionVie
     }
     
     func joinGame(parameter:[String:String]){
-        let urlString =  "\(localServer)/joinGame"
+        let urlString =  "\(serverURL)/joinGame"
         if let url = URL(string: urlString) {
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
@@ -92,7 +93,7 @@ class PartyRoomView: UIViewController, UICollectionViewDelegate, UICollectionVie
     }
     
     func poll(){
-        if let url = URL(string: "\(localServer)/poll?counter=\(self.counter)&token=\(self.token)"){
+        if let url = URL(string: "\(serverURL)/poll?counter=\(self.counter)&token=\(self.token)"){
 
             var request = URLRequest(url:url)
             request.httpMethod = "GET"
