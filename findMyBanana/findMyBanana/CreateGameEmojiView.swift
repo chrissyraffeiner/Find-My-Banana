@@ -67,9 +67,12 @@ class CreateGameEmojiView:  UIViewController, UIPickerViewDelegate, UIPickerView
         
         if(segue.identifier == "GenerateCode") {
             let vc = segue.destination as! ConnectWithUsernameView
-            print("emojiview: \(timeInSec)")
-            vc.jsonModel.timeInSec = timeInSec
-            vc.jsonModel.anz = anz
+            print("emojiview time: \(timeInSec), anz: \(anz)")
+            //vc.jsonModel.timeInSec = timeInSec
+            //vc.jsonModel.anz = anz
+            vc.anz = anz
+            vc.timeInSec = timeInSec
+            print("vc.jsonmodel: \(vc.anz), \(vc.timeInSec)")
             vc.admin = true
         }
         

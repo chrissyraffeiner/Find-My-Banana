@@ -10,11 +10,13 @@ import UIKit
 
 class ConnectWithUsernameView: UIViewController {
 
-    let localServer = "http://192.168.1.175:8080"
-    //let localServer = "http://192.168.0.105:3000"
+    //let localServer = "http://192.168.1.175:8080"
+    let localServer = "http://192.168.0.105:3000"
     
     @IBOutlet weak var usernameTF: UITextField!
     var token:String = ""
+    var anz:Int = 0
+    var timeInSec:Int = 0
     var jsonModel = GameModel(anz: 3, timeInSec: 5, token: "")
     var admin:Bool = false
     
@@ -29,8 +31,10 @@ class ConnectWithUsernameView: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        jsonModel = GameModel(anz: 3, timeInSec: 5, token: self.token)
         //addShadow(tf: usernameTF)
+        jsonModel.anz = anz
+        jsonModel.timeInSec = timeInSec
+        print("jsonModel: \(jsonModel)")
         // Do any additional setup after loading the view.
         
     }
@@ -99,6 +103,8 @@ class ConnectWithUsernameView: UIViewController {
         
         if(segue.identifier == "PartyRoomAdmin"){
             let vc = segue.destination as! CreateGameGamecodeView
+            vc.jsonModel.anz = jsonModel.anz
+            vc.jsonModel.timeInSec = jsonModel.timeInSec
             vc.username = usernameTF.text!
         }
     }
