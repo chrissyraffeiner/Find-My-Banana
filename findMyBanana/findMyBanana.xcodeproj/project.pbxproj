@@ -29,6 +29,7 @@
 		FD56FE23243528AF00659A93 /* ConnectWithUsernameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD56FE22243528AF00659A93 /* ConnectWithUsernameView.swift */; };
 		FD56FE252435422500659A93 /* PartyRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD56FE242435422500659A93 /* PartyRoomView.swift */; };
 		FD7FCA1E2488227500B96C74 /* camera.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FD7FCA1D2488227500B96C74 /* camera.mp3 */; };
+		FD7FCA202488317700B96C74 /* ohno.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FD7FCA1F2488317600B96C74 /* ohno.mp3 */; };
 		FD8466532421103E00E95E22 /* CreateGameGamecodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8466522421103E00E95E22 /* CreateGameGamecodeView.swift */; };
 		FD8BFBB82450DB5800DC8447 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8BFBB72450DB5800DC8447 /* CameraView.swift */; };
 		FD8BFBBA2450DE6500DC8447 /* YOLOv3Tiny.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = FD8BFBB92450DE6500DC8447 /* YOLOv3Tiny.mlmodel */; };
@@ -82,6 +83,7 @@
 		FD56FE22243528AF00659A93 /* ConnectWithUsernameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectWithUsernameView.swift; sourceTree = "<group>"; };
 		FD56FE242435422500659A93 /* PartyRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartyRoomView.swift; sourceTree = "<group>"; };
 		FD7FCA1D2488227500B96C74 /* camera.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = camera.mp3; sourceTree = "<group>"; };
+		FD7FCA1F2488317600B96C74 /* ohno.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ohno.mp3; sourceTree = "<group>"; };
 		FD8466522421103E00E95E22 /* CreateGameGamecodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGameGamecodeView.swift; sourceTree = "<group>"; };
 		FD8BFBB72450DB5800DC8447 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		FD8BFBB92450DE6500DC8447 /* YOLOv3Tiny.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = YOLOv3Tiny.mlmodel; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				C39AC69A241B9BF3006EFAD5 /* AppDelegate.swift */,
 				C39AC69C241B9BF3006EFAD5 /* SceneDelegate.swift */,
 				FD7FCA1D2488227500B96C74 /* camera.mp3 */,
+				FD7FCA1F2488317600B96C74 /* ohno.mp3 */,
 				C39AC69E241B9BF3006EFAD5 /* ViewController.swift */,
 				C39AC6A0241B9BF3006EFAD5 /* Main.storyboard */,
 				FD06E8392475453900B8C644 /* CollectionPartyViewCell.swift */,
@@ -296,6 +299,7 @@
 				FD8BFBBC2450E64200DC8447 /* countdown_sound.wav in Resources */,
 				C39AC6A4241B9BF4006EFAD5 /* Assets.xcassets in Resources */,
 				C3B1C6382424CBBD005C5F86 /* Plus.png in Resources */,
+				FD7FCA202488317700B96C74 /* ohno.mp3 in Resources */,
 				C3B1C6392424CBBD005C5F86 /* Background_Banana.jpeg in Resources */,
 				C39AC6A2241B9BF3006EFAD5 /* Main.storyboard in Resources */,
 				C31101AB24211FC900D48AEB /* Emoji.txt in Resources */,
