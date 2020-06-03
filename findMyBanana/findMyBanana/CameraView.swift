@@ -70,6 +70,9 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
 
     @IBOutlet weak var findItemLabel: UILabel!
     
+    let pathToSound = Bundle.main.path(forResource: "countdown_sound", ofType: "wav")!
+    let url = URL(fileURLWithPath: Bundle.main.path(forResource: "countdown_sound", ofType: "wav")!)
+    
     @IBAction func showHideUser(_ sender: UIButton) {
         if open {
             userTable.layer.zPosition = -10
@@ -95,7 +98,17 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
         userTable.dataSource = self
         userTable.delegate = self
         //dataSource.user = user
+        prepareSound()
         startCountdown()
+    }
+    
+    func prepareSound(){
+        do{
+            audioPlayer = try? AVAudioPlayer(contentsOf: url)
+            //audioPlayer?.play()
+        }catch{
+            print("ned so")
+        }
     }
     
     func getItem(){
@@ -133,14 +146,7 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
     
     @objc func decrementCounter(){
         if(!isCountdownFinished){
-            let pathToSound = Bundle.main.path(forResource: "countdown_sound", ofType: "wav")!
-            let url = URL(fileURLWithPath: pathToSound)
-            do{
-                audioPlayer = try AVAudioPlayer(contentsOf: url)
-                audioPlayer?.play()
-            }catch{
-                print("ned so")
-            }
+            audioPlayer?.play()
             counter -= 1
             switch(counter){
             case 2:
