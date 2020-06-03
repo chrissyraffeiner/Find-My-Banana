@@ -64,8 +64,9 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
     var dataSource = DataSource()
     
     var users:Array<Dictionary<String, Any>> = []
-    let localServer = "http://192.168.0.105:3000"
-    
+
+    //let localServer = "http://192.168.0.105:3000"
+    let localServer = "http://192.168.1.175:8080"
     var itemU = "\u{1F973}"
 
     @IBOutlet weak var findItemLabel: UILabel!
