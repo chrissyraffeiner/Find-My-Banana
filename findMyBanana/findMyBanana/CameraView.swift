@@ -65,7 +65,10 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
     
     var users:Array<Dictionary<String, Any>> = []
     let localServer = "http://192.168.0.105:3000"
+    
+    var itemU = "\u{1F973}"
 
+    @IBOutlet weak var findItemLabel: UILabel!
     
     @IBAction func showHideUser(_ sender: UIButton) {
         if open {
@@ -83,12 +86,39 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
     override func viewDidLoad() {
         findTime.text = "find in under \(einstellungen.timeInSec) sec"
         super.viewDidLoad()
+        let queue = DispatchQueue(label:"queue")
         print("model cameraView: \(einstellungen)")
+        queue.async{
+            self.getItem()
+        }
         view.bringSubviewToFront(animatedView)
         userTable.dataSource = self
         userTable.delegate = self
         //dataSource.user = user
         startCountdown()
+    }
+    
+    func getItem(){
+        var itemU = ""
+        var item = ""
+        if let url = URL(string: "\(localServer)/emojiToFind"){
+            var request = URLRequest(url:url)
+            request.httpMethod = "GET"
+            URLSession.shared.dataTask(with: request) { (data, response, err) in
+                if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                    if let obj = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String:Any]{
+                        itemU = obj["emoji"] as! String
+                        item = obj["name"] as! String
+                    }
+                    DispatchQueue.main.async{
+                        print("unicode: \(itemU), name: \(item)")
+                        self.item = item
+                        self.itemU = itemU
+                        self.findItemLabel.text = self.itemU
+                    }
+                }
+            }.resume()
+        }
     }
     
     func startCountdown(){

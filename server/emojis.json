@@ -1,12 +1,12 @@
 {
-    "\u1F34C": "banana",
-    "\u1F34E": "apple",
-    "\u1F36A": "coockie",
-    "\u1F550": "clock",
-    "\u1F4BB": "laptop",
-    "\u1F5A5": "computer",
-    "\u2328": "keyboard",
-    "\u1F5B1": "mouse",
-    "\u2702": "scissors",
-    "\u1F4D5": "book"
+    "🍌": "banana",
+    "🍎": "apple",
+    "🍪": "coockie",
+    "🕚": "clock",
+    "💻": "laptop",
+    "🖥️": "computer",
+    "⌨️": "keyboard",
+    "🖱️": "mouse",
+    "✂️": "scissors",
+    "📕": "book"
 }
