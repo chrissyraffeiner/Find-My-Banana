@@ -30,6 +30,7 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
     
 
     @IBOutlet weak var preview: UIView!
+    @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var animatedView: UIView!
     @IBOutlet weak var answerLabel: UILabel!
     @IBOutlet weak var pointsLabel: UILabel!
@@ -93,6 +94,7 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
         super.viewDidLoad()
         let queue = DispatchQueue(label:"queue")
         print("model cameraView: \(einstellungen)")
+        timerLabel.text = "\(einstellungen.timeInSec)"
         queue.async{
             self.getItem()
         }
@@ -182,11 +184,15 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
                     queue.async {
                         self.poll()
                     }
-                    //self.startCapture()
+
+                    self.startCapture()
                     print("start capture")
-                    
+                    self.startTimer()
                 }
             }
+        } else {
+            //counterTimer.invalidate()
+            counterTimer = Timer()
         }
     }
     
@@ -269,7 +275,7 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
             guard let objectRecognized = observation as? VNRecognizedObjectObservation else {return}
             
             let first = objectRecognized.labels[0]
-            print(first.identifier)
+            //print(first.identifier)
             if(!found) {
                 answerLabel.text = first.identifier
             if(first.identifier == item) {
@@ -404,6 +410,24 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
             }.resume()
         }else{
             print("URL ist flasch")
+        }
+    }
+    func startTimer(){
+        counter = einstellungen.timeInSec
+        timerLabel.layer.zPosition = 10
+        counterTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(timer), userInfo: nil, repeats: true)
+    }
+    
+    @objc func timer(){
+        counter-=1
+        print("\(counter)")
+        if(counter <= 3) {
+            timerLabel.textColor = UIColor(red:255/255, green:0/255, blue:0/255, alpha: 1)
+        }
+        timerLabel.text = "\(counter)"
+        if(counter<=0){
+            timerLabel.layer.zPosition = 0
+            counterTimer.invalidate()
         }
     }
     /*
