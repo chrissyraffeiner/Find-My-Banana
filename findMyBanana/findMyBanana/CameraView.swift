@@ -78,6 +78,8 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
     let failedSoundUrl = URL(fileURLWithPath: Bundle.main.path(forResource: "ohno", ofType: "mp3")!)
     var timerIsFinished = false
     
+    var count = 0
+    
     @IBAction func showHideUser(_ sender: UIButton) {
         if open {
             userTable.layer.zPosition = -10
@@ -305,7 +307,7 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
 
     func poll(){
         print("poll startetd")
-        if let url = URL(string: "\(serverURL)/poll?counter=\(self.counter)&token=\(self.einstellungen.token)"){
+        if let url = URL(string: "\(serverURL)/poll?counter=\(self.count)&token=\(self.einstellungen.token)"){
 
             var request = URLRequest(url:url)
             request.httpMethod = "GET"
@@ -325,7 +327,7 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
                                 if let x = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String:Any]{
                                     let temp = Int(x["count"]! as! NSNumber)
                                      print("count: \(type(of: temp))")
-                                    self.counter = temp
+                                    self.count = temp
                                      //String(data: x["new"] as! Data, encoding: .utf8)
                                      print(x["users"])
                                      //let values​ = x["new"] as! NSArray
