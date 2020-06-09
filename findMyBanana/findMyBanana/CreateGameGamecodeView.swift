@@ -261,6 +261,7 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
             self.sendGameStart()
         }
         let vc = segue.destination as! CameraView
+        print("jsonModel: \(jsonModel)")
         vc.einstellungen = jsonModel
          vc.user = user
         vc.username = username

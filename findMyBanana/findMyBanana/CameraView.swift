@@ -356,7 +356,7 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
     }
     
     func foundItem(parameter:[String:String]){
-
+print("parameter: \(parameter)")
         if let url = URL(string: "\(serverURL)/foundItem") {
 
             var request = URLRequest(url: url)
@@ -365,7 +365,7 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
             let token = parameter["token"]
             let emoji = parameter["emoji"]
             let points = parameter["punkte"]
-            let poststring = "token=\(token!)&spieler=\(username!)&emoji=\(emoji!)&punkte=\(points)"
+            let poststring = "token=\(token!)&username=\(username!)&emoji=\(emoji!)&punkte=\(points)"
             request.httpBody = poststring.data(using: String.Encoding.utf8)
             
             URLSession.shared.dataTask(with: request) { (data, response, err) in
