@@ -34,6 +34,7 @@
 		FD8BFBB82450DB5800DC8447 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD8BFBB72450DB5800DC8447 /* CameraView.swift */; };
 		FD8BFBBA2450DE6500DC8447 /* YOLOv3Tiny.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = FD8BFBB92450DE6500DC8447 /* YOLOv3Tiny.mlmodel */; };
 		FD8BFBBC2450E64200DC8447 /* countdown_sound.wav in Resources */ = {isa = PBXBuildFile; fileRef = FD8BFBBB2450E64200DC8447 /* countdown_sound.wav */; };
+		FDE7BE51248A443700674546 /* ScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE7BE50248A443700674546 /* ScoreView.swift */; };
 		FDE9CD2F247DC27E00C49FFB /* SpielerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDE9CD2E247DC27E00C49FFB /* SpielerModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -88,6 +89,7 @@
 		FD8BFBB72450DB5800DC8447 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		FD8BFBB92450DE6500DC8447 /* YOLOv3Tiny.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = YOLOv3Tiny.mlmodel; sourceTree = "<group>"; };
 		FD8BFBBB2450E64200DC8447 /* countdown_sound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = countdown_sound.wav; sourceTree = "<group>"; };
+		FDE7BE50248A443700674546 /* ScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreView.swift; sourceTree = "<group>"; };
 		FDE9CD2E247DC27E00C49FFB /* SpielerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpielerModel.swift; sourceTree = "<group>"; };
 		FDEFE081242BEF6500239C91 /* findMyBanana.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = findMyBanana.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -148,6 +150,7 @@
 				FD7FCA1F2488317600B96C74 /* ohno.mp3 */,
 				C39AC69E241B9BF3006EFAD5 /* ViewController.swift */,
 				C39AC6A0241B9BF3006EFAD5 /* Main.storyboard */,
+				FDE7BE50248A443700674546 /* ScoreView.swift */,
 				FD06E8392475453900B8C644 /* CollectionPartyViewCell.swift */,
 				FD24A17B2463442600D99697 /* CollectionViewCell.swift */,
 				FD8BFBBB2450E64200DC8447 /* countdown_sound.wav */,
@@ -330,6 +333,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD56FE252435422500659A93 /* PartyRoomView.swift in Sources */,
+				FDE7BE51248A443700674546 /* ScoreView.swift in Sources */,
 				C39AC69F241B9BF3006EFAD5 /* ViewController.swift in Sources */,
 				FDE9CD2F247DC27E00C49FFB /* SpielerModel.swift in Sources */,
 				C39AC6CD241BABDB006EFAD5 /* CreateGameEmojiView.swift in Sources */,
