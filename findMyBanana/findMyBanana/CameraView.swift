@@ -283,9 +283,9 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
             if(!found) {
                 answerLabel.text = first.identifier
             if(first.identifier == item) {
-                //points+=1
-                //pointsLabel.text = "\(points)"
-                var parameter = ["username": self.username, "emoji": self.emoji, "punkte": String(points)]
+                points+=1
+                pointsLabel.text = "\(points)"
+                var parameter = ["token":einstellungen.token, "username": self.username, "emoji": self.emoji, "punkte": String(points)]
                 let queue = DispatchQueue(label: "queue", attributes: .concurrent)
                 queue.async {
                     self.prepareSound(soundURL: self.cameraSoundUrl)
@@ -365,7 +365,8 @@ print("parameter: \(parameter)")
             let token = parameter["token"]
             let emoji = parameter["emoji"]
             let points = parameter["punkte"]
-            let poststring = "token=\(token!)&username=\(username!)&emoji=\(emoji!)&punkte=\(points)"
+            print(points!)
+            let poststring = "token=\(token!)&username=\(username!)&emoji=\(emoji!)&punkte=\(points!)"
             request.httpBody = poststring.data(using: String.Encoding.utf8)
             
             URLSession.shared.dataTask(with: request) { (data, response, err) in
@@ -389,10 +390,10 @@ print("parameter: \(parameter)")
                                 
                                 //self.spielerliste.spieler.append(spieler)
 
-                                print("usernem: \(username), emoji: \(emoji)")
+                                print("username: \(username), emoji: \(emoji), punkte \(punkte)")
                                }
                        // self.user = jsonObj["username"] as! Array<Dictionary<String,String>>
-
+                        
                     }
 
                     DispatchQueue.main.async {
@@ -406,6 +407,7 @@ print("parameter: \(parameter)")
                             self.user = self.spielerliste.spieler as! Array<Dictionary<String,String>>
 
                         }*/
+                        self.userTable.reloadData()
                         print("user count: \(self.user.count)")
 
                     }//DispatchQueue
@@ -433,13 +435,20 @@ print("parameter: \(parameter)")
                 timerLabel.textColor = UIColor(red:255/255, green:0/255, blue:0/255, alpha: 1)
             }
             timerLabel.text = "\(counter)"
-            if(counter<=0){
+            if(counter == 0){
                 audioPlayer?.play()
+            }
+            if(counter<0){
                 timerLabel.layer.zPosition = 0
                 counterTimer.invalidate()
                 timerIsFinished = true
             }
         }
+        if(found) {
+            timerLabel.textColor = UIColor(red:200/255, green:100/255, blue:0/255, alpha: 1)
+
+        }
+        
     }
     /*
     // MARK: - Navigation
