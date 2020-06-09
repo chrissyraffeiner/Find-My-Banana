@@ -69,8 +69,8 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
     //let localServer = "http://192.168.0.105:3000"
     //let localServer = "http://192.168.1.175:8080"
     let localServer = "http://172.17.214.100:3000"
-    //let serverURL = "http://vm112.htl-leonding.ac.at:8080"
-    let serverURL = "http://31.214.245.100:3000"
+    let serverURL = "http://vm112.htl-leonding.ac.at:8080"
+    //let serverURL = "http://31.214.245.100:3000"
     var itemU = "\u{1F973}"
 
     @IBOutlet weak var findItemLabel: UILabel!
@@ -92,6 +92,11 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
 
         }
         open = !open
+    }
+    
+    
+    @IBAction func scoreViewBtn(_ sender: UIBarButtonItem) {
+        
     }
     
     
@@ -367,7 +372,7 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
             let token = parameter["token"]
             let emoji = parameter["emoji"]
             let points = parameter["punkte"]
-            let poststring = "token=\(token!)&spieler=\(username!)&emoji=\(emoji!)&punkte=\(points)"
+            let poststring = "token=\(token!)&username=\(username!)&emoji=\(emoji!)&punkte=\(points)"
             request.httpBody = poststring.data(using: String.Encoding.utf8)
             
             URLSession.shared.dataTask(with: request) { (data, response, err) in
@@ -443,7 +448,7 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
             }
         }
     }
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -451,7 +456,7 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
     }
-    */
+    
 
 }
 

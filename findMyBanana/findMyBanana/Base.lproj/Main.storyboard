@@ -1306,7 +1306,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="RDk-Q6-1Ka"/>
                     </view>
-                    <navigationItem key="navigationItem" id="dpe-jM-tN3"/>
+                    <navigationItem key="navigationItem" id="dpe-jM-tN3">
+                        <barButtonItem key="rightBarButtonItem" title="Score" id="Jou-Zn-XOJ">
+                            <connections>
+                                <action selector="scoreViewBtn:" destination="icc-1o-e1e" id="L3c-cl-skv"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="animatedView" destination="B1y-xu-MqT" id="ODS-mW-UYT"/>
                         <outlet property="answerLabel" destination="Y9t-tW-gWj" id="b7k-KY-hfK"/>
@@ -1320,6 +1326,7 @@
                         <outlet property="timerLabel" destination="Yh2-Aq-Oh6" id="8Qe-ez-163"/>
                         <outlet property="userButton" destination="CHN-rq-yad" id="AdT-g6-gAL"/>
                         <outlet property="userTable" destination="htX-vq-2Xo" id="fGS-zg-04D"/>
+                        <segue destination="7Bh-Iz-vIL" kind="show" id="aVH-mn-VKm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oeE-hJ-aKi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1340,7 +1347,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SCORE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X03-T4-VOR">
-                                <rect key="frame" x="146" y="178" width="122" height="43"/>
+                                <rect key="frame" x="146" y="222" width="122" height="43"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1353,6 +1360,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="EBt-2i-SET"/>
                     </view>
+                    <navigationItem key="navigationItem" id="l7v-lB-svj"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Vh-C6-tYJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
