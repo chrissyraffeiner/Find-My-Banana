@@ -428,7 +428,7 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
     }
     
     @objc func timer(){
-        if(!timerIsFinished && !found){
+        if(!timerIsFinished){
             counter-=1
             print("\(counter)")
             if(counter <= 3) {
