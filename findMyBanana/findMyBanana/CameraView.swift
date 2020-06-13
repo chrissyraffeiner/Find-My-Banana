@@ -81,6 +81,7 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
     var timerIsFinished = false
     
     var count = 0
+    var token = ""
     
     @IBAction func showHideUser(_ sender: UIButton) {
         if open {
@@ -292,7 +293,7 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
             if(first.identifier == item) {
                 //points+=1
                 //pointsLabel.text = "\(points)"
-                var parameter = ["username": self.username, "emoji": self.emoji, "punkte": String(points)]
+                var parameter = ["token": self.token, "username": self.username, "emoji": self.emoji, "punkte": String(points)]
                 let queue = DispatchQueue(label: "queue", attributes: .concurrent)
                 queue.async {
                     self.prepareSound(soundURL: self.cameraSoundUrl)
@@ -363,6 +364,7 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
     }
     
     func foundItem(parameter:[String:String]){
+        print("paramtere: \(parameter)")
 
         if let url = URL(string: "\(serverURL)/foundItem") {
 
@@ -370,9 +372,10 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
             request.httpMethod = "POST"
             let username = parameter["username"]
             let token = parameter["token"]
+            //let token = self.token
             let emoji = parameter["emoji"]
             let points = parameter["punkte"]
-            let poststring = "token=\(token!)&username=\(username!)&emoji=\(emoji!)&punkte=\(points)"
+            let poststring = "token=\(token)&username=\(username!)&emoji=\(emoji!)&punkte=\(points)"
             request.httpBody = poststring.data(using: String.Encoding.utf8)
             
             URLSession.shared.dataTask(with: request) { (data, response, err) in
@@ -455,6 +458,10 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        let vc = segue.destination as! ScoreView
+        if(segue.identifier == "score"){
+            
+        }
     }
     
 
