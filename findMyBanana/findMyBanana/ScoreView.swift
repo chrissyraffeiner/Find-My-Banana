@@ -13,6 +13,10 @@ class ScoreView: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var user:Array<Dictionary<String,Any>> = []
     var runde = 1
     var emojiAnz = 0
+    let queue = DispatchQueue(label: "myQueue", attributes: .concurrent)
+    let serverURL = "http://vm112.htl-leonding.ac.at:8080"
+    var token = ""
+    var jsonModel = GameModel(anz: 3, timeInSec: 5, token: "")
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -41,12 +45,30 @@ class ScoreView: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
 
     @IBAction func nextBtn(_ sender: UIBarButtonItem) {
-        if(runde<emojiAnz) {
+        if(runde<self.jsonModel.anz) {
             //nochmal
             self.performSegue(withIdentifier: "playAgain", sender: self)
         } else {
             //start
             self.performSegue(withIdentifier: "start", sender: self)
+        }
+    }
+    
+    func sendGameStart(){
+        print("send game start")
+        if let url = URL(string: "\(serverURL)/startGame?token=\(self.jsonModel.token)"){
+            var request = URLRequest(url:url)
+            request.httpMethod = "GET"
+            URLSession.shared.dataTask(with: request) { (data, response, err) in
+                if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                    DispatchQueue.main.async{
+                        print("datastring: \(dataString), jsonModel: \(self.jsonModel)")
+                    }
+                }
+                if let error = err {
+                    print("Error took place \(error)")
+                }
+            }.resume()
         }
     }
     
@@ -57,9 +79,14 @@ class ScoreView: UIViewController, UITableViewDelegate, UITableViewDataSource {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
         if(segue.identifier == "playAgain") {
+            queue.async {
+                self.sendGameStart()
+            }
             let vc = segue.destination as! CameraView
             print("playAgain \(vc.runde)")
             vc.runde = vc.runde + 1
+            vc.einstellungen = self.jsonModel
+            vc.user = self.user
         }
         
         if(segue.identifier == "start") {

@@ -514,7 +514,11 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
             print("einstellungen: \(self.einstellungen)")
             vc.user = self.user
             vc.runde = self.runde
-            vc.emojiAnz = self.einstellungen.anz
+            vc.jsonModel.anz = self.einstellungen.anz
+            vc.jsonModel.token = self.einstellungen.token
+            vc.jsonModel.timeInSec = self.einstellungen.timeInSec
+            //vc.emojiAnz = self.einstellungen.anz
+            //vc.token = self.einstellungen.token
         }
     }
     
