@@ -11,6 +11,8 @@ import UIKit
 class ScoreView: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var user:Array<Dictionary<String,Any>> = []
+    var runde = 1
+    var emojiAnz = 0
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -38,14 +40,32 @@ class ScoreView: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
 
-    /*
+    @IBAction func nextBtn(_ sender: UIBarButtonItem) {
+        if(runde<emojiAnz) {
+            //nochmal
+            self.performSegue(withIdentifier: "playAgain", sender: self)
+        } else {
+            //start
+            self.performSegue(withIdentifier: "start", sender: self)
+        }
+    }
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        if(segue.identifier == "playAgain") {
+            let vc = segue.destination as! CameraView
+            print("playAgain \(vc.runde)")
+            vc.runde = vc.runde + 1
+        }
+        
+        if(segue.identifier == "start") {
+            print("start")
+        }
     }
-    */
+    
 
 }

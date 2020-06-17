@@ -82,6 +82,7 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
     
     var count = 0
     var token = ""
+    var runde = 1
     
     
     @IBAction func scoreBtn(_ sender: UIBarButtonItem) {
@@ -278,7 +279,7 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
         if let pixelBuffer: CVPixelBuffer = try? CMSampleBufferGetImageBuffer(samplebuffer) {
             if let model = try? VNCoreMLModel(for: YOLOv3Tiny().model) {
                 let request = VNCoreMLRequest(model: model){ (finishedReq, err) in
-                    print(err)
+                   // print(err)
                 DispatchQueue.main.async(execute: {
 
                     // perform all the UI updates on the main queue
@@ -497,11 +498,12 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-        let vc = segue.destination as! ScoreView
         if(segue.identifier == "score"){
             let vc = segue.destination as! ScoreView
             print("einstellungen: \(self.einstellungen)")
             vc.user = self.user
+            vc.runde = self.runde
+            vc.emojiAnz = self.einstellungen.anz
         }
     }
     
