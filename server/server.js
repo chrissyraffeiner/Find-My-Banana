@@ -339,9 +339,9 @@ app.get("/scoreResults/:token", (req,res)=>{
       let sorted = user.sort((a,b) => {return b.punkte - a.punkte})
       console.log(sorted)
       db.close()
+      res.send(sorted)
     })
   })
-  res.send("Game started")
 })
 
 function readFile(){
