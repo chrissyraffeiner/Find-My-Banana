@@ -58,7 +58,7 @@
 		C31101AA24211FC900D48AEB /* Emoji.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Emoji.txt; sourceTree = "<group>"; };
 		C31101AC242126F000D48AEB /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
 		C32785B624505ECE00C12F4E /* Icon metro-hour-glass.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Icon metro-hour-glass.jpeg"; sourceTree = "<group>"; };
-		C39AC697241B9BF3006EFAD5 /* findMyBananaMaja.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = findMyBananaMaja.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C39AC697241B9BF3006EFAD5 /* findMyBanana.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = findMyBanana.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C39AC69A241B9BF3006EFAD5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C39AC69C241B9BF3006EFAD5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		C39AC69E241B9BF3006EFAD5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -130,7 +130,7 @@
 		C39AC698241B9BF3006EFAD5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C39AC697241B9BF3006EFAD5 /* findMyBananaMaja.app */,
+				C39AC697241B9BF3006EFAD5 /* findMyBanana.app */,
 				C39AC6AD241B9BF4006EFAD5 /* findMyBananaTests.xctest */,
 				C39AC6B8241B9BF4006EFAD5 /* findMyBananaUITests.xctest */,
 			);
@@ -207,7 +207,7 @@
 			);
 			name = findMyBanana;
 			productName = findMyBanana;
-			productReference = C39AC697241B9BF3006EFAD5 /* findMyBananaMaja.app */;
+			productReference = C39AC697241B9BF3006EFAD5 /* findMyBanana.app */;
 			productType = "com.apple.product-type.application";
 		};
 		C39AC6AC241B9BF4006EFAD5 /* findMyBananaTests */ = {
@@ -518,14 +518,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = findMyBanana/findMyBanana.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = KBRDF5F9BG;
+				DEVELOPMENT_TEAM = T6FP847V7W;
 				INFOPLIST_FILE = findMyBanana/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "at.ac.htl-leonding.findMyBananaMaja";
-				PRODUCT_NAME = findMyBananaMaja;
+				PRODUCT_BUNDLE_IDENTIFIER = "at.ac.htl-leonding.findMyBanana";
+				PRODUCT_NAME = findMyBanana;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -537,14 +537,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = findMyBanana/findMyBanana.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = KBRDF5F9BG;
+				DEVELOPMENT_TEAM = T6FP847V7W;
 				INFOPLIST_FILE = findMyBanana/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "at.ac.htl-leonding.findMyBananaMaja";
-				PRODUCT_NAME = findMyBananaMaja;
+				PRODUCT_BUNDLE_IDENTIFIER = "at.ac.htl-leonding.findMyBanana";
+				PRODUCT_NAME = findMyBanana;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
