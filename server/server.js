@@ -325,6 +325,22 @@ app.get("/findByToken/:token", (req,res)=>{
   res.send("ok")
 })
 
+app.get("/scoreResults/:token", (req,res)=>{
+  let token = req.params.token
+  MongoClient.connect(url, function(err,db){
+    if(err) throw err
+    let dbo = db.db(dbName)
+    let query = {gamecode: token}
+
+    dbo.collection("Game").find(query).toArray((err, results)=>{
+      if(err) throw err;
+      console.log(result[0])
+      db.close()
+    })
+  })
+  res.send("ok")
+})
+
 function readFile(){
   let rawdata = fs.readFileSync("emojis.json")
   emojis = JSON.parse(rawdata)

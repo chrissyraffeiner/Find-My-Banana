@@ -8,7 +8,23 @@
 
 import UIKit
 
-class ScoreView: UIViewController {
+class ScoreView: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+    var user:Array<Dictionary<String,Any>> = []
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return user.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        return cell
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -83,6 +83,15 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
     var count = 0
     var token = ""
     
+    
+    @IBAction func scoreBtn(_ sender: UIBarButtonItem) {
+        print("btn clicked")
+        let queue = DispatchQueue(label: "get")
+        queue.async {
+            self.getScores()
+        }
+    }
+    
     @IBAction func showHideUser(_ sender: UIButton) {
         if open {
             userTable.layer.zPosition = -10
@@ -94,12 +103,6 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
         }
         open = !open
     }
-    
-    
-    @IBAction func scoreViewBtn(_ sender: UIBarButtonItem) {
-        
-    }
-    
     
     override func viewDidLoad() {
         findTime.text = "find in under \(einstellungen.timeInSec) sec"
@@ -116,6 +119,26 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
         //dataSource.user = user
         prepareSound(soundURL:url)
         startCountdown()
+    }
+    
+    func getScores(){
+        print(self.token)
+        if let url = URL(string: "\(serverURL)/soreResults/\(self.einstellungen.token)"){
+            var request = URLRequest(url:url)
+            request.httpMethod = "GET"
+            URLSession.shared.dataTask(with: url){(data, response, err) in
+                if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                    print("score datastring: \(dataString)")
+                    DispatchQueue.main.async{
+                        self.performSegue(withIdentifier: "score", sender: self)
+                    }
+                    /*if let obj = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String:Any]{
+                    }
+                    DispatchQueue.main.async{
+                    }*/
+                }
+            }.resume()
+        }
     }
     
     func prepareSound(soundURL:URL){
@@ -460,7 +483,9 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
         // Pass the selected object to the new view controller.
         let vc = segue.destination as! ScoreView
         if(segue.identifier == "score"){
-            
+            let vc = segue.destination as! ScoreView
+            print("einstellungen: \(self.einstellungen)")
+            vc.user = self.user
         }
     }
     

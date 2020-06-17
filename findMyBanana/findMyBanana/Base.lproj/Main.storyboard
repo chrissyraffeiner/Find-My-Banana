@@ -1309,7 +1309,7 @@
                     <navigationItem key="navigationItem" id="dpe-jM-tN3">
                         <barButtonItem key="rightBarButtonItem" title="Score" id="Jou-Zn-XOJ">
                             <connections>
-                                <action selector="scoreViewBtn:" destination="icc-1o-e1e" id="L3c-cl-skv"/>
+                                <action selector="scoreBtn:" destination="icc-1o-e1e" id="53g-2S-e13"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1326,7 +1326,7 @@
                         <outlet property="timerLabel" destination="Yh2-Aq-Oh6" id="8Qe-ez-163"/>
                         <outlet property="userButton" destination="CHN-rq-yad" id="AdT-g6-gAL"/>
                         <outlet property="userTable" destination="htX-vq-2Xo" id="fGS-zg-04D"/>
-                        <segue destination="7Bh-Iz-vIL" kind="show" identifier="score" id="aVH-mn-VKm"/>
+                        <segue destination="7Bh-Iz-vIL" kind="show" identifier="score" id="vlv-hJ-ykz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oeE-hJ-aKi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1345,7 +1345,7 @@
                                 <rect key="frame" x="20" y="280" width="374" height="395"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="YFk-ou-jEk">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="YFk-ou-jEk">
                                         <rect key="frame" x="0.0" y="28" width="374" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="YFk-ou-jEk" id="tHe-6L-Jfn">
