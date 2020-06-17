@@ -528,8 +528,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "at.ac.htl-leonding.findMyBananaMaja";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+
+				PRODUCT_BUNDLE_IDENTIFIER = "at.ac.htl-leonding.findMyBanana";
+				PRODUCT_NAME = findMyBanana;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -547,8 +548,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "at.ac.htl-leonding.findMyBananaMaja";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = "at.ac.htl-leonding.findMyBanana";
+				PRODUCT_NAME = findMyBanana;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
