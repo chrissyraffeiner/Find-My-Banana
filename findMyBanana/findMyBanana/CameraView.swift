@@ -66,10 +66,10 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
     
     var users:Array<Dictionary<String, Any>> = []
 
-    let serverURL = "http://192.168.0.105:3000"
+    //let serverURL = "http://192.168.0.105:3000"
     //let localServer = "http://192.168.1.175:8080"
     //let localServer = "http://172.17.214.100:3000"
-    //let serverURL = "http://vm112.htl-leonding.ac.at:8080"
+    let serverURL = "http://vm112.htl-leonding.ac.at:8080"
     //let serverURL = "http://31.214.245.100:3000"
     var itemU = "\u{1F973}"
 
@@ -476,6 +476,12 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
                 timerLabel.layer.zPosition = 0
                 counterTimer.invalidate()
                 timerIsFinished = true
+            }
+            if(counter == -1) {
+                let queue = DispatchQueue(label: "get")
+                queue.async {
+                    self.getScores()
+                }
             }
         }
         if(found) {
