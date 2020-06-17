@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C39AC696241B9BF3006EFAD5"
-               BuildableName = "findMyBananaMaja.app"
+               BuildableName = "findMyBanana.app"
                BlueprintName = "findMyBanana"
                ReferencedContainer = "container:findMyBanana.xcodeproj">
             </BuildableReference>
@@ -65,7 +65,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C39AC696241B9BF3006EFAD5"
-            BuildableName = "findMyBananaMaja.app"
+            BuildableName = "findMyBanana.app"
             BlueprintName = "findMyBanana"
             ReferencedContainer = "container:findMyBanana.xcodeproj">
          </BuildableReference>
@@ -82,7 +82,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C39AC696241B9BF3006EFAD5"
-            BuildableName = "findMyBananaMaja.app"
+            BuildableName = "findMyBanana.app"
             BlueprintName = "findMyBanana"
             ReferencedContainer = "container:findMyBanana.xcodeproj">
          </BuildableReference>

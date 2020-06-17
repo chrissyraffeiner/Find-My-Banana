@@ -334,11 +334,14 @@ app.get("/scoreResults/:token", (req,res)=>{
 
     dbo.collection("Game").find(query).toArray((err, results)=>{
       if(err) throw err;
-      console.log(result[0])
+      console.log(results[0])
+      let user = results[0].userlist
+      let sorted = user.sort((a,b) => {return b.punkte - a.punkte})
+      console.log(sorted)
       db.close()
     })
   })
-  res.send("ok")
+  res.send("Game started")
 })
 
 function readFile(){
