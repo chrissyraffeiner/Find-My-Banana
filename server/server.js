@@ -2,7 +2,7 @@ const express = require("express")
 const app = express()
 const MongoClient = require('mongodb').MongoClient
 let url = "mongodb://localhost:27017/"
-let dbName = "findMyBananaDB"
+let dbName = "FindMyBananaDB"
 const bodyParser = require("body-parser")
 const semaphore = require("node-semaphore")
 const fs = require("fs")
@@ -319,6 +319,22 @@ app.get("/findByToken/:token", (req,res)=>{
     dbo.collection("Game").find(query).toArray(function(err,result){
       if(err) throw err;
       console.log(result[0].userlist)
+      db.close()
+    })
+  })
+  res.send("ok")
+})
+
+app.get("/scoreResults/:token", (req,res)=>{
+  let token = req.params.token
+  MongoClient.connect(url, function(err,db){
+    if(err) throw err
+    let dbo = db.db(dbName)
+    let query = {gamecode: token}
+
+    dbo.collection("Game").find(query).toArray((err, results)=>{
+      if(err) throw err;
+      console.log(result[0])
       db.close()
     })
   })

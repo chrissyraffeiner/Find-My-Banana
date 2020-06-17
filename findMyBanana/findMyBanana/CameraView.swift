@@ -67,8 +67,10 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
     var users:Array<Dictionary<String, Any>> = []
 
     //let localServer = "http://192.168.0.105:3000"
-    let localServer = "http://192.168.1.175:8080"
+    //let localServer = "http://192.168.1.175:8080"
+    let localServer = "http://172.17.214.100:3000"
     let serverURL = "http://vm112.htl-leonding.ac.at:8080"
+    //let serverURL = "http://31.214.245.100:3000"
     var itemU = "\u{1F973}"
 
     @IBOutlet weak var findItemLabel: UILabel!
@@ -79,6 +81,16 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
     var timerIsFinished = false
     
     var count = 0
+    var token = ""
+    
+    
+    @IBAction func scoreBtn(_ sender: UIBarButtonItem) {
+        print("btn clicked")
+        let queue = DispatchQueue(label: "get")
+        queue.async {
+            self.getScores()
+        }
+    }
     
     @IBAction func showHideUser(_ sender: UIButton) {
         if open {
@@ -91,7 +103,6 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
         }
         open = !open
     }
-    
     
     override func viewDidLoad() {
         findTime.text = "find in under \(einstellungen.timeInSec) sec"
@@ -108,6 +119,26 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
         //dataSource.user = user
         prepareSound(soundURL:url)
         startCountdown()
+    }
+    
+    func getScores(){
+        print(self.token)
+        if let url = URL(string: "\(serverURL)/soreResults/\(self.einstellungen.token)"){
+            var request = URLRequest(url:url)
+            request.httpMethod = "GET"
+            URLSession.shared.dataTask(with: url){(data, response, err) in
+                if let data = data, let dataString = String(data: data, encoding: .utf8) {
+                    print("score datastring: \(dataString)")
+                    DispatchQueue.main.async{
+                        self.performSegue(withIdentifier: "score", sender: self)
+                    }
+                    /*if let obj = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String:Any]{
+                    }
+                    DispatchQueue.main.async{
+                    }*/
+                }
+            }.resume()
+        }
     }
     
     func prepareSound(soundURL:URL){
@@ -356,17 +387,20 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
     }
     
     func foundItem(parameter:[String:String]){
-print("parameter: \(parameter)")
+        print("paramtere: \(parameter)")
+
         if let url = URL(string: "\(serverURL)/foundItem") {
 
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             let username = parameter["username"]
             let token = parameter["token"]
+            //let token = self.token
             let emoji = parameter["emoji"]
             let points = parameter["punkte"]
+            let poststring = "token=\(token)&username=\(username!)&emoji=\(emoji!)&punkte=\(points)"
+
             print(points!)
-            let poststring = "token=\(token!)&username=\(username!)&emoji=\(emoji!)&punkte=\(points!)"
             request.httpBody = poststring.data(using: String.Encoding.utf8)
             
             URLSession.shared.dataTask(with: request) { (data, response, err) in
@@ -450,15 +484,21 @@ print("parameter: \(parameter)")
         }
         
     }
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        let vc = segue.destination as! ScoreView
+        if(segue.identifier == "score"){
+            let vc = segue.destination as! ScoreView
+            print("einstellungen: \(self.einstellungen)")
+            vc.user = self.user
+        }
     }
-    */
+    
 
 }
 
