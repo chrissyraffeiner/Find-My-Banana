@@ -84,6 +84,8 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
     var token = ""
     var runde = 1
     
+    var scoreBtnPressed = false
+    
     
     @IBAction func scoreBtn(_ sender: UIBarButtonItem) {
         print("btn clicked")
@@ -124,6 +126,7 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
     
     func getScores(){
         print(self.token)
+        scoreBtnPressed = true
         if let url = URL(string: "\(serverURL)/scoreResults/\(self.einstellungen.token)"){
             var request = URLRequest(url:url)
             request.httpMethod = "GET"
@@ -351,7 +354,11 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
                         print("datastring: \(dataString)")
                         if(dataString == "Try again"){
                             print("nixx neues")
-                            self.poll()
+                            if(!self.scoreBtnPressed){
+                                self.poll()
+                            }else{
+                                print("round finished")
+                            }
                         }else{
                             if(dataString == "Game started"){
                                 print("game started")
@@ -375,7 +382,11 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
                                  }else{
                                      print("failed parse")
                                  }
-                                self.poll()
+                                if(!self.scoreBtnPressed){
+                                    self.poll()
+                                }else{
+                                    print("round finished")
+                                }
                             }
                         }
                     }//DispatchQueue
