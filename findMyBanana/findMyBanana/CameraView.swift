@@ -83,15 +83,19 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
     var count = 0
     var token = ""
     var runde = 1
+    var admin = false
+    var showScore = false
     
     var scoreBtnPressed = false
     
     
     @IBAction func scoreBtn(_ sender: UIBarButtonItem) {
         print("btn clicked")
-        let queue = DispatchQueue(label: "get")
-        queue.async {
-            self.getScores()
+        if(!showScore) {
+            let queue = DispatchQueue(label: "get")
+            queue.async {
+                self.getScores()
+            }
         }
     }
     
@@ -107,7 +111,11 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
         open = !open
     }
     
+    @IBOutlet weak var scoreBtn: UIBarButtonItem!
     override func viewDidLoad() {
+        scoreBtn.isEnabled = false
+        scoreBtn.title = ""
+        
         findTime.text = "find in under \(einstellungen.timeInSec) sec"
         super.viewDidLoad()
         let queue = DispatchQueue(label:"queue")
@@ -410,7 +418,7 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
             //let token = self.token
             let emoji = parameter["emoji"]
             let points = parameter["punkte"]
-            let poststring = "token=\(token)&username=\(username!)&emoji=\(emoji!)&punkte=\(points)"
+            let poststring = "token=\(token!)&username=\(username!)&emoji=\(emoji!)&punkte=\(points!)"
 
             print(points!)
             request.httpBody = poststring.data(using: String.Encoding.utf8)
@@ -490,15 +498,18 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
                 timerIsFinished = true
             }
             if(counter == -1) {
-                let queue = DispatchQueue(label: "get")
-                queue.async {
-                    self.getScores()
+                if(!showScore) {
+                    let queue = DispatchQueue(label: "get")
+                    queue.async {
+                        self.getScores()
+                    }
                 }
             }
         }
         if(found) {
             timerLabel.textColor = UIColor(red:200/255, green:100/255, blue:0/255, alpha: 1)
-
+            scoreBtn.isEnabled = true
+            scoreBtn.title = "Score"
         }
         
     }
@@ -517,6 +528,8 @@ class CameraView: UIViewController,  AVCaptureVideoDataOutputSampleBufferDelegat
             vc.jsonModel.anz = self.einstellungen.anz
             vc.jsonModel.token = self.einstellungen.token
             vc.jsonModel.timeInSec = self.einstellungen.timeInSec
+            vc.admin = admin
+            showScore = true
             //vc.emojiAnz = self.einstellungen.anz
             //vc.token = self.einstellungen.token
         }

@@ -265,7 +265,7 @@ class CreateGameGamecodeView: UIViewController, UICollectionViewDelegate, UIColl
         print("jsonModel: \(jsonModel)")
         vc.einstellungen = jsonModel
          vc.user = user
-        
+        vc.admin = true
         vc.username = username
       }
   }

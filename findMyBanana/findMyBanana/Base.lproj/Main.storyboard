@@ -1324,6 +1324,7 @@
                         <outlet property="findView" destination="O6g-Jv-d91" id="BOn-Vv-8dx"/>
                         <outlet property="pointsLabel" destination="2PL-W7-AMa" id="fW3-r9-FlQ"/>
                         <outlet property="preview" destination="34a-2J-uln" id="Cgw-dq-Vhw"/>
+                        <outlet property="scoreBtn" destination="Jou-Zn-XOJ" id="12Z-Rr-M09"/>
                         <outlet property="timerLabel" destination="Yh2-Aq-Oh6" id="8Qe-ez-163"/>
                         <outlet property="userButton" destination="CHN-rq-yad" id="AdT-g6-gAL"/>
                         <outlet property="userTable" destination="htX-vq-2Xo" id="fGS-zg-04D"/>
@@ -1428,6 +1429,7 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
+                        <outlet property="adminBtn" destination="MOV-VY-PZ9" id="QGN-Kr-bVe"/>
                         <segue destination="icc-1o-e1e" kind="show" identifier="playAgain" id="fdf-a1-KY8"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="start" id="Zoe-v3-sCj"/>
                     </connections>
@@ -1445,6 +1447,7 @@
         <image name="line.horizontal.3" catalog="system" width="64" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="vlv-hJ-ykz"/>
         <segue reference="fdf-a1-KY8"/>
         <segue reference="v39-9m-1CG"/>
         <segue reference="Zoe-v3-sCj"/>

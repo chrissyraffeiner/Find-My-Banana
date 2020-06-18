@@ -12,12 +12,14 @@ class ScoreView: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var user:Array<Dictionary<String,Any>> = []
     var runde = 1
-    var emojiAnz = 0
+    //var emojiAnz = 0
     let queue = DispatchQueue(label: "myQueue", attributes: .concurrent)
     let serverURL = "http://vm112.htl-leonding.ac.at:8080"
     var token = ""
     var jsonModel = GameModel(anz: 3, timeInSec: 5, token: "")
-    
+    var admin = false
+
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -37,10 +39,21 @@ class ScoreView: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
 
+    @IBOutlet weak var adminBtn: UIBarButtonItem!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        print("\(runde), \(jsonModel.anz)")
+        if(runde == jsonModel.anz) {
+            adminBtn.title = "ende"
+        } else {
+            if(!admin) {
+                adminBtn.isEnabled = false
+                adminBtn.title = ""
+            }
+            
+        }
     }
     
 
@@ -83,10 +96,12 @@ class ScoreView: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 self.sendGameStart()
             }
             let vc = segue.destination as! CameraView
-            print("playAgain \(vc.runde)")
-            vc.runde = vc.runde + 1
+            print("playAgain \(runde+1)")
+            vc.runde = (runde + 1)
+            print("jsonModel.token = \(jsonModel.token)")
             vc.einstellungen = self.jsonModel
             vc.user = self.user
+            vc.admin = admin
         }
         
         if(segue.identifier == "start") {
