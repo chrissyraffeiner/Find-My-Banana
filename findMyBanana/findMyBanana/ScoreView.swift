@@ -14,7 +14,8 @@ class ScoreView: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var runde = 1
     var emojiAnz = 0
     let queue = DispatchQueue(label: "myQueue", attributes: .concurrent)
-    let serverURL = "http://vm112.htl-leonding.ac.at:8080"
+    //let serverURL = "http://vm112.htl-leonding.ac.at:8080"
+    let serverURL = "http://172.17.214.100:3000"
     var token = ""
     var jsonModel = GameModel(anz: 3, timeInSec: 5, token: "")
     
